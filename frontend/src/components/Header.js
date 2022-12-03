@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css"
 import Navbar from "./Navbar";
 import logo from "../assets/logo.jpg";
 
+
 function Header() {
+
     return (
         <div className="header">
             <div className="logo">
@@ -14,10 +16,10 @@ function Header() {
             <div className="navbar">
                 <Navbar />
             </div>
-            <div>
+            <div className="search">
 
             </div>
-            <div>
+            <div className="button">
 
             </div>
         </div>
