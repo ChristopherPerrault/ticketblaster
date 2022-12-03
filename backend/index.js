@@ -32,27 +32,37 @@ app.use(bodyParser.json());
 /* ----------- REGISTER ----------- */
 app.post("/users/register", async (request, response) => {
   const id = request.body.id;
-  const username = request.body.username;
+  const email = request.body.email;
   const password = request.body.password;
+  const firstName = request.body.firstName;
+  const lastName = request.body.lastName;
+  const address = request.body.address;
+  const phoneNumber = request.body.phoneNumber;
+  const creditCard = request.body.creditCard;
+  const securityCode = request.body.securityCode;
+  const expDate = request.body.expDate;
   try {
-    if (
-      username &&
-      validator.isAlphanumeric(username) &&
-      password &&
-      validator.isStrongPassword(password)
-    ) {
+    if (email && password && validator.isStrongPassword(password)) {
       // Check to see if the user already exists. If not, then create it.
-      const user = await userModel.findOne({ username: username });
+      const user = await userModel.findOne({ email: email });
       if (user) {
-        console.log(
-          "Invalid registration - username " + username + " already exists."
-        );
+        console.log("Invalid registration - email " + email + " already exists.");
         response.send({ success: false });
         return;
       } else {
         hashedPassword = await bcrypt.hash(password, saltRounds);
-        console.log("Registering username " + username);
-        const userToSave = { username: username, password: hashedPassword };
+        console.log("Registering email " + email);
+        const userToSave = {
+          email: email,
+          password: hashedPassword,
+          firstName: firstName,
+          lastName: lastName,
+          address: address,
+          phoneNumber: phoneNumber,
+          creditCard: creditCard,
+          securityCode: securityCode,
+          expDate: expDate,
+        };
         await userModel.create(userToSave);
         response.send({ success: true });
         return;
@@ -65,14 +75,14 @@ app.post("/users/register", async (request, response) => {
 });
 /* ----------- LOGIN ----------- */
 app.post("/users/login", async (request, response) => {
-  const username = request.body.username;
+  const email = request.body.email;
   const password = request.body.password;
   try {
-    if (username && password) {
-      // Check to see if the user already exists. If not, then create it.
-      const user = await userModel.findOne({ username: username });
+    if (email && password) {
+      // Check to see if the user already exists.
+      const user = await userModel.findOne({ email: email });
       if (!user) {
-        console.log("Invalid login - username " + username + " doesn't exist.");
+        console.log("Invalid login - email " + email + " doesn't exist.");
         response.send({ success: false });
         return;
       } else {
@@ -92,6 +102,4 @@ app.post("/users/login", async (request, response) => {
 
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
-app.listen(port, () =>
-  console.log(`Hello world app listening on port ${port}!`)
-);
+app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
