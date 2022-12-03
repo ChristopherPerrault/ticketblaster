@@ -13,7 +13,7 @@ const app = express();
 const port = 3001;
 app.use(cors());
 
-mongoose.connect(MONGODB_CONNECTION_STRING, {
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -35,11 +35,18 @@ app.post("/users/register", async (request, response) => {
   const username = request.body.username;
   const password = request.body.password;
   try {
-    if (username && validator.isAlphanumeric(username) && password && validator.isStrongPassword(password)) {
+    if (
+      username &&
+      validator.isAlphanumeric(username) &&
+      password &&
+      validator.isStrongPassword(password)
+    ) {
       // Check to see if the user already exists. If not, then create it.
       const user = await userModel.findOne({ username: username });
       if (user) {
-        console.log("Invalid registration - username " + username + " already exists.");
+        console.log(
+          "Invalid registration - username " + username + " already exists."
+        );
         response.send({ success: false });
         return;
       } else {
@@ -85,4 +92,6 @@ app.post("/users/login", async (request, response) => {
 
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
-app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
+app.listen(port, () =>
+  console.log(`Hello world app listening on port ${port}!`)
+);
