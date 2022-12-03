@@ -1,7 +1,5 @@
+import Outlet from "./components/Outlet";
+
 export default function App() {
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
-  );
+  return <Outlet />;
 }
