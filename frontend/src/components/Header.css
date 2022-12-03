@@ -1,9 +1,16 @@
 .header {
     background-color: #fd7545;
-    width: 100%;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
 }
 
 .logo {
     margin: 10px;
     padding: 10px;
+}
+
+.navbar {
+    padding-top: 20px;
 }

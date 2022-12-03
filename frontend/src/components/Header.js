@@ -7,10 +7,18 @@ function Header() {
     return (
         <div className="header">
             <div className="logo">
-                <img alt="Logo" title="TicketBlaster" src={logo} width="200px" />
+                <a href="/" title="Home">
+                    <img alt="Logo" src={logo} width="200px" />
+                </a>
+            </div>
+            <div className="navbar">
+                <Navbar />
             </div>
             <div>
-                <Navbar />
+
+            </div>
+            <div>
+
             </div>
         </div>
     )
