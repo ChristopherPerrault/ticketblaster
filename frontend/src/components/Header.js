@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./Header.css"
 import Navbar from "./Navbar";
 import logo from "../assets/logo.jpg";
-
+import SearchBar from "./SearchBar";
 
 function Header() {
+
+    let [query, setQuery] = useState("");
 
     return (
         <div className="header">
@@ -17,6 +19,9 @@ function Header() {
                 <Navbar />
             </div>
             <div className="search">
+                <SearchBar query={query}
+                    onQueryChange={myQuery => setQuery(myQuery)}
+                />
 
             </div>
             <div className="button">
