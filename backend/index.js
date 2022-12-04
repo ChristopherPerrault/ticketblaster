@@ -1,7 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const userModel = require("./models");
-
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;

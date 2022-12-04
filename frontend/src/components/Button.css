@@ -1,0 +1,12 @@
+.Button {
+    border-radius: 5px;
+    border-color: white;
+    background-color: #fd7545;
+
+}
+
+.Button p {
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+}

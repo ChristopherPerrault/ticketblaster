@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { LoggedInContext } from "../App";
 import "./Header.css"
 import Navbar from "./Navbar";
 import logo from "../assets/logo.jpg";
-import SearchBar from "./SearchBar";
+import LogoutButton from "./LogoutButton";
+import RegisterButton from "./RegisterButton";
+import LogInButton from "./LogInButton";
 
 function Header() {
-
-    let [query, setQuery] = useState("");
-
+    const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
     return (
         <div className="header">
             <div className="logo">
@@ -18,14 +19,9 @@ function Header() {
             <div className="navbar">
                 <Navbar />
             </div>
-            <div className="search">
-                <SearchBar query={query}
-                    onQueryChange={myQuery => setQuery(myQuery)}
-                />
 
-            </div>
             <div className="button">
-
+                {isLoggedIn ? <LogoutButton /> : <div> <RegisterButton to="/register" />&emsp;<LogInButton to="/login" /> </div>}
             </div>
         </div>
     )
