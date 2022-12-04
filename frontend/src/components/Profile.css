@@ -1,0 +1,21 @@
+/* Picture component */
+.profile-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+.profile-left-col{
+margin-top: 3rem;
+margin-left: 12rem;
+}
+.profile-img{
+    border-radius: 50%;
+    margin-top:2rem;
+}
+h1{
+   
+}
+.profile-right-col{
+   margin-top:3rem;
+   margin-left: 12rem;
+   
+}

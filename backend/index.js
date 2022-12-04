@@ -100,6 +100,44 @@ app.post("/users/login", async (request, response) => {
   response.send({ success: false });
 });
 
+/* Update Profile - Not implemented yet */
+app.put("/users", async (req, res) => {
+  const email = request.body.email;
+  const password = request.body.password;
+  const firstName = request.body.firstName;
+  const lastName = request.body.lastName;
+  const address = request.body.address;
+  const phoneNumber = request.body.phoneNumber;
+  const creditCard = request.body.creditCard;
+  const securityCode = request.body.securityCode;
+  const expDate = request.body.expDate;
+  const user = {
+    email: email,
+    password: hashedPassword,
+    firstName: firstName,
+    lastName: lastName,
+    address: address,
+    phoneNumber: phoneNumber,
+    creditCard: creditCard,
+    securityCode: securityCode,
+    expDate: expDate
+  };
+  try {
+     hashedPassword = await bcrypt.hash(password, saltRounds);
+    const results = await userModel.replaceOne(
+      {
+        email: email,
+      },
+      user
+    );
+    console.log("matched: " + results.matchedCount);
+    console.log("modified: " + results.modifiedCount);
+    res.send(results);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
