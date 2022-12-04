@@ -9,6 +9,8 @@ margin-left: 12rem;
 }
 .profile-img{
     border-radius: 50%;
+    height:400px;
+    width:400px;
     margin-top:2rem;
 }
 h1{
