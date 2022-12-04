@@ -1,6 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const userModel = require("./models");
+const userModel = require("./UserModels");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -122,7 +122,7 @@ app.put("/users", async (req, res) => {
     expDate: expDate
   };
   try {
-     hashedPassword = await bcrypt.hash(password, saltRounds);
+    hashedPassword = await bcrypt.hash(password, saltRounds);
     const results = await userModel.replaceOne(
       {
         email: email,
