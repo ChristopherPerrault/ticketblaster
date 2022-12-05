@@ -99,8 +99,8 @@ app.post("/users/login", async (request, response) => {
   response.send({ success: false });
 });
 
-/* Update Profile - Not implemented yet */
-app.put("/users", async (req, res) => {
+/* Update Profile */
+app.put("/users", async (request, response) => {
   const email = request.body.email;
   const password = request.body.password;
   const firstName = request.body.firstName;
@@ -110,6 +110,7 @@ app.put("/users", async (req, res) => {
   const creditCard = request.body.creditCard;
   const securityCode = request.body.securityCode;
   const expDate = request.body.expDate;
+  hashedPassword = await bcrypt.hash(password, saltRounds);
   const user = {
     email: email,
     password: hashedPassword,
@@ -121,8 +122,7 @@ app.put("/users", async (req, res) => {
     securityCode: securityCode,
     expDate: expDate
   };
-  try {
-    hashedPassword = await bcrypt.hash(password, saltRounds);
+  try {    
     const results = await userModel.replaceOne(
       {
         email: email,
@@ -131,12 +131,45 @@ app.put("/users", async (req, res) => {
     );
     console.log("matched: " + results.matchedCount);
     console.log("modified: " + results.modifiedCount);
-    res.send(results);
+    response.send(results);
   } catch (err) {
     console.log(err);
   }
 });
 
+/* get request to /users to get ALL users */
+app.get("/users", async (req, res) => {
+  try {
+    const users = await userModel.find();
+    res.send(users);
+  } catch (err) {
+    console.log(err);
+  }
+});
+/* get request using query parameters to /users/:id --- gets ONE user */
+app.get("/users", async (req, res) => {
+  const id = req.query.id;
+ // const email = req.query.email;
+  try {
+    const user = await userModel.findOne({
+      id: id,
+    });
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+/* An API delete request using URL path parameters to /users/:id */
+app.delete("/users/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const results = await userModel.deleteOne({ id: id });
+    res.send(results);
+  } catch (err) {
+    console.log(err);
+  }
+});
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
