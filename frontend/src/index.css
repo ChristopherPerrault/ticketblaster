@@ -1,0 +1,51 @@
+/* Styles for FAQ page */
+.faq {
+    padding-right: 10vh;
+}
+
+.wrapper {
+    display: flex;
+    height: 50vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15vh;
+}
+
+.accordion {
+    width: 600px;
+}
+
+.item {
+    background-color: #fd7545;
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 3px 3px gray;
+}
+
+.question {
+    color: #2f2f2f;
+    padding: 5px;
+    font-size: 15pt;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.answer {
+    color: white;
+    font-weight: bold;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0s cubic-bezier(0,1,0,1);
+}
+
+.answer.show {
+    height: auto;
+    padding: 5px;
+    font-size: 15pt;
+    max-height: 9999px;
+    transition: all 0s cubic-bezier(1,0,1,0);
+}
+
