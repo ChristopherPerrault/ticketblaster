@@ -75,8 +75,9 @@ export default function EditUser() {
 
   // This following section will display the form that takes input from the user to update the data.
   return (
+    
     <div className="edit-container">
-      <h3>Update Record ({params.id})</h3>
+      <h3>Update Record ({params.id})</h3>      
       <form onSubmit={onSubmit} className="update-form">
         <div className="form-group">
           <label htmlFor="name">Email: </label>
@@ -159,7 +160,37 @@ export default function EditUser() {
           />
         </div>
         <br />
-
+        
+        <div className="form-group">
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="userOptions"
+              id="user"
+              value="user"
+              checked={form.level === "user"}
+              onChange={(e) => updateForm({ level: e.target.value })}
+            />
+            <label htmlFor="user" className="form-check-label">
+              User
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="userOptions"
+              id="positionAdmin"
+              value="admin"
+              checked={form.level === "admin"}
+              onChange={(e) => updateForm({ level: e.target.value })}
+            />
+            <label htmlFor="positionJunior" className="form-check-label">
+              Admin
+            </label>
+          </div>
+        </div>
         <div className="form-group">
           <input
             type="submit"

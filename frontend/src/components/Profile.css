@@ -1,8 +1,9 @@
-/* Picture component */
+/* Container for entire page */
 .profile-container{
     display:grid;
     grid-template-columns: 1fr 1fr;
 }
+/* Left column */
 .profile-left-col{
 margin-top: 3rem;
 margin-left: 12rem;
@@ -13,9 +14,7 @@ margin-left: 12rem;
     width:400px;
     margin-top:2rem;
 }
-h1{
-   
-}
+/* Right column (form) */
 .profile-right-col{
    margin-top:3rem;
    margin-left: 12rem;
