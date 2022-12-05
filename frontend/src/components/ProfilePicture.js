@@ -7,7 +7,7 @@ function ProfilePicture(){
          
            <div className="profile-left-col">
              <h1>My Account</h1>
-             <img src={Photo} alt="User profile" class="profile-img" />
+             <img src={Photo} alt="User profile" className="profile-img" />
            </div>
          
        </>

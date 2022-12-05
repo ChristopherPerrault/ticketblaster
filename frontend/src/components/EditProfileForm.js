@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
-function EditProfileForm() {
+function EditProfilehtmlForm() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const firstNameRef = useRef();
@@ -48,31 +48,31 @@ function EditProfileForm() {
     <div>
       <form onSubmit={handleSubmit} className="profile-right-col">
         <h1>Edit Account Info</h1>
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input id="email" type="email" ref={emailRef} required />
         <br />
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input id="password" type="password" ref={passwordRef} required />
         <br />
-        <label for="firstName">First Name</label>
+        <label htmlFor="firstName">First Name</label>
         <input id="firstName" type="text" ref={firstNameRef} required />
         <br />
-        <label for="lastName">Last Name</label>
+        <label htmlFor="lastName">Last Name</label>
         <input id="lastName" type="text" ref={lastNameRef} required />
         <br />
-        <label for="address">Address</label>
+        <label htmlFor="address">Address</label>
         <input id="address" type="text" ref={addressRef} required />
         <br />
-        <label for="phoneNumber">Phone Number</label>
+        <label htmlFor="phoneNumber">Phone Number</label>
         <input id="phoneNumber" type="text" ref={phoneNumberRef} required />
         <br />
-        <label for="creditCard">Credit Card</label>
+        <label htmlFor="creditCard">Credit Card</label>
         <input id="creditCard" type="text" ref={creditCardRef} required />
         <br />
-        <label for="securityCode">Security Code</label>
+        <label htmlFor="securityCode">Security Code</label>
         <input id="securityCode" type="text" ref={securityCodeRef} required />
         <br />
-        <label for="expDate">Expiry Date</label>
+        <label htmlFor="expDate">Expiry Date</label>
         <input id="expDate" type="date" ref={expDateRef} required />
         <br />
         <button>Register</button>
@@ -81,4 +81,4 @@ function EditProfileForm() {
   );
 }
 
-export default EditProfileForm;
+export default EditProfilehtmlForm;

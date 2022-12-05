@@ -1,0 +1,15 @@
+.table-container{
+    margin-left:auto;
+    margin-right:auto;
+}
+td{
+    text-align: center;
+}
+.table-heading{
+    margin-top: 2rem;
+    text-align: center;
+}
+.edit-container{
+    margin-left:50%;
+    
+}

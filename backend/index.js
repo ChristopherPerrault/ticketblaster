@@ -99,7 +99,7 @@ app.post("/users/login", async (request, response) => {
   response.send({ success: false });
 });
 
-/* Update Profile - Not implemented yet */
+/* Update Profile */
 app.put("/users", async (request, response) => {
   const email = request.body.email;
   const password = request.body.password;
@@ -137,6 +137,28 @@ app.put("/users", async (request, response) => {
   }
 });
 
+/* An API get request to /users to get ALL users */
+app.get("/users", async (req, res) => {
+  try {
+    const users = await userModel.find();
+    res.send(users);
+  } catch (err) {
+    console.log(err);
+  }
+});
+/* An API get request using query
+parameters to /users?username=XXX */
+app.get("/users", async (req, res) => {
+  const id = req.query.id;
+  try {
+    const user = await userModel.findOne({
+      id: id,
+    });
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));

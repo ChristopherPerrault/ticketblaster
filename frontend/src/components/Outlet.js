@@ -3,6 +3,8 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Events from "../pages/Events";
+import EditUser from "../pages/EditUser";
+import AdminCrudUsers from "../pages/AdminCrudUsers";
 import Account from "../pages/Account";
 import { Navigate } from "react-router-dom";
 import RegistrationForm from "../pages/RegistrationForm";
@@ -16,6 +18,8 @@ export default function Outlet() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="events" element={<Events />} />
+          <Route path="admin" element={<AdminCrudUsers />} />
+          <Route path="/edit/:id" element={<EditUser />} />
           <Route path="account" element={<Account />} />
           <Route path="register" element={<RegistrationForm />} />
           <Route path="login" element={<LoginForm />} />
