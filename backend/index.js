@@ -137,7 +137,7 @@ app.put("/users", async (request, response) => {
   }
 });
 
-/* An API get request to /users to get ALL users */
+/* get request to /users to get ALL users */
 app.get("/users", async (req, res) => {
   try {
     const users = await userModel.find();
@@ -146,15 +146,26 @@ app.get("/users", async (req, res) => {
     console.log(err);
   }
 });
-/* An API get request using query
-parameters to /users?username=XXX */
+/* get request using query parameters to /users/:id --- gets ONE user */
 app.get("/users", async (req, res) => {
   const id = req.query.id;
+ // const email = req.query.email;
   try {
     const user = await userModel.findOne({
       id: id,
     });
     res.send(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+/* An API delete request using URL path parameters to /users/:id */
+app.delete("/users/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const results = await userModel.deleteOne({ id: id });
+    res.send(results);
   } catch (err) {
     console.log(err);
   }

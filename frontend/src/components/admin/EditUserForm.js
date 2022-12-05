@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import "./RecordList.css";
 export default function EditUser() {
+   const params = useParams();
+   const navigate = useNavigate();
   const [form, setForm] = useState({
-    email: "",
-    firstName: "",
-    lastName: "",
-    address: "",
-    phoneNumber: "",
-    creditCard: "",
-    securityCode: "",
-    expDate: "",
+    email: params.email,
+    firstName: params.firstName,
+    lastName: params.lastName,
+    address: params.address,
+    phoneNumber: params.phoneNumber,
+    creditCard: params.creditCard,
+    securityCode: params.securityCode,
+    expDate: params.expDate,
   });
-  const params = useParams();
-  const navigate = useNavigate();
+ 
 
   useEffect(() => {
     async function fetchData() {
@@ -32,7 +33,7 @@ export default function EditUser() {
         navigate("/");
         return;
       }
-
+      console.log(record);
       setForm(record);
     }
 
@@ -75,12 +76,12 @@ export default function EditUser() {
 
   // This following section will display the form that takes input from the user to update the data.
   return (
-    
     <div className="edit-container">
-      <h3>Update Record ({params.id})</h3>      
+      <h3>Update Record ({params.id})</h3>
+      <h3>{params.email}</h3>
       <form onSubmit={onSubmit} className="update-form">
         <div className="form-group">
-          <label htmlFor="name">Email: </label>
+          <label htmlFor="email">Email: </label>
           <input
             type="text"
             className="form-control"
@@ -90,7 +91,7 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">First Name: </label>
+          <label htmlFor="firstName">First Name: </label>
           <input
             type="text"
             className="form-control"
@@ -100,7 +101,7 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Last Name: </label>
+          <label htmlFor="lastName">Last Name: </label>
           <input
             type="text"
             className="form-control"
@@ -110,7 +111,7 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Address: </label>
+          <label htmlFor="address">Address: </label>
           <input
             type="text"
             className="form-control"
@@ -120,7 +121,7 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Phone Number: </label>
+          <label htmlFor="phoneNumber">Phone Number: </label>
           <input
             type="text"
             className="form-control"
@@ -130,7 +131,7 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Credit Card: </label>
+          <label htmlFor="creditCard">Credit Card: </label>
           <input
             type="text"
             className="form-control"
@@ -140,7 +141,7 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Security Code: </label>
+          <label htmlFor="securityCode">Security Code: </label>
           <input
             type="text"
             className="form-control"
@@ -150,9 +151,9 @@ export default function EditUser() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Expiry Date: </label>
+          <label htmlFor="expDate">Expiry Date: </label>
           <input
-            type="text"
+            type="date"
             className="form-control"
             id="expDate"
             value={form.expDate}
@@ -160,19 +161,19 @@ export default function EditUser() {
           />
         </div>
         <br />
-        
-        <div className="form-group">
+
+      {/*   <div className="form-group">
           <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="radio"
               name="userOptions"
-              id="user"
+              id="positionUser"
               value="user"
               checked={form.level === "user"}
               onChange={(e) => updateForm({ level: e.target.value })}
             />
-            <label htmlFor="user" className="form-check-label">
+            <label htmlFor="positionUser" className="form-check-label">
               User
             </label>
           </div>
@@ -186,11 +187,11 @@ export default function EditUser() {
               checked={form.level === "admin"}
               onChange={(e) => updateForm({ level: e.target.value })}
             />
-            <label htmlFor="positionJunior" className="form-check-label">
+            <label htmlFor="positionAdmin" className="form-check-label">
               Admin
             </label>
           </div>
-        </div>
+        </div> */}
         <div className="form-group">
           <input
             type="submit"

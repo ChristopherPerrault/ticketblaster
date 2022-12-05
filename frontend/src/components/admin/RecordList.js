@@ -19,7 +19,7 @@ const Record = (props) => (
       <button
         
         onClick={() => {
-          props.deleteRecord(props.record._id);
+          props.deleteRecord(props.record.id);
         }}
       >
         Delete
@@ -53,7 +53,7 @@ export default function RecordList() {
 
   // This method will delete a record
   async function deleteRecord(id) {
-    await fetch(`http://localhost:3001/${id}`, {
+    await fetch(`http://localhost:3001/users/${id}`, {
       method: "DELETE",
     });
 
