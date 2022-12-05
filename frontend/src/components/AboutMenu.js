@@ -2,7 +2,7 @@ import React from "react";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import "./AboutMenu.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import NavButton from "./NavButton";
 
 export default function AboutMenu() {
