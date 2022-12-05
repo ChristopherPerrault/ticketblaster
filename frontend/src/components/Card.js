@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function Card() {
-  const [eventName, setEventName] = useState([]);
+  const [events, setEvents] = useState([]);
 
   //  real ticketmaster API
   const url =
@@ -18,7 +18,16 @@ export default function Card() {
     await fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setEventName(data._embedded.events[0].name);
+        setEvents(
+          data._embedded.events.map((info, index) => {
+            return (
+              <>
+                <div>{info.name}</div>
+                <img alt="img" srcSet={info.images[0].url}></img>
+              </>
+            );
+          })
+        );
         // allows us to view the contents of the API
         console.log(data);
       });
@@ -27,7 +36,7 @@ export default function Card() {
   return (
     <div>
       {/* <button onClick={loadData}>GetData</button> */}
-      <h2>{eventName}</h2>
+      <h2>{events}</h2>
     </div>
   );
 }
