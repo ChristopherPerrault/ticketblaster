@@ -100,7 +100,7 @@ app.post("/users/login", async (request, response) => {
 });
 
 /* Update Profile - Not implemented yet */
-app.put("/users", async (req, res) => {
+app.put("/users", async (request, response) => {
   const email = request.body.email;
   const password = request.body.password;
   const firstName = request.body.firstName;
@@ -110,6 +110,7 @@ app.put("/users", async (req, res) => {
   const creditCard = request.body.creditCard;
   const securityCode = request.body.securityCode;
   const expDate = request.body.expDate;
+  hashedPassword = await bcrypt.hash(password, saltRounds);
   const user = {
     email: email,
     password: hashedPassword,
@@ -121,8 +122,7 @@ app.put("/users", async (req, res) => {
     securityCode: securityCode,
     expDate: expDate
   };
-  try {
-    hashedPassword = await bcrypt.hash(password, saltRounds);
+  try {    
     const results = await userModel.replaceOne(
       {
         email: email,
@@ -131,7 +131,7 @@ app.put("/users", async (req, res) => {
     );
     console.log("matched: " + results.matchedCount);
     console.log("modified: " + results.modifiedCount);
-    res.send(results);
+    response.send(results);
   } catch (err) {
     console.log(err);
   }
