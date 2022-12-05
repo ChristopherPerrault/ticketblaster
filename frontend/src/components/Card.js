@@ -28,8 +28,6 @@ export default function Card() {
             );
           })
         );
-        // allows us to view the contents of the API
-        console.log(data);
       });
   };
 
