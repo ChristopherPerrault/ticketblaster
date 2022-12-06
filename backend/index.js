@@ -98,9 +98,52 @@ app.post("/users/login", async (request, response) => {
   }
   response.send({ success: false });
 });
+/* Update Account NO PASSWORD (admin)*/
+app.post("/users/:id", async (request, response) => {
+  console.log("post with id ");
+ const id = request.body.id;
+ const email = request.body.email;
+ const firstName = request.body.firstName;
+ const lastName = request.body.lastName;
+ const address = request.body.address;
+ const phoneNumber = request.body.phoneNumber;
+ const creditCard = request.body.creditCard;
+ const securityCode = request.body.securityCode;
+ const expDate = request.body.expDate;
+console.log(id)
+console.log(email);
+console.log(lastName);
+console.log(phoneNumber);
+console.log(creditCard);
+ const user = {
+   id: id,
+   email: email,   
+   firstName: firstName,
+   lastName: lastName,
+   address: address,
+   phoneNumber: phoneNumber,
+   creditCard: creditCard,
+   securityCode: securityCode,
+   expDate: expDate,
+ };
+  try {
+    const results = await userModel.replaceOne(
+      {
+        id: id,
+      },
+      user
+    );
+    console.log("matched: " + results.matchedCount);
+    console.log("modified: " + results.modifiedCount);
+    response.send(results);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-/* Update Profile */
+/* Update Profile - User Edit Account WITH PASSWORD */
 app.put("/users", async (request, response) => {
+  const id = request.body.id;
   const email = request.body.email;
   const password = request.body.password;
   const firstName = request.body.firstName;
@@ -112,6 +155,7 @@ app.put("/users", async (request, response) => {
   const expDate = request.body.expDate;
   hashedPassword = await bcrypt.hash(password, saltRounds);
   const user = {
+    id:id,
     email: email,
     password: hashedPassword,
     firstName: firstName,
@@ -125,7 +169,7 @@ app.put("/users", async (request, response) => {
   try {    
     const results = await userModel.replaceOne(
       {
-        email: email,
+        id: id,
       },
       user
     );

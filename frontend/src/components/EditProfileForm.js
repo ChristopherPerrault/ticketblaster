@@ -49,7 +49,7 @@ function EditProfilehtmlForm() {
       <form onSubmit={handleSubmit} className="profile-right-col">
         <h1>Edit Account Info</h1>
         <label htmlFor="email">Email</label>
-        <input id="email" type="email" ref={emailRef} required />
+        <input id="email" type="email" ref={emailRef}  required />
         <br />
         <label htmlFor="password">Password</label>
         <input id="password" type="password" ref={passwordRef} required />

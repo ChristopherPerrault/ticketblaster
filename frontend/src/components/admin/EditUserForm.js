@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router";
-import "./RecordList.css";
-export default function EditUser() {
-   const params = useParams();
-   const navigate = useNavigate();
-  const [form, setForm] = useState({
-    email: params.email,
-    firstName: params.firstName,
-    lastName: params.lastName,
-    address: params.address,
-    phoneNumber: params.phoneNumber,
-    creditCard: params.creditCard,
-    securityCode: params.securityCode,
-    expDate: params.expDate,
-  });
- 
 
+import "./RecordList.css";
+export default function EditUser(props) {
+  const emailRef = useRef(); 
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const addressRef = useRef();
+  const phoneNumberRef = useRef();
+  const creditCardRef = useRef();
+  const securityCodeRef = useRef();
+  const expDateRef = useRef();
+
+const params = useParams();
+const navigate = useNavigate();
   useEffect(() => {
     async function fetchData() {
       const id = params._id.toString();
@@ -34,7 +32,7 @@ export default function EditUser() {
         return;
       }
       console.log(record);
-      setForm(record);
+    
     }
 
     fetchData();
@@ -42,25 +40,21 @@ export default function EditUser() {
     return;
   }, [params.id, navigate]);
 
-  // These methods will update the state properties.
-  function updateForm(value) {
-    return setForm((prev) => {
-      return { ...prev, ...value };
-    });
-  }
 
   async function onSubmit(e) {
     e.preventDefault();
     const editedPerson = {
-      email: form.email,
-      firstName: form.firstName,
-      lastName: form.lastName,
-      address: form.address,
-      phoneNumber: form.phoneNumber,
-      creditCard: form.creditCard,
-      securityCode: form.securityCode,
-      expDate: form.expDate,
+      id: params.id,
+      email: emailRef.current.value,
+      firstName: firstNameRef.current.value,
+      lastName: lastNameRef.current.value,
+      address: addressRef.current.value,
+      phoneNumber: phoneNumberRef.current.value,
+      creditCard: creditCardRef.current.value,
+      securityCode: securityCodeRef.current.value,
+      expDate: expDateRef.current.value,
     };
+    console.log(JSON.stringify(editedPerson));
 
     // This will send a post request to update the data in the database.
     await fetch(`http://localhost:3001/users/${params.id}`, {
@@ -69,16 +63,15 @@ export default function EditUser() {
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    }).then(console.log(editedPerson));
 
-    navigate("/");
+    navigate("/admin");
   }
 
   // This following section will display the form that takes input from the user to update the data.
   return (
     <div className="edit-container">
       <h3>Update Record ({params.id})</h3>
-      <h3>{params.email}</h3>
       <form onSubmit={onSubmit} className="update-form">
         <div className="form-group">
           <label htmlFor="email">Email: </label>
@@ -86,8 +79,8 @@ export default function EditUser() {
             type="text"
             className="form-control"
             id="email"
-            value={form.email}
-            onChange={(e) => updateForm({ name: e.target.value })}
+            ref={emailRef}
+                   
           />
         </div>
         <div className="form-group">
@@ -95,9 +88,8 @@ export default function EditUser() {
           <input
             type="text"
             className="form-control"
-            id="firstName"
-            value={form.firstName}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            id="firstName"       
+            ref={firstNameRef}            
           />
         </div>
         <div className="form-group">
@@ -105,9 +97,8 @@ export default function EditUser() {
           <input
             type="text"
             className="form-control"
-            id="lastName"
-            value={form.lastName}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            id="lastName"            
+            ref={lastNameRef}           
           />
         </div>
         <div className="form-group">
@@ -115,9 +106,8 @@ export default function EditUser() {
           <input
             type="text"
             className="form-control"
-            id="address"
-            value={form.address}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            id="address"           
+            ref={addressRef}            
           />
         </div>
         <div className="form-group">
@@ -125,9 +115,8 @@ export default function EditUser() {
           <input
             type="text"
             className="form-control"
-            id="phoneNumber"
-            value={form.phoneNumber}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            id="phoneNumber"          
+            ref={phoneNumberRef}          
           />
         </div>
         <div className="form-group">
@@ -136,8 +125,9 @@ export default function EditUser() {
             type="text"
             className="form-control"
             id="creditCard"
-            value={form.creditCard}
-            onChange={(e) => updateForm({ position: e.target.value })}
+         
+            ref={creditCardRef}
+          
           />
         </div>
         <div className="form-group">
@@ -146,8 +136,9 @@ export default function EditUser() {
             type="text"
             className="form-control"
             id="securityCode"
-            value={form.securityCode}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            
+            ref={securityCodeRef}
+            
           />
         </div>
         <div className="form-group">
@@ -156,13 +147,14 @@ export default function EditUser() {
             type="date"
             className="form-control"
             id="expDate"
-            value={form.expDate}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            
+            ref={expDateRef}
+         
           />
         </div>
         <br />
 
-      {/*   <div className="form-group">
+        {/*   <div className="form-group">
           <div className="form-check form-check-inline">
             <input
               className="form-check-input"

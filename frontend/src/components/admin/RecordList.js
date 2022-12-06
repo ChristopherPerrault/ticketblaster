@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./RecordList.css"
 const Record = (props) => (
   <tr>
+    <td>{props.record._id}</td>
     <td>{props.record.email}</td>
     <td>{props.record.firstName}</td>
     <td>{props.record.lastName}</td>
@@ -83,9 +84,9 @@ export default function RecordList() {
         className="table table-striped table-container"
         style={{ marginTop: 20 }}
       >
-     
         <thead>
           <tr>
+            <th>ID</th>
             <th>Email</th>
             <th>First Name</th>
             <th>Last Name</th>
