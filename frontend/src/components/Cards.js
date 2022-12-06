@@ -67,14 +67,6 @@ export default function Cards() {
                     </Card>
                   </Box>
                 </div>
-
-                //  <div>
-                //   <button onClick={handleClick}>
-                //      <img alt="img" srcSet={event.images[6].url} width="215px" />
-                //    </button>
-                //    <p className="name">{event.name}</p>
-                //    <p className="date">{event.dates.start.localDate}</p>
-                //  </div>
               );
             })
           );
@@ -84,10 +76,5 @@ export default function Cards() {
     loadData();
   }, [navigate]);
 
-  //?  work in progress. For the time being, this renders the first event name from the API. I know .map() comes into play in the rendering; I have been experimenting with that
-
-  // useEffect runs loadData() and waits for a successful fetch. If success, the API's data is stored as a JSON response and state "setEventName" is passed specific data.
-
-  // this had class .events
   return <div>{events}</div>;
 }
