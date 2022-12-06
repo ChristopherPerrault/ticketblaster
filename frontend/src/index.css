@@ -48,3 +48,58 @@
   max-height: 9999px;
   transition: all 0s cubic-bezier(1, 0, 1, 0);
 }
+
+/* Styling Registration Page */
+.registration--form,
+.login--form {
+  width: 300px;
+  margin: 2rem auto 2rem auto;
+}
+
+.registration--form div div {
+  margin-bottom: 0.75rem;
+}
+
+.registration--form h2 {
+  margin-bottom: 1rem;
+}
+
+.registration--form div p {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Styling for Contact Page */
+.title {
+  text-align: center;
+  padding: 10vh;
+}
+
+.description {
+  font-size: 18pt;
+  text-align: center;
+  padding-top: 5vh;
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  text-align: center;
+  padding-top: 20vh;
+}
+
+.icon {
+  box-shadow: 2px 2px 2px 2px lightgrey;
+  padding: 5px;
+}
+
+.icons div p {
+  font-size: 15pt;
+  padding: 10px;
+}
+
+.icon:active {
+  box-shadow: none;
+}
