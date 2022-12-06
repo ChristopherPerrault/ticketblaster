@@ -1,10 +1,13 @@
 .footer {
-    /* 100vh was clipping at the bottom, 98 seems to be ok. might have to update later on */
-    background-color: #fd7545;
-    color: white;
-    width: 100vw;    
-    position: absolute;
-    top:30vh;
-    text-align: center;
-    position: relative;
+  /* 100vh was clipping at the bottom, 98 seems to be ok. might have to update later on */
+  background-color: #fd7545;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  color: rgb(242, 242, 242);
+  text-shadow: black 2px 1px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: fit-content;
+  text-align: center;
 }
