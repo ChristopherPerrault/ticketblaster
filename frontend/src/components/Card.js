@@ -9,26 +9,34 @@ export default function Card() {
   //  real ticketmaster API
   useEffect(() => {
     const url =
-      // "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=zhJDIqfMsloXKpRjywIbmnUSBGw9AxNq";
-      // "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=qiJ5AkBhkvr6IFdd9UamBev1hYovx46M"; 
-      "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=LVpUpS7gaeXxvoQMKgDF1zSNbXbASUgS";
+      // Chris:
+      "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=zhJDIqfMsloXKpRjywIbmnUSBGw9AxNq";
+
+    // Matt #1:
+    //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=qiJ5AkBhkvr6IFdd9UamBev1hYovx46M";
+
+    // Matt #2:
+    // https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=hu5LlW3eJkDoVLKyUGnAZmbpZS8k6eCE111
+
+    // Kevin:
+    //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=LVpUpS7gaeXxvoQMKgDF1zSNbXbASUgS";
     const loadData = async () => {
       await fetch(url)
         .then((response) => response.json())
         .then((data) => {
           setEvents(
-            data._embedded.events.map((info, index) => {
+            data._embedded.events.map((event, index) => {
               const handleClick = () => {
-                navigate(`/purchase/${info.id}`);
+                navigate(`/purchase/${event.id}`);
               }
               return (
                 <div>
                   <button onClick={handleClick}>
-                    <img alt="img" srcSet={info.images[6].url} width="215px" />
+                    <img alt="img" srcSet={event.images[6].url} width="215px" />
                   </button>
-                  <p className="name">{info.name}</p>
-                  <p className="date">{info.dates.start.localDate}</p>
-                </div >
+                  <p className="name">{event.name}</p>
+                  <p className="date">{event.dates.start.localDate}</p>
+                </div>
               );
             })
           );
