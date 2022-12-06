@@ -1,60 +1,79 @@
 /* Styles for FAQ page */
 .faq {
-    padding-right: 10vh;
+  padding-right: 10vh;
 }
 
 .wrapper {
-    display: flex;
-    height: 50vh;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-    padding-top: 15vh;
+  display: flex;
+  height: 50vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15vh;
 }
 
 .accordion {
-    width: 600px;
+  width: 600px;
 }
 
 .item {
-    background-color: #fd7545;
-    margin: 10px;
-    padding: 5px;
-    box-shadow: 3px 3px gray;
+  background-color: #fd7545;
+  margin: 10px;
+  padding: 5px;
+  box-shadow: 3px 3px gray;
 }
 
 .question {
-    color: #2f2f2f;
-    padding: 5px;
-    font-size: 15pt;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+  color: #2f2f2f;
+  padding: 5px;
+  font-size: 15pt;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
 .answer {
-    color: white;
-    font-weight: bold;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0s cubic-bezier(0,1,0,1);
+  color: white;
+  font-weight: bold;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0s cubic-bezier(0, 1, 0, 1);
 }
 
 .answer.show {
-    height: auto;
-    padding: 5px;
-    font-size: 15pt;
-    max-height: 9999px;
-    transition: all 0s cubic-bezier(1,0,1,0);
+  height: auto;
+  padding: 5px;
+  font-size: 15pt;
+  max-height: 9999px;
+  transition: all 0s cubic-bezier(1, 0, 1, 0);
 }
 
 /* Styling Cards */
 .events {
-    display: grid;
-    grid-template-columns: repeat(5, 20vw);
-    grid-template-rows: repeat(4,30vh);
-    align-items: center;
-    text-align: center;
+  display: grid;
+  grid-template-columns: repeat(5, 20vw);
+  grid-template-rows: repeat(4, 30vh);
+  align-items: center;
+  text-align: center;
 }
 
+/* Styling Registration Page */
+.registration--form {
+  width: 300px;
+  margin: 5rem auto 5rem auto;
+}
+
+.registration--form div div {
+  margin-bottom: 0.75rem;
+}
+
+.registration--form h2 {
+  margin-bottom: 1rem;
+}
+
+.registration--form div p {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 1rem;
+}
