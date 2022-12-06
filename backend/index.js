@@ -110,11 +110,6 @@ app.post("/users/:id", async (request, response) => {
  const creditCard = request.body.creditCard;
  const securityCode = request.body.securityCode;
  const expDate = request.body.expDate;
-console.log(id)
-console.log(email);
-console.log(lastName);
-console.log(phoneNumber);
-console.log(creditCard);
  const user = {
    id: id,
    email: email,   
@@ -214,6 +209,50 @@ app.delete("/users/:id", async (req, res) => {
     console.log(err);
   }
 });
+
+/* -----------------------Stripe----------------------------  */
+
+/* const Stripe = require("stripe");
+const stripe = Stripe(
+  "sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0"
+);
+
+app.post("/checkout", async (req, res) => {
+  const items= req.body.items;
+  let lineItems = [];
+  console.log(req.body);
+  items.forEach(item => {
+    lineItems.push(
+      {
+        price: item.id,
+        quantity: item.quantity,
+      }
+    )
+  });
+  const session = await stripe.checkout.sessions.create({
+    line_items: lineItems,
+    mode: 'payment',
+    success_url: 'http://localhost:3000/',
+    cancel_url: 'http://localhost:3000/'
+  })
+  res.send(JSON.stringify({
+    url: session.url
+  }));
+});
+//key:pk_test_51MC2zeDM4nrUdWXdbSKMObsml3ocUOgJ50DRWRrWpA4sNonyuaGkMxVPoNbqNDoHyYwZGj1Gw1tXwmeJ40ZGofTT00KOtjE9iG
+//secret: sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0
+app.get("/secret", async (req, res) => {
+  const intent = // ... Fetch or create the PaymentIntent
+    res.json({ client_secret: intent.client_secret });
+});
+
+const paymentIntent = await stripe.paymentIntents.create({
+  amount: 500,
+  currency: "gbp",
+  payment_method: "pm_card_visa",
+  statement_descriptor: "Thanks for using TicketBlaster!",
+});
+ */
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
