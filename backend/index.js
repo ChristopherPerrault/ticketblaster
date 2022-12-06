@@ -110,11 +110,6 @@ app.post("/users/:id", async (request, response) => {
  const creditCard = request.body.creditCard;
  const securityCode = request.body.securityCode;
  const expDate = request.body.expDate;
-console.log(id)
-console.log(email);
-console.log(lastName);
-console.log(phoneNumber);
-console.log(creditCard);
  const user = {
    id: id,
    email: email,   
