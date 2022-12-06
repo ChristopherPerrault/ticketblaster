@@ -37,7 +37,7 @@ function EditProfilehtmlForm() {
       .then((data) => data.json())
       .then((json) => {
         alert(JSON.stringify(json));
-        
+
         try {
           navigate("/account", { replace: true });
         } catch (error) {
