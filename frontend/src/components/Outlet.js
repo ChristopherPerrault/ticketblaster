@@ -10,6 +10,7 @@ import { Navigate } from "react-router-dom";
 import RegistrationForm from "../pages/RegistrationForm";
 import LoginForm from "../pages/LoginForm";
 import FAQ from "../pages/FAQ";
+import PurchaseTicket from "../pages/PurchaseTickets";
 
 export default function Outlet() {
   return (
@@ -25,6 +26,7 @@ export default function Outlet() {
           <Route path="/edit/:id" element={<EditUser />} />
           <Route path="register" element={<RegistrationForm />} />
           <Route path="login" element={<LoginForm />} />
+          <Route path="/purchase/:id" element={<PurchaseTicket />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

@@ -1,8 +1,10 @@
 .footer {
     /* 100vh was clipping at the bottom, 98 seems to be ok. might have to update later on */
     background-color: #fd7545;
+    color: white;
     width: 100vw;    
     position: absolute;
     top:98vh;
     text-align: center;
+    position: relative;
 }
