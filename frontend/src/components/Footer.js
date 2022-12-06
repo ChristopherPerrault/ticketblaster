@@ -6,7 +6,7 @@ function Footer() {
 
   return (
     <div className="footer">
-      Copyright &copy; 2022 The REGEX
+      Copyright &copy; 2022 THE REGEX
     </div>
   );
 }

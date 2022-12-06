@@ -1,5 +1,4 @@
 .footer {
-  /* 100vh was clipping at the bottom, 98 seems to be ok. might have to update later on */
   background-color: #fd7545;
   font-family: "Courier New", Courier, monospace;
   font-size: 18px;

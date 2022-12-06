@@ -1,4 +1,7 @@
-* {
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0 auto;
+  display: block;
+  min-width: 100%;
+  background-color: rgb(72, 72, 72);
+  /* bg-color temporary, just easier to look at but also shows overlapping white things we couldn't see before */
 }
