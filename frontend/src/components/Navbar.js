@@ -11,8 +11,8 @@ function Navbar() {
     <Breadcrumbs aria-label="breadcrumb" separator={<KeyboardDoubleArrowRightIcon fontSize="small" />} className="nav">
       <NavButton to="/" label="Home" />
       <AboutMenu />
-      <NavButton to="/events" label="Events" />
       {isLoggedIn ? <NavButton to="/account" label="My Account" /> : null}
+      <NavButton to="/contact" label="Contact" />
     </Breadcrumbs>
   );
 }
