@@ -23,3 +23,9 @@ margin-left: 12rem;
 form input{
     margin-top:1rem;
 }
+h1{
+    text-decoration: underline;
+}
+h1 input{
+    margin-top:2rem;
+}

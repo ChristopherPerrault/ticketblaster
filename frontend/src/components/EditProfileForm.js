@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 function EditProfilehtmlForm() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -48,34 +50,75 @@ function EditProfilehtmlForm() {
     <div>
       <form onSubmit={handleSubmit} className="profile-right-col">
         <h1>Edit Account Info</h1>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" ref={emailRef}  required />
+        <TextField
+          type="text"
+          label="Email"
+          variant="outlined"
+          placeholder=""
+          ref={emailRef}
+        />
         <br />
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password" ref={passwordRef} required />
+        <TextField
+          type="password"
+          label="Password"
+          variant="outlined"
+          ref={passwordRef}
+        />
         <br />
-        <label htmlFor="firstName">First Name</label>
-        <input id="firstName" type="text" ref={firstNameRef} required />
+        <TextField
+          type="text"
+          label="First Name"
+          variant="outlined"
+          ref={firstNameRef}
+        />
+
         <br />
-        <label htmlFor="lastName">Last Name</label>
-        <input id="lastName" type="text" ref={lastNameRef} required />
+        <TextField
+          type="text"
+          label="Last Name"
+          variant="outlined"
+          ref={lastNameRef}
+        />
         <br />
-        <label htmlFor="address">Address</label>
-        <input id="address" type="text" ref={addressRef} required />
+        <TextField
+          type="text"
+          label="Address"
+          variant="outlined"
+          ref={addressRef}
+        />
         <br />
-        <label htmlFor="phoneNumber">Phone Number</label>
-        <input id="phoneNumber" type="text" ref={phoneNumberRef} required />
+        <TextField
+          type="text"
+          label="Phone Number"
+          variant="outlined"
+          ref={phoneNumberRef}
+        />
         <br />
-        <label htmlFor="creditCard">Credit Card</label>
-        <input id="creditCard" type="text" ref={creditCardRef} required />
+        <TextField
+          type="text"
+          label="Credit Card"
+          variant="outlined"
+          ref={creditCardRef}
+        />
         <br />
-        <label htmlFor="securityCode">Security Code</label>
-        <input id="securityCode" type="text" ref={securityCodeRef} required />
+        <TextField
+          type="text"
+          label="Security Code"
+          variant="outlined"
+          ref={securityCodeRef}
+        />
         <br />
-        <label htmlFor="expDate">Expiry Date</label>
-        <input id="expDate" type="date" ref={expDateRef} required />
+        <TextField
+          type="date"
+          label="Expiry Date"
+          InputLabelProps={{ shrink: true }}
+          variant="outlined"
+          ref={expDateRef}
+        />
         <br />
-        <button>Register</button>
+        <Button type="submit" variant="contained">
+          Update
+        </Button>
       </form>
     </div>
   );
