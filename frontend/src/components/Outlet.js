@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
-import Events from "../pages/Events";
+import Contact from "../pages/Contact";
 import EditUser from "../pages/EditUser";
 import AdminCrudUsers from "../pages/AdminCrudUsers";
 import Account from "../pages/Account";
@@ -19,7 +19,7 @@ export default function Outlet() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="events" element={<Events />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="account" element={<Account />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="admin" element={<AdminCrudUsers />} />
