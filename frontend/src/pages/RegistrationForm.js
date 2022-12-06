@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import "../index.css";
 import { validEmail, validPassword, validPhoneNumber } from "../Regex";
 
 function RegistrationForm() {
@@ -196,7 +195,7 @@ function RegistrationForm() {
         />
         <br />
         <Button type="submit" variant="contained">
-          Contained
+          Register
         </Button>
       </form>
     </div>

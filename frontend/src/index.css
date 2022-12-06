@@ -59,9 +59,10 @@
 }
 
 /* Styling Registration Page */
-.registration--form {
+.registration--form,
+.login--form {
   width: 300px;
-  margin: 5rem auto 5rem auto;
+  margin: 2rem auto 2rem auto;
 }
 
 .registration--form div div {
