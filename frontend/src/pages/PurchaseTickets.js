@@ -8,9 +8,17 @@ export default function PurchaseTicket() {
 
     useEffect(() => {
         const url =
-            // "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=zhJDIqfMsloXKpRjywIbmnUSBGw9AxNq";
-            // "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=qiJ5AkBhkvr6IFdd9UamBev1hYovx46M"; 
-            "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=LVpUpS7gaeXxvoQMKgDF1zSNbXbASUgS";
+            // Chris:
+            "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=zhJDIqfMsloXKpRjywIbmnUSBGw9AxNq";
+
+        // Matt #1:
+        //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=qiJ5AkBhkvr6IFdd9UamBev1hYovx46M";
+
+        // Matt #2:
+        // https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=hu5LlW3eJkDoVLKyUGnAZmbpZS8k6eCE111
+
+        // Kevin:
+        //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=LVpUpS7gaeXxvoQMKgDF1zSNbXbASUgS";
 
         const loadData = async () => {
             const id = params.id.toString();
@@ -18,13 +26,13 @@ export default function PurchaseTicket() {
                 .then((response) => response.json())
                 .then((data) => {
                     setEvents(
-                        data._embedded.events.map((info, index) => {
-                            if (info.id === id) {
+                        data._embedded.events.map((event, index) => {
+                            if (event.id === id) {
                                 return (
                                     <div>
-                                        <h2 className="name">{info.name}</h2>
-                                        <p className="date">{info.dates.start.localDate}</p>
-                                        <img srcSet={info.seatmap.staticUrl} alt="map" />
+                                        <h2 className="name">{event.name}</h2>
+                                        <p className="date">{event.dates.start.localDate}</p>
+                                        <img srcSet={event.seatmap.staticUrl} alt="map" />
                                     </div>
                                 );
                             } else {
