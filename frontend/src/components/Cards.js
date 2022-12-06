@@ -53,6 +53,10 @@ export default function Cards() {
                             {event.dates.start.localDate}
                             {/* {event.products[0].name} */}
                           </Typography>
+                          <Typography variant="body2">
+                            {event._embedded.venues[0].name}
+                            {/* {event.products[0].name} */}
+                          </Typography>
                         </CardContent>
                         <CardActions>
                           <CardMedia
