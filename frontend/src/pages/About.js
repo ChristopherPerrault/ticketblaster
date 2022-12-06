@@ -2,6 +2,7 @@ import React from "react";
 import ChrisImg from "../assets/images/chris.png";
 import SeenaImg from "../assets/images/seena.jpg";
 import KevinImg from "../assets/images/user-photo.jpg";
+import MattImg from "../assets/images/matt.jpg"
 import RegexLogo from "../assets/images/regex_logo.png";
 import Button from "@mui/material/Button";
 import AboutExtraInfo from "../components/admin/AboutExtraInfo";
@@ -31,8 +32,8 @@ export default function About() {
           <figcaption>Kevin Darby</figcaption>
         </div>
         <div>
-          <img src={KevinImg} alt="Matt" />
-          <figcaption>Matthew Joseph</figcaption>
+          <img src={MattImg} alt="Matt" />
+          <figcaption>Matthew Joseph Reda</figcaption>
         </div>
       </div>
       <div className="about--description">
