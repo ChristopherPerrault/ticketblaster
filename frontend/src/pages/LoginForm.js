@@ -51,6 +51,7 @@ function LoginForm() {
   ) : (
     <div>
       <form className="login--form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
         <TextField
           type="text"
           label="Email"
