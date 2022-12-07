@@ -94,6 +94,7 @@ app.post("/users/login", async (request, response) => {
           response.send({ success: true });
           return;
         }
+        
       }
     }
   } catch (error) {
@@ -101,10 +102,10 @@ app.post("/users/login", async (request, response) => {
   }
   response.send({ success: false });
 });
-/* Update Account NO PASSWORD (admin)*/
-app.post("/users/:id", async (request, response) => {
+/* Update Account NO PASSWORD */
+ app.post("/users/:id", async (request, response) => {
   console.log("post with id ");
- const id = request.body.id;
+ const id = request.params.id;
  const email = request.body.email;
  const firstName = request.body.firstName;
  const lastName = request.body.lastName;
@@ -137,48 +138,9 @@ app.post("/users/:id", async (request, response) => {
   } catch (err) {
     console.log(err);
   }
-});
+}); 
 
-/* Update Profile - User Edit Account WITH PASSWORD */
-app.post("/users/update", async (request, response) => {
-  console.log("Update POST request")
-  const id = request.body.id;
-  const email = request.body.email;
-  const password = request.body.password;
-  const firstName = request.body.firstName;
-  const lastName = request.body.lastName;
-  const address = request.body.address;
-  const phoneNumber = request.body.phoneNumber;
-  const creditCard = request.body.creditCard;
-  const securityCode = request.body.securityCode;
-  const expDate = request.body.expDate;
-  hashedPassword = await bcrypt.hash(password, saltRounds);
-  const user = {
-    id:id,
-    email: email,
-    password: hashedPassword,
-    firstName: firstName,
-    lastName: lastName,
-    address: address,
-    phoneNumber: phoneNumber,
-    creditCard: creditCard,
-    securityCode: securityCode,
-    expDate: expDate
-  };
-  try {    
-    const results = await userModel.replaceOne(
-      {
-        email: email,
-      },
-      user
-    );
-    console.log("matched: " + results.matchedCount);
-    console.log("modified: " + results.modifiedCount);
-    response.send(results);
-  } catch (err) {
-    console.log(err);
-  }
-});
+
 
 /* get request to /users to get ALL users */
 app.get("/users", async (req, res) => {
@@ -190,7 +152,7 @@ app.get("/users", async (req, res) => {
   }
 });
 /* GET request using query parameters to /users/:id --- gets ONE user */
-app.get("/users", async (req, res) => {
+app.get("/users/:id", async (req, res) => {
   const id = req.query.id;
  // const email = req.query.email;
   try {

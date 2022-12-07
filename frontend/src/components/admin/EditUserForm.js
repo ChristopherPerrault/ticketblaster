@@ -14,6 +14,8 @@ export default function EditUser(props) {
 
 const params = useParams();
 const navigate = useNavigate();
+//
+loadCurrentUser(params.id);
   useEffect(() => {
     async function fetchData() {
       const id = params._id.toString();
@@ -153,37 +155,6 @@ const navigate = useNavigate();
           />
         </div>
         <br />
-
-        {/*   <div className="form-group">
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="userOptions"
-              id="positionUser"
-              value="user"
-              checked={form.level === "user"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionUser" className="form-check-label">
-              User
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="userOptions"
-              id="positionAdmin"
-              value="admin"
-              checked={form.level === "admin"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionAdmin" className="form-check-label">
-              Admin
-            </label>
-          </div>
-        </div> */}
         <div className="form-group">
           <input
             type="submit"
@@ -194,4 +165,27 @@ const navigate = useNavigate();
       </form>
     </div>
   );
+}
+
+async function loadCurrentUser(id){
+fetch(`http://localhost:3001/users/${id}`, {
+  method: "GET",
+  headers: {
+    "Content-type": "application/json; charset=UTF-8",
+  },
+})
+  .then((data) => data.json())
+  .then((json) => {
+    
+    document.getElementById("email").value = json.email;
+     document.getElementById("firstName").value = json.firstName;
+      document.getElementById("lastName").value = json.lastName;
+       document.getElementById("address").value = json.address;
+        document.getElementById("phoneNumber").value = json.phoneNumber;
+         document.getElementById("creditCard").value = json.creditCard;
+         document.getElementById("securityCode").value = json.securityCode;
+         
+           
+
+  });
 }
