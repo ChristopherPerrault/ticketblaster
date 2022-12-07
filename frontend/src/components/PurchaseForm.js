@@ -27,6 +27,8 @@ export default function PurchaseForm() {
         setLevel(event.target.value);
     };
 
+    // Function to calculate the price on change of number of tickets
+    // ! What happens is, it uses the previous number to calculate and not the current number. so when you move from 0 to 1 ticket, it still says price is 0. 
     const calculatePrice = (event) => {
         setTickets(event.target.value);
 
