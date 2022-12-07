@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EventCards from "../components/EventCards";
 import { LoggedInContext } from "../App";
+import LoadBar from "../components/LoadBar";
 import "../index.css";
 
 function Home() {
@@ -16,7 +17,7 @@ function Home() {
 
   //  real ticketmaster API
   useEffect(() => {
-    console.log("Effect Ran");
+    // console.log("Effect Ran");
 
     const url =
       // Chris:
@@ -30,12 +31,12 @@ function Home() {
 
       // Kevin:
       "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=LVpUpS7gaeXxvoQMKgDF1zSNbXbASUgS";
+
     setLoading(true);
+
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        // const { body } = data;
-        // setPost(body);
         setEventsData(data._embedded.events);
         setLoading(false);
       });
@@ -61,7 +62,13 @@ function Home() {
       {/* {isAdmin ? <h1>Hello Admin</h1> : <h1></h1>}*/}
       <h1>Homepage</h1>
       {!loading && <div>{eventElements}</div>}
-      {loading && <p>LOADING</p>}
+      {loading && (
+        // eslint-disable-next-line react/style-prop-object
+        <h3>
+          Loading events...
+          <LoadBar />
+        </h3>
+      )}
     </div>
   );
 }
