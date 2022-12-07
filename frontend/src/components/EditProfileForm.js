@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 
 function EditProfilehtmlForm() {
  
-
+const loggedInUser = localStorage.getItem("user");
   const TextStyle = {
     width:"200px",
     margin:"5px"
@@ -22,21 +22,17 @@ function EditProfilehtmlForm() {
   const expDateRef = useRef();
 
   const navigate = useNavigate();
+
+  const currentUser = loadUserDetails(loggedInUser);
+  currentUser.then((currentUser) => console.log("Resolving promise"));
+  
+  console.log(currentUser.id);
   const handleSubmit = (event) => {
-    event.preventDefault();
-    fetch("http://localhost:3001/users", {
-      method: "PUT",
-      body: JSON.stringify({
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-        firstName: firstNameRef.current.value,
-        lastName: lastNameRef.current.value,
-        address: addressRef.current.value,
-        phoneNumber: phoneNumberRef.current.value,
-        creditCard: creditCardRef.current.value,
-        securityCode: securityCodeRef.current.value,
-        expDate: expDateRef.current.value,
-      }),
+    event.preventDefault();    
+    fetch("http://localhost:3001/users/update", {
+      method: "POST",
+      body: JSON.stringify(currentUser)   
+      ,
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
@@ -52,11 +48,13 @@ function EditProfilehtmlForm() {
         }
       });
   };
+ // 
 
   return (
     <div>
       <form onSubmit={handleSubmit} className="profile-right-col">
         <h1>Edit Account Info</h1>
+        <h2>{loggedInUser}</h2>
         <TextField
           style={TextStyle}
           type="text"
@@ -132,7 +130,7 @@ function EditProfilehtmlForm() {
           variant="outlined"
           ref={expDateRef}
         />
-        <br />
+        
         <Button type="submit" variant="contained">
           Update
         </Button>
@@ -142,3 +140,46 @@ function EditProfilehtmlForm() {
 }
 
 export default EditProfilehtmlForm;
+
+async function loadUserDetails(email){
+const response = await fetch(`http://localhost:3001/users/${email}`);
+
+      if (!response.ok) {
+        const message = `An error has occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const record = await response.json()
+      if (!record) {
+        window.alert(`Record with id ${email} not found`);
+        
+        return;
+      }
+     // console.log(record._id);    
+    /*   const userId = record._id;
+     const email = record.email;
+     const password = record.password;
+      const fName = record.firstName;
+      const lName = record.lastName;
+      const adr = record.address;
+      const phoneNum = record.phoneNumber;
+      const cc = record.creditCard;
+      const secCode = record.securityCode;
+      const expiry = record.expDate; */
+
+      const currentUser = {
+        id: record._id,
+        email: record.email,
+        password: record.password,
+        firstName: record.firstName,
+        lastName: record.lastName,
+        address: record.address,
+        phoneNumber: record.phoneNumber,
+        creditCard: record.creditCard,
+        securityCode: record.securityCode,
+        expDate: record.expDate,
+      };
+     // console.log(userId)
+      return currentUser;
+}

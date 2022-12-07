@@ -44,6 +44,7 @@ function LoginForm() {
         .then((data) => data.json())
         .then((json) => {
           json.success ? setIsLoggedIn(true) : setIsLoggedIn(false);
+          localStorage.setItem("user", email);// session?
         });
     }
   };

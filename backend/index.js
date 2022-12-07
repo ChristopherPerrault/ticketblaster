@@ -140,7 +140,8 @@ app.post("/users/:id", async (request, response) => {
 });
 
 /* Update Profile - User Edit Account WITH PASSWORD */
-app.put("/users", async (request, response) => {
+app.post("/users/update", async (request, response) => {
+  console.log("Update POST request")
   const id = request.body.id;
   const email = request.body.email;
   const password = request.body.password;
@@ -167,7 +168,7 @@ app.put("/users", async (request, response) => {
   try {    
     const results = await userModel.replaceOne(
       {
-        id: id,
+        email: email,
       },
       user
     );
@@ -188,7 +189,7 @@ app.get("/users", async (req, res) => {
     console.log(err);
   }
 });
-/* get request using query parameters to /users/:id --- gets ONE user */
+/* GET request using query parameters to /users/:id --- gets ONE user */
 app.get("/users", async (req, res) => {
   const id = req.query.id;
  // const email = req.query.email;
@@ -202,6 +203,20 @@ app.get("/users", async (req, res) => {
   }
 });
 
+/* POST request using query parameters to /users/:email --- gets ONE user */
+app.get("/users/:email", async (req, res) => {
+  console.log("Post request w/ email")
+ // const id = req.query.id;
+ const email = req.params.email;
+  try {
+    const user = await userModel.findOne({
+      email: email,
+    });
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
 /* An API delete request using URL path parameters to /users/:id */
 app.delete("/users/:id", async (req, res) => {
   const id = req.params.id;
