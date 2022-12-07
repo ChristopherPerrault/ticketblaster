@@ -100,7 +100,9 @@ export default function PurchaseTicket(props) {
                         {/* add price range */}
                         {/* add capacity */}
                         {/* add age restrictions/notices */}
-                        {/* add purchase button */}
+                        <Button type="submit" variant="contained">
+                          Purchase
+                        </Button>
                       </Card>
                     </Box>
                   </div>
