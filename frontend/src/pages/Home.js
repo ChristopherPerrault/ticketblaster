@@ -4,6 +4,8 @@ import { LoggedInContext } from "../App";
 import "../index.css";
 
 function Home() {
+  document.title = "TicketBlaster | Home";
+  
   // eslint-disable-next-line
   const [isLoggedIn, setIsLoggedIn] = React.useContext(LoggedInContext);
 

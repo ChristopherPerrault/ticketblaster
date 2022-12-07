@@ -2,12 +2,15 @@ import React from "react";
 import ChrisImg from "../assets/images/chris.png";
 import SeenaImg from "../assets/images/seena.jpg";
 import KevinImg from "../assets/images/user-photo.jpg";
-import MattImg from "../assets/images/matt.jpg"
+import MattImg from "../assets/images/matt.jpg";
 import RegexLogo from "../assets/images/regex_logo.png";
 import Button from "@mui/material/Button";
 import AboutExtraInfo from "../components/admin/AboutExtraInfo";
 
+
 export default function About() {
+  document.title = "TicketBlaster | About Us";
+
   const [showMoreInfo, setShowMoreInfo] = React.useState(true);
   function handleClick() {
     setShowMoreInfo((prevState) => !prevState);
@@ -38,8 +41,10 @@ export default function About() {
       </div>
       <div className="about--description">
         <p>
-          &emsp;&emsp; Founded in 2022 by the four gentlemen above, TicketBlaster's goal is to disrupt the global ticketing industry by serving the
-          customer first. Our philosophy is one of fair ticket prices for all regardless of the demand.
+          &emsp;&emsp; Founded in 2022 by the four gentlemen above,
+          TicketBlaster's goal is to disrupt the global ticketing industry by
+          serving the customer first. Our philosophy is one of fair ticket
+          prices for all regardless of the demand.
         </p>
         <img className="about--regexLogo" src={RegexLogo} alt="Regex Logo" />
       </div>

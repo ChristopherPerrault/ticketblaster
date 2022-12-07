@@ -11,7 +11,9 @@ import {
   CardActions,
 } from "@mui/material";
 
-export default function PurchaseTicket() {
+export default function PurchaseTicket(props) {
+  document.title = "TicketBlaster | Event Details";
+
   const [events, setEvents] = useState([]);
   const params = useParams();
 
@@ -55,16 +57,16 @@ export default function PurchaseTicket() {
                             width="400"
                             component="img"
                             srcSet={event.images[6].url}
-                            title="Artist/performance banner image"
-                            alt="Artist/performance banner image"
+                            title={event.name + " banner image"}
+                            alt={event.name + " banner image"}
                           />
                         </CardActions>
                         <CardMedia />
                         <CardContent>
-                          <Typography variant="h4" component="div">
+                          <Typography variant="h4" component="h4">
                             {event.name}
                           </Typography>
-                          <Typography variant="body2">
+                          <Typography variant="body2" component="h4">
                             {formattedDate}
                             <br />
                             <br />
@@ -95,6 +97,7 @@ export default function PurchaseTicket() {
                         {/* add price range */}
                         {/* add capacity */}
                         {/* add age restrictions */}
+                        {/* add purchase button */}
                       </Card>
                     </Box>
                   </div>

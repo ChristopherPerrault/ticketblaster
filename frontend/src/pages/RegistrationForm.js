@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import { validEmail, validPassword, validPhoneNumber } from "../Regex";
 
 function RegistrationForm() {
+  document.title = "TicketBlaster | Event Details";
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [firstName, setFirstName] = React.useState("");

@@ -6,6 +6,8 @@ import Button from "@mui/material/Button";
 import { validEmail, validPassword } from "../Regex";
 
 function LoginForm() {
+  document.title = "TicketBlaster | Log In";
+  
   const navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");

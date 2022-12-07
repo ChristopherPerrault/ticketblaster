@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../index.css";
 
 export default function FAQ() {
+    document.title = "TicketBlaster | FAQ";
+
     const [selected, setSelected] = useState(null)
 
     const toggle = (i) => {

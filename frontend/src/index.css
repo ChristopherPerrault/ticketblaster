@@ -155,6 +155,10 @@
   margin: 60px;
 }
 
+.indv-event-details-container h4 {
+  font-family: "Recursive", sans-serif;
+}
+
 .seatmap {
   scale: 69%;
   margin-top: -69px;
