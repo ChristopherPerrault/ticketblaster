@@ -3,7 +3,14 @@ import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+
 function EditProfilehtmlForm() {
+ 
+
+  const TextStyle = {
+    width:"200px",
+    margin:"5px"
+  }
   const emailRef = useRef();
   const passwordRef = useRef();
   const firstNameRef = useRef();
@@ -51,6 +58,7 @@ function EditProfilehtmlForm() {
       <form onSubmit={handleSubmit} className="profile-right-col">
         <h1>Edit Account Info</h1>
         <TextField
+          style={TextStyle}
           type="text"
           label="Email"
           variant="outlined"
@@ -59,6 +67,8 @@ function EditProfilehtmlForm() {
         />
         <br />
         <TextField
+        
+          style={TextStyle}
           type="password"
           label="Password"
           variant="outlined"
@@ -66,6 +76,7 @@ function EditProfilehtmlForm() {
         />
         <br />
         <TextField
+          style={TextStyle}
           type="text"
           label="First Name"
           variant="outlined"
@@ -74,6 +85,7 @@ function EditProfilehtmlForm() {
 
         <br />
         <TextField
+          style={TextStyle}
           type="text"
           label="Last Name"
           variant="outlined"
@@ -81,6 +93,7 @@ function EditProfilehtmlForm() {
         />
         <br />
         <TextField
+          style={TextStyle}
           type="text"
           label="Address"
           variant="outlined"
@@ -88,6 +101,7 @@ function EditProfilehtmlForm() {
         />
         <br />
         <TextField
+          style={TextStyle}
           type="text"
           label="Phone Number"
           variant="outlined"
@@ -95,6 +109,7 @@ function EditProfilehtmlForm() {
         />
         <br />
         <TextField
+          style={TextStyle}
           type="text"
           label="Credit Card"
           variant="outlined"
@@ -102,6 +117,7 @@ function EditProfilehtmlForm() {
         />
         <br />
         <TextField
+          style={TextStyle}
           type="text"
           label="Security Code"
           variant="outlined"
@@ -109,6 +125,7 @@ function EditProfilehtmlForm() {
         />
         <br />
         <TextField
+          style={TextStyle}
           type="date"
           label="Expiry Date"
           InputLabelProps={{ shrink: true }}

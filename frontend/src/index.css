@@ -104,6 +104,15 @@
 .icon:active {
   box-shadow: none;
 }
+.event-container {
+  text-align: center;
+}
+.seatmap,
+.event-img {
+  width: 400px;
+  height: 300px;
+  margin-bottom: 2rem;
+}
 
 /* Styling for About Page */
 .about--title {
@@ -143,23 +152,7 @@
 .about--description p {
   text-align: justify;
 }
-
 .about--button {
   text-align: center;
   margin-bottom: 10vh;
-}
-
-/*  PurchaseTickets.js  */
-.indv-event-details-container {
-  width: 50%;
-  margin: 60px;
-}
-
-.indv-event-details-container h4 {
-  font-family: "Recursive", sans-serif;
-}
-
-.seatmap {
-  scale: 69%;
-  margin-top: -69px;
 }

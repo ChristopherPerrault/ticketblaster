@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { LoggedInContext } from "../App";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -7,13 +7,13 @@ import { validEmail, validPassword } from "../Regex";
 
 function LoginForm() {
   document.title = "TicketBlaster | Log In";
-  
+
   const navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const [emailErr, setEmailErr] = React.useState(false);
-  const [passwordErr, setPasswordErr] = React.useState(false);
+  const [emailErr, setEmailErr] = React.useState(null);
+  const [passwordErr, setPasswordErr] = React.useState(null);
 
   const [isLoggedIn, setIsLoggedIn] = React.useContext(LoggedInContext);
   const handleSubmit = (event) => {
@@ -30,7 +30,7 @@ function LoginForm() {
       setPasswordErr(true);
     }
 
-    if (!emailErr && !passwordErr) {
+    if (emailErr === false && passwordErr === false) {
       fetch("http://localhost:3001/users/login", {
         method: "POST",
         body: JSON.stringify({
@@ -43,6 +43,7 @@ function LoginForm() {
       })
         .then((data) => data.json())
         .then((json) => {
+          alert("Successfully Logged in!");
           json.success ? setIsLoggedIn(true) : setIsLoggedIn(false);
         });
     }
@@ -72,6 +73,7 @@ function LoginForm() {
         />
         <p style={{ color: "red" }} id="customErrorMessage"></p>
         <br />
+        <p>Don't have an account? Register <Link to="/register">Here</Link></p>
         <Button type="submit" variant="contained">
           Login
         </Button>
