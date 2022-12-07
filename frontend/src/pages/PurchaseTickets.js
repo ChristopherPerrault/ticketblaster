@@ -57,7 +57,7 @@ export default function PurchaseTicket(props) {
                             height="400"
                             width="400"
                             component="img"
-                            srcSet={event.images[6].url}
+                            srcSet={event.images[5].url}
                             title={event.name + " banner image"}
                             alt={event.name + " banner image"}
                           />
@@ -68,7 +68,7 @@ export default function PurchaseTicket(props) {
                           <Typography variant="h4" component="h4">
                             {event.name}
                           </Typography>
-                          <Typography variant="body2" component="h4">
+                          <Typography variant="body1" component="h4">
                             {formattedDate}
                             <br />
                             <br />
@@ -99,8 +99,10 @@ export default function PurchaseTicket(props) {
                         {/* add time, doors, show */}
                         {/* add price range */}
                         {/* add capacity */}
-                        {/* add age restrictions */}
-                        {/* add purchase button */}
+                        {/* add age restrictions/notices */}
+                        <Button type="submit" variant="contained">
+                          Purchase
+                        </Button>
                       </Card>
                     </Box>
                   </div>
