@@ -69,7 +69,6 @@ export default function PurchaseTicket(props) {
                         </CardActions>
                         <CardMedia />
                         <CardContent>
-                          
                           <Typography variant="h4" component="h4">
                             {event.name}
                           </Typography>
