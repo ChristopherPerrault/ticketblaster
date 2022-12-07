@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import { validEmail, validPassword, validPhoneNumber } from "../Regex";
 
 function RegistrationForm() {
+  document.title = "TicketBlaster | Event Details";
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
@@ -104,7 +106,7 @@ function RegistrationForm() {
       })
         .then((data) => data.json())
         .then((json) => {
-          if (json.success == true) {
+          if (json.success === true) {
             try {
               navigate("/login", { replace: true });
             } catch (error) {
@@ -133,7 +135,11 @@ function RegistrationForm() {
           variant="outlined"
           onChange={(e) => setPassword(e.target.value)}
           error={passwordErr}
-          helperText={passwordErr ? "Min 8 letters, at least one symbol, one uppercase letter and one lowercase letter " : " "}
+          helperText={
+            passwordErr
+              ? "Min 8 letters, at least one symbol, one uppercase letter and one lowercase letter "
+              : " "
+          }
         />
         <TextField
           type="text"
@@ -165,7 +171,11 @@ function RegistrationForm() {
           variant="outlined"
           onChange={(e) => setPhoneNumber(e.target.value)}
           error={phoneNumberErr}
-          helperText={phoneNumberErr ? "Must have a valid phone number format (i.e. 123-456-7890" : " "}
+          helperText={
+            phoneNumberErr
+              ? "Must have a valid phone number format (i.e. 123-456-7890"
+              : " "
+          }
         />
         <TextField
           type="text"

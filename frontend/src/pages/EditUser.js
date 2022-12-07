@@ -1,8 +1,9 @@
-import React from 'react'
-import EditUserForm from '../components/admin/EditUserForm'
+import React from "react";
+import EditUserForm from "../components/admin/EditUserForm";
+
 function EditUser() {
-  return (
-    <EditUserForm />
-  )
+  document.title = "TicketBlaster | Edit";
+
+  return <EditUserForm />;
 }
 export default EditUser;
