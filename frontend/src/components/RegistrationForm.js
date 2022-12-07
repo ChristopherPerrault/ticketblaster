@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { validEmail, validPassword, validPhoneNumber } from "../Regex";
+import { validEmail, validPassword, validPhoneNumber, validCreditCard, validSecurityCode } from "../Regex";
 
 function RegistrationForm() {
   document.title = "TicketBlaster | Event Details";
@@ -64,11 +64,11 @@ function RegistrationForm() {
       setPhoneNumberErr(true);
     }
 
-    if (creditCard === "") {
+    if (!validCreditCard.test(creditCard)) {
       setCreditCardErr(true);
     }
 
-    if (securityCode === "") {
+    if (!validSecurityCode.test(securityCode)) {
       setSecurityCodeErr(true);
     }
 
@@ -178,7 +178,7 @@ function RegistrationForm() {
           variant="outlined"
           onChange={(e) => setCreditCard(e.target.value)}
           error={creditCardErr}
-          helperText={creditCardErr ? "Must not be blank!" : " "}
+          helperText={creditCardErr ? "Visa, MasterCard, American Express, Diners Club, Discover, and JCB cards are accepted" : " "}
         />
         <TextField
           type="text"
@@ -186,9 +186,10 @@ function RegistrationForm() {
           variant="outlined"
           onChange={(e) => setSecurityCode(e.target.value)}
           error={securityCodeErr}
-          helperText={securityCodeErr ? "Must not be blank!" : " "}
+          helperText={securityCodeErr ? "Must be a valid CVV code" : " "}
         />
         <br />
+
         <TextField
           type="date"
           label="Expiry Date"
