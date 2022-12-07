@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cards.css";
-import { LoggedInContext } from "../App";
 import {
   Card,
   Box,
@@ -13,7 +12,6 @@ import {
 } from "@mui/material";
 
 export default function Cards() {
-  const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
 
@@ -39,12 +37,7 @@ export default function Cards() {
           setEvents(
             data._embedded.events.map((event, index) => {
               const handleClick = () => {
-                if (isLoggedIn) {
-                  navigate(`/purchase/${event.id}`);
-                }
-                else {
-                  navigate("/login");
-                }
+                navigate(`/purchase/${event.id}`);
               };
               return (
                 <div>
@@ -84,7 +77,7 @@ export default function Cards() {
     };
 
     loadData();
-  }, [navigate, isLoggedIn]);
+  }, [navigate]);
 
   return <div>{events}</div>;
 }
