@@ -9,7 +9,7 @@ function EditProfilehtmlForm() {
     width: "200px",
     margin: "5px",
   };
-  const idRef = useRef();
+  const idRef = useRef();  
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
@@ -62,6 +62,7 @@ function EditProfilehtmlForm() {
     } catch (err) {
       console.error(err);
     }
+    navigate("/admin")
   }
 
   return (
@@ -183,14 +184,14 @@ async function loadUserDetails(email) {
     .then((data) => data.json())
     .then((json) => {
       document.querySelector(".hiddenId").innerHTML = json._id;      
-      document.getElementById("email-input").value = json.email;
-      document.getElementById("fn-input").value = json.firstName;
-      document.getElementById("ln-input").value = json.lastName;
-      document.getElementById("phone-input").value = json.phoneNumber;
-      document.getElementById("adr-input").value = json.address;
-      document.getElementById("cc-input").value = json.creditCard;
-      document.getElementById("sec-input").value = json.securityCode;
-      document.getElementById("exp-input").value = json.expDate;
+      document.getElementById("email-input").placeholder = json.email;
+      document.getElementById("fn-input").placeholder = json.firstName;
+      document.getElementById("ln-input").placeholder = json.lastName;
+      document.getElementById("phone-input").placeholder = json.phoneNumber;
+      document.getElementById("adr-input").placeholder = json.address;
+      document.getElementById("cc-input").placeholder = json.creditCard;
+      document.getElementById("sec-input").placeholder = json.securityCode;
+      document.getElementById("exp-input").placeholder = json.expDate;
 
     });
 }
