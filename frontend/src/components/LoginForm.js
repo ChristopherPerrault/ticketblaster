@@ -12,8 +12,8 @@ function LoginForm() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const [emailErr, setEmailErr] = React.useState(false);
-  const [passwordErr, setPasswordErr] = React.useState(false);
+  const [emailErr, setEmailErr] = React.useState(null);
+  const [passwordErr, setPasswordErr] = React.useState(null);
 
   const [isLoggedIn, setIsLoggedIn] = React.useContext(LoggedInContext);
   const handleSubmit = (event) => {
@@ -30,7 +30,7 @@ function LoginForm() {
       setPasswordErr(true);
     }
 
-    if (!emailErr && !passwordErr) {
+    if (emailErr === false && passwordErr === false) {
       fetch("http://localhost:3001/users/login", {
         method: "POST",
         body: JSON.stringify({
@@ -43,6 +43,7 @@ function LoginForm() {
       })
         .then((data) => data.json())
         .then((json) => {
+          alert("Successfully Logged in!");
           json.success ? setIsLoggedIn(true) : setIsLoggedIn(false);
         });
     }

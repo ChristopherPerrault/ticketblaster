@@ -17,15 +17,15 @@ function RegistrationForm() {
   const [securityCode, setSecurityCode] = React.useState("");
   const [expDate, setExpDate] = React.useState(null);
 
-  const [emailErr, setEmailErr] = React.useState(false);
-  const [passwordErr, setPasswordErr] = React.useState(false);
-  const [firstNameErr, setFirstNameErr] = React.useState(false);
-  const [lastNameErr, setLastNameErr] = React.useState(false);
-  const [addressErr, setAddressErr] = React.useState(false);
-  const [phoneNumberErr, setPhoneNumberErr] = React.useState(false);
-  const [creditCardErr, setCreditCardErr] = React.useState(false);
-  const [securityCodeErr, setSecurityCodeErr] = React.useState(false);
-  const [expDateErr, setExpDateErr] = React.useState(false);
+  const [emailErr, setEmailErr] = React.useState(null);
+  const [passwordErr, setPasswordErr] = React.useState(null);
+  const [firstNameErr, setFirstNameErr] = React.useState(null);
+  const [lastNameErr, setLastNameErr] = React.useState(null);
+  const [addressErr, setAddressErr] = React.useState(null);
+  const [phoneNumberErr, setPhoneNumberErr] = React.useState(null);
+  const [creditCardErr, setCreditCardErr] = React.useState(null);
+  const [securityCodeErr, setSecurityCodeErr] = React.useState(null);
+  const [expDateErr, setExpDateErr] = React.useState(null);
 
   const navigate = useNavigate();
 
@@ -77,15 +77,15 @@ function RegistrationForm() {
     }
 
     if (
-      !emailErr &&
-      !passwordErr &&
-      !firstNameErr &&
-      !lastNameErr &&
-      !addressErr &&
-      !phoneNumberErr &&
-      !creditCardErr &&
-      !securityCodeErr &&
-      !expDateErr
+      emailErr === false &&
+      passwordErr === false &&
+      firstNameErr === false &&
+      lastNameErr === false &&
+      addressErr === false &&
+      phoneNumberErr === false &&
+      creditCardErr === false &&
+      securityCodeErr === false &&
+      expDateErr === false
     ) {
       fetch("http://localhost:3001/users/register", {
         method: "POST",
@@ -108,10 +108,13 @@ function RegistrationForm() {
         .then((json) => {
           if (json.success === true) {
             try {
+              alert("Successfully Registered! - Redirecting you to the login page");
               navigate("/login", { replace: true });
             } catch (error) {
               console.log(error);
             }
+          } else {
+            alert(`Invalid registration - email ${email} already exists`);
           }
         });
     }
