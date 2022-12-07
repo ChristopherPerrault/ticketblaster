@@ -3,34 +3,65 @@ import { LoggedInContext } from "../App";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { integerPropType } from "@mui/utils";
-import { MenuItem, Select } from "@mui/material";
+import { InputLabel, MenuItem, Select } from "@mui/material";
+import "../index.css";
 
 export default function PurchaseForm() {
 
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
+    const [level, setLevel] = useState('');
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [tickets, setTickets] = useState(0);
+
     const navigate = useNavigate();
 
     const handleRegClick = () => {
         navigate("/register");
-    }
+    };
 
     const handleLogClick = () => {
         navigate("/login");
+    };
+
+    const handleOnChange = (event) => {
+        setLevel(event.target.value);
+    };
+
+    const calculatePrice = (event) => {
+        setTickets(event.target.value);
+
+        if (level === "Floor") {
+            setTotalPrice(tickets * 300);
+        }
+        else if (level === 1) {
+            setTotalPrice(tickets * 250);
+        }
+        else if (level === 2) {
+            setTotalPrice(tickets * 150);
+        }
+        else if (level === 3) {
+            setTotalPrice(tickets * 70);
+        }
+        else {
+            setTotalPrice(0);
+        }
     }
 
     return (
         <div>
             <form className="form-tickets">
+                <InputLabel id="demo-simple-select-label">Ticket Level</InputLabel>
                 <Select
-                    id="level"
+                    labelId="demo-simple-select-label"
+                    id="ticket-level"
+                    value={level}
                     label="Ticket Level"
-                    variant="outlined"
+                    onChange={handleOnChange}
                 >
                     <MenuItem value={"Floor"}>Floor</MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={1}>Level 1</MenuItem>
+                    <MenuItem value={2}>Level 2</MenuItem>
+                    <MenuItem value={3}>Level 3</MenuItem>
                 </Select>
                 <br />
                 <br />
@@ -39,13 +70,17 @@ export default function PurchaseForm() {
                     type="number"
                     label="Number of Tickets"
                     variant="outlined"
+                    onChange={calculatePrice}
+                    value={tickets}
                 />
                 <br />
                 <br />
                 <TextField
+                    id="price"
                     type="text"
                     label="Price"
                     variant="outlined"
+                    value={totalPrice}
                 />
                 <br />
                 {isLoggedIn ?
