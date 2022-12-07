@@ -36,10 +36,10 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-/*   isAdmin: {
+  isAdmin: {
     type: Boolean,
     required:false,
-  } */
+  } 
 });
 
 // Mongoose will assume there is a collection called the plural of this name (i.e., 'users' in this case).
