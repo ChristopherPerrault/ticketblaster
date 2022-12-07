@@ -12,6 +12,8 @@ function Home() {
 
   const [eventsData, setEventsData] = useState([]);
 
+  const [loading, setLoading] = useState(false);
+
   //  real ticketmaster API
   useEffect(() => {
     console.log("Effect Ran");
@@ -28,11 +30,14 @@ function Home() {
 
       // Kevin:
       "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=LVpUpS7gaeXxvoQMKgDF1zSNbXbASUgS";
-
+    setLoading(true);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        // const { body } = data;
+        // setPost(body);
         setEventsData(data._embedded.events);
+        setLoading(false);
       });
   }, []);
 
@@ -53,9 +58,10 @@ function Home() {
   return (
     <div>
       {isLoggedIn ? <h1>Hello Logged in</h1> : <h1>Hello Logged Out</h1>}
-     {/* {isAdmin ? <h1>Hello Admin</h1> : <h1></h1>}*/}
+      {/* {isAdmin ? <h1>Hello Admin</h1> : <h1></h1>}*/}
       <h1>Homepage</h1>
-      <div>{eventElements}</div>;
+      {!loading && <div>{eventElements}</div>}
+      {loading && <p>LOADING</p>}
     </div>
   );
 }
