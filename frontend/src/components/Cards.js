@@ -51,11 +51,9 @@ export default function Cards() {
                           </Typography>
                           <Typography variant="body2">
                             {event.dates.start.localDate}
-                            {/* {event.products[0].name} */}
                           </Typography>
                           <Typography variant="body2">
                             {event._embedded.venues[0].name}
-                            {/* {event.products[0].name} */}
                           </Typography>
                         </CardContent>
                         <CardActions>
@@ -64,7 +62,8 @@ export default function Cards() {
                             width="400"
                             component="img"
                             image={event.images[6].url}
-                            alt="artist image"
+                            title={event.name}
+                            alt={event.name}
                           />
                         </CardActions>
                       </Button>

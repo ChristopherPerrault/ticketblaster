@@ -148,3 +148,14 @@
   text-align: center;
   margin-bottom: 10vh;
 }
+
+/*  PurchaseTickets.js  */
+.indv-event-details-container {
+  width: 50%;
+  margin: 60px;
+}
+
+.seatmap {
+  scale: 69%;
+  margin-top: -69px;
+}
