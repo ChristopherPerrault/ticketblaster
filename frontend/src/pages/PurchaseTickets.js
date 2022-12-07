@@ -11,13 +11,18 @@ import {
   Button,
   CardActions,
 } from "@mui/material";
+import PurchaseForm from "../components/PurchaseForm";
 
 export default function PurchaseTicket(props) {
   document.title = "TicketBlaster | Event Details";
 
   const [events, setEvents] = useState([]);
+  const [purchaseForm, setPurchaseForm] = useState(false);
   const params = useParams();
 
+  const handlePurchaseClick = () => {
+    setPurchaseForm(true);
+  }
   useEffect(() => {
     const url =
       // Chris:
@@ -100,7 +105,7 @@ export default function PurchaseTicket(props) {
                         {/* add price range */}
                         {/* add capacity */}
                         {/* add age restrictions/notices */}
-                        <Button type="submit" variant="contained">
+                        <Button onClick={handlePurchaseClick} variant="contained">
                           Purchase
                         </Button>
                       </Card>
@@ -120,6 +125,7 @@ export default function PurchaseTicket(props) {
   return (
     <div>
       <div>{events}</div>
+      {purchaseForm ? <div className="purchase-form"><PurchaseForm /></div> : null}
     </div>
   );
 }
