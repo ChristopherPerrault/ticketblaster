@@ -2,11 +2,16 @@
 .profile-container{
     display:grid;
     grid-template-columns: 1fr 1fr;
+ /*    background-color: white;
+    margin-top:3%;
+    margin-left: 10%;
+     border-radius: 15%;
+     width: 80vw; */
 }
 /* Left column */
 .profile-left-col{
 margin-top: 3rem;
-margin-left: 12rem;
+margin-left: 30%;
 }
 .profile-img{
     border-radius: 50%;

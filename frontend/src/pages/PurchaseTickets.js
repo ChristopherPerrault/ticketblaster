@@ -1,56 +1,58 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ProductCard from "../components/ProductCard";
 import "../index.css";
+import {
+  Card,
+  Box,
+  CardContent,
+  Typography,
+  CardMedia,
+  Button,
+  CardActions,
+} from "@mui/material";
 
-export default function PurchaseTicket() {
-    const [events, setEvents] = useState([]);
-    const params = useParams();
+export default function PurchaseTicket(props) {
+  document.title = "TicketBlaster | Event Details";
 
-    useEffect(() => {
-        const url =
-            // Chris:
-            "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=zhJDIqfMsloXKpRjywIbmnUSBGw9AxNq";
+  const productId = "price_1MC3E3DM4nrUdWXdpVAePbuO";
+  const params = useParams();
+//"https://app.ticketmaster.com/discovery/v2/events/" + id + ".json?apikey=zhJDIqfMsloXKpRjywIbmnUSBGw9AxNq";
+ 
+        const id = params.id.toString();
+    displayData(id);
+ 
 
-        // Matt #1:
-        //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=qiJ5AkBhkvr6IFdd9UamBev1hYovx46M";
+  return (
+    <div className="event-container">
+      <h2 className="title"></h2>
+      <div className="venue"></div>      
+      <div className="price"></div>
+      <img src="" className="event-img"></img>
+      <img src="" className="seatmap"></img>
+    <ProductCard product={productId} />
+    </div>
+  );
+}
 
-        // Matt #2:
-        // https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=hu5LlW3eJkDoVLKyUGnAZmbpZS8k6eCE111
-
-        // Kevin:
-        //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=LVpUpS7gaeXxvoQMKgDF1zSNbXbASUgS";
-
-        const loadData = async () => {
-            const id = params.id.toString();
-            await fetch(url)
-                .then((response) => response.json())
-                .then((data) => {
-                    setEvents(
-                        data._embedded.events.map((event, index) => {
-                            if (event.id === id) {
-                                return (
-                                    <div>
-                                        <h2 className="name">{event.name}</h2>
-                                        <p className="date">{event.dates.start.localDate}</p>
-                                        <img srcSet={event.seatmap.staticUrl} alt="map" />
-                                    </div>
-                                );
-                            } else {
-                                return null;
-                            }
-                        })
-                    );
-                });
-        };
-        loadData();
-    }, [params.id]);
-
-    return (
-        <div>
-            <div>
-                {events}
-            </div>
-        </div>
-
-    )
+function displayData(id) {
+  fetch(
+    "https://app.ticketmaster.com/discovery/v2/events/" +
+      id +
+      ".json?apikey=zhJDIqfMsloXKpRjywIbmnUSBGw9AxNq",
+    {}
+  )
+    .then((data) => data.json())
+    .then((json) => {
+      console.log(JSON.stringify(json));
+      document.querySelector(".title").innerHTML = json.name;
+      document.querySelector(".venue").innerHTML = json.name;
+      document.querySelector(".seatmap").src = json.seatmap.staticUrl;
+      document.querySelector(".event-img").src = json.images[0].url;
+      document.querySelector(".price").innerHTML =
+        "Ticket price: Min: " +
+        json.priceRanges[0].min +
+        "------ Max: " +
+        json.priceRanges[0].max;
+    });
 }

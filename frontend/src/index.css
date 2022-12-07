@@ -103,3 +103,11 @@
 .icon:active {
   box-shadow: none;
 }
+.event-container{
+  text-align: center;
+}
+.seatmap, .event-img{
+  width:400px;
+  height:300px;
+  margin-bottom: 2rem;
+}

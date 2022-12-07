@@ -23,6 +23,7 @@ export default function Outlet() {
           <Route path="account" element={<Account />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="admin" element={<AdminCrudUsers />} />
+          
           <Route path="/edit/:id" element={<EditUser />} />
           <Route path="register" element={<RegistrationForm />} />
           <Route path="login" element={<LoginForm />} />

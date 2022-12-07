@@ -8,6 +8,9 @@ const saltRounds = 10;
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const stripe = require("stripe")(
+  "sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0"
+);
 const app = express();
 const port = 3001;
 app.use(cors());
@@ -212,10 +215,7 @@ app.delete("/users/:id", async (req, res) => {
 
 /* -----------------------Stripe----------------------------  */
 
-/* const Stripe = require("stripe");
-const stripe = Stripe(
-  "sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0"
-);
+
 
 app.post("/checkout", async (req, res) => {
   const items= req.body.items;
@@ -241,18 +241,15 @@ app.post("/checkout", async (req, res) => {
 });
 //key:pk_test_51MC2zeDM4nrUdWXdbSKMObsml3ocUOgJ50DRWRrWpA4sNonyuaGkMxVPoNbqNDoHyYwZGj1Gw1tXwmeJ40ZGofTT00KOtjE9iG
 //secret: sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0
-app.get("/secret", async (req, res) => {
-  const intent = // ... Fetch or create the PaymentIntent
-    res.json({ client_secret: intent.client_secret });
-});
+//TicketsAPI: price_1MC3E3DM4nrUdWXdpVAePbuO
 
-const paymentIntent = await stripe.paymentIntents.create({
+/* const paymentIntent = await stripe.paymentIntents.create({
   amount: 500,
   currency: "gbp",
   payment_method: "pm_card_visa",
   statement_descriptor: "Thanks for using TicketBlaster!",
-});
- */
+}); */
+
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
