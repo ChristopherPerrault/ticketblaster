@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { LoggedInContext } from "../App";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Input from "@mui/material/Input";
 import { useNavigate } from "react-router-dom";
+import { integerPropType } from "@mui/utils";
+import { MenuItem, Select } from "@mui/material";
 
 export default function PurchaseForm() {
 
@@ -21,7 +22,20 @@ export default function PurchaseForm() {
     return (
         <div>
             <form className="form-tickets">
+                <Select
+                    id="level"
+                    label="Ticket Level"
+                    variant="outlined"
+                >
+                    <MenuItem value={"Floor"}>Floor</MenuItem>
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                </Select>
+                <br />
+                <br />
                 <TextField
+                    id="tickets"
                     type="number"
                     label="Number of Tickets"
                     variant="outlined"
