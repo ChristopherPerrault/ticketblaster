@@ -2,13 +2,13 @@ import React from "react";
 import ProfilePicture from "../components/ProfilePicture";
 import EditProfileForm from "../components/EditProfileForm";
 import {
-  Card,
+  // Card,
   Box,
-  CardContent,
-  Typography,
-  CardMedia,
-  Button,
-  CardActions,
+  // CardContent,
+  // Typography,
+  // CardMedia,
+  // Button,
+  // CardActions,
 } from "@mui/material";
 
 export default function Account() {
