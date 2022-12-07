@@ -64,9 +64,9 @@ function RegistrationForm() {
       setPhoneNumberErr(true);
     }
 
-    if (!validCreditCard.test(creditCard)) {
+     if (!validCreditCard.test(creditCard)) {
       setCreditCardErr(true);
-    }
+    } 
 
     if (!validSecurityCode.test(securityCode)) {
       setSecurityCodeErr(true);

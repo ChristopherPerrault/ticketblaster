@@ -102,11 +102,12 @@ app.post("/users/login", async (request, response) => {
   }
   response.send({ success: false });
 });
-/* Update Account NO PASSWORD */
+/* Update Account NO PASSWORD by id*/
  app.post("/users/:id", async (request, response) => {
   console.log("post with id ");
  const id = request.params.id;
  const email = request.body.email;
+ const password = request.body.password;
  const firstName = request.body.firstName;
  const lastName = request.body.lastName;
  const address = request.body.address;
@@ -114,9 +115,11 @@ app.post("/users/login", async (request, response) => {
  const creditCard = request.body.creditCard;
  const securityCode = request.body.securityCode;
  const expDate = request.body.expDate;
+ hashedPassword = await bcrypt.hash(password, saltRounds);
  const user = {
    id: id,
    email: email,   
+   password: hashedPassword,
    firstName: firstName,
    lastName: lastName,
    address: address,
@@ -126,6 +129,7 @@ app.post("/users/login", async (request, response) => {
    expDate: expDate,
  };
   try {
+     console.log("Trying to update record with credentials: " + id);
     const results = await userModel.replaceOne(
       {
         id: id,
@@ -139,7 +143,46 @@ app.post("/users/login", async (request, response) => {
     console.log(err);
   }
 }); 
+ /*Update Account NO PASSWORD by email */
+ app.post("/users/:email", async (request, response) => {
+  console.log("post with email ");
 
+ const email = request.body.email;
+  const password = request.body.password;
+ const firstName = request.body.firstName;
+ const lastName = request.body.lastName;
+ const address = request.body.address;
+ const phoneNumber = request.body.phoneNumber;
+ const creditCard = request.body.creditCard;
+ const securityCode = request.body.securityCode;
+ const expDate = request.body.expDate;
+ hashedPassword = await bcrypt.hash(password, saltRounds);
+ const user = {   
+   email: email,   
+   firstName: firstName,
+   lastName: lastName,
+   address: address,
+   phoneNumber: phoneNumber,
+   creditCard: creditCard,
+   securityCode: securityCode,
+   expDate: expDate,
+ };
+  try {
+    console.log("Trying to update record with credentials: " + email);
+    const results = await userModel.replaceOne(
+      {
+        email: email,
+      },
+      user
+    );
+    console.log("matched: " + results.matchedCount);
+    console.log("modified: " + results.modifiedCount);
+    console.log(results)
+    response.send(results);
+  } catch (err) {
+    console.log(err);
+  }
+}); 
 
 
 /* get request to /users to get ALL users */

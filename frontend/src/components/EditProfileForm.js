@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import TextField from "@mui/material/TextField";
@@ -12,60 +12,63 @@ const loggedInUser = localStorage.getItem("user");
     margin:"5px"
   }
   const idRef = useRef();
-  const xRef = useRef();
-  const emailRef = useRef();
-//  const passwordRef = useRef();
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const addressRef = useRef();
-  const phoneNumberRef = useRef();
-  const creditCardRef = useRef();
-  const securityCodeRef = useRef();
-  const expDateRef = useRef();
+const [email, setEmail] = React.useState("");
+const [password, setPassword] = React.useState("");
+const [firstName, setFirstName] = React.useState("");
+const [lastName, setLastName] = React.useState("");
+const [address, setAddress] = React.useState("");
+const [phoneNumber, setPhoneNumber] = React.useState("");
+const [creditCard, setCreditCard] = React.useState("");
+const [securityCode, setSecurityCode] = React.useState("");
+const [expDate, setExpDate] = React.useState(null);
 
   const navigate = useNavigate();
-  //const id = idRef.current.value();
+  //const id = document.querySelector(".hiddenId").value;
  // console.log(idRef.current.value());
 
  
-  useEffect(() => {
-     loadUserDetails(loggedInUser);
-  }, [loggedInUser])
 
-  const handleSubmit = (event) => {
-    console.log("Received event: " + event)
+     loadUserDetails(loggedInUser);
+
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+     const id = document.querySelector(".hiddenId");
+     console.log(id.value);
+    console.log("Received update")
     const editedPerson = {
-      id: idRef.current.value,
-      email: emailRef.current.value,
-      firstName: firstNameRef.current.value,
-      lastName: lastNameRef.current.value,
-      address: addressRef.current.value,
-      phoneNumber: phoneNumberRef.current.value,
-      creditCard: creditCardRef.current.value,
-      securityCode: securityCodeRef.current.value,
-      expDate: expDateRef.current.value,
+     // id: id,
+      email: email,      
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      phoneNumber: phoneNumber,
+      creditCard: creditCard,
+      securityCode: securityCode,
+      expDate: expDate,
     };
-    console.log(JSON.stringify(editedPerson));
-    const id = idRef.current.value;
-    fetch(`http://localhost:3001/users/${id}`, {
+    console.log("Sending the following data to server: " + JSON.stringify(editedPerson));
+
+    // This will send a post request to update the data in the database.
+    try{
+    await fetch(`http://localhost:3001/users/${email}`, {
       method: "POST",
       body: JSON.stringify(editedPerson),
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        "Content-Type": "application/json",
       },
-    })
-      .then((data) => data.json())
-      .then((json) => {
-        alert(JSON.stringify(json));
+    }).then((response) => console.log("Response: " + JSON.stringify(response)));
+  }
+catch (err) {
+  console.error(err);
+}
 
-        try {
-         
-        } catch (error) {
-          console.log(error);
-        }
-      });
-  };
- // 
+  
+  
+      };
+     
+
 
   return (
     <div>
@@ -73,80 +76,73 @@ const loggedInUser = localStorage.getItem("user");
         <h1>Edit Account Info</h1>
         <h2>{loggedInUser}</h2>
         <div ref={idRef} className="hiddenId" style={{ display: "none" }}></div>
+        <input type="text" className="x" />
         <TextField
           style={TextStyle}
           className="email-input"
           type="text"
           label="Email Address"
           variant="outlined"
-          ref={emailRef}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <input type="text" ref={xRef} id="x" />
 
-        {/*   
-    <br />
-      <TextField
+        {/*   <input type="text" ref={xRef} id="x" />*/}
+        <br />
+        <TextField
           style={TextStyle}
           type="password"
           label="Password"
           variant="outlined"
-          ref={passwordRef}
-        /> */}
-
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <br />
         <TextField
           style={TextStyle}
           type="text"
           label="First Name"
           variant="outlined"
-          ref={firstNameRef}
+          onChange={(e) => setFirstName(e.target.value)}
         />
-
         <br />
         <TextField
           style={TextStyle}
           type="text"
           label="Last Name"
           variant="outlined"
-          ref={lastNameRef}
+          onChange={(e) => setLastName(e.target.value)}
         />
-
         <br />
         <TextField
           style={TextStyle}
           type="text"
           label="Address"
           variant="outlined"
-          ref={addressRef}
+          onChange={(e) => setAddress(e.target.value)}
         />
-
         <br />
         <TextField
           style={TextStyle}
           type="text"
           label="Phone Number"
           variant="outlined"
-          ref={phoneNumberRef}
+          onChange={(e) => setPhoneNumber(e.target.value)}
         />
-
         <br />
         <TextField
           style={TextStyle}
           type="text"
           label="Credit Card"
           variant="outlined"
-          ref={creditCardRef}
+          onChange={(e) => setCreditCard(e.target.value)}
         />
-
         <br />
         <TextField
           style={TextStyle}
           type="text"
           label="Security Code"
           variant="outlined"
-          ref={securityCodeRef}
+          onChange={(e) => setSecurityCode(e.target.value)}
         />
-
         <br />
         <TextField
           style={TextStyle}
@@ -154,7 +150,7 @@ const loggedInUser = localStorage.getItem("user");
           label="Expiry Date"
           InputLabelProps={{ shrink: true }}
           variant="outlined"
-          ref={expDateRef}
+          onChange={(e) => setExpDate(e.target.value)}
         />
         <Button type="submit" variant="contained">
           Update
@@ -162,7 +158,7 @@ const loggedInUser = localStorage.getItem("user");
       </form>
     </div>
   );
-}
+      }
 
 export default EditProfilehtmlForm;
 
@@ -214,9 +210,10 @@ async function loadUserDetails(email){
       })
       .then((data) => data.json())
       .then((json) => {
-       // document.querySelector(".email-input").value = json.email;
-         document.getElementById("x").value = json.email;
-         document.querySelector(".email-input").value = json.email;
+       // console.log(json._id)
+       document.querySelector(".hiddenId").innerHTML = json._id;
+document.querySelector(".x").value = json.email;
+    //   console.log(document.querySelector(".hiddenId").value);
        
 //console.log(json._id);
       });
