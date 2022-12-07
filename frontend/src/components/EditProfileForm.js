@@ -21,12 +21,13 @@ function EditProfilehtmlForm() {
   const [expDate, setExpDate] = React.useState(null);
 
   const navigate = useNavigate();
+  
   //storage is set when user logs in
   const loggedInUser = localStorage.getItem("user");
-  /* this method is used to generate all data about the user and display it,
-   having difficulty getting it to show with material atm */
+  
+  /* this method is used to generate all data about the user and display it*/    
   loadUserDetails(loggedInUser);
-
+  
   async function handleSubmit(event) {
     event.preventDefault();
     const id = document.querySelector(".hiddenId");
