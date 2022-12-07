@@ -7,8 +7,8 @@ import EditUser from "../pages/EditUser";
 import AdminCrudUsers from "../pages/AdminCrudUsers";
 import Account from "../pages/Account";
 import { Navigate } from "react-router-dom";
-import RegistrationForm from "../pages/RegistrationForm";
-import LoginForm from "../pages/LoginForm";
+import Registration from "../pages/Registration";
+import Login from "../pages/Login";
 import FAQ from "../pages/FAQ";
 import PurchaseTicket from "../pages/PurchaseTickets";
 
@@ -23,10 +23,10 @@ export default function Outlet() {
           <Route path="account" element={<Account />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="admin" element={<AdminCrudUsers />} />
-          
+
           <Route path="/edit/:id" element={<EditUser />} />
-          <Route path="register" element={<RegistrationForm />} />
-          <Route path="login" element={<LoginForm />} />
+          <Route path="register" element={<Registration />} />
+          <Route path="login" element={<Login />} />
           <Route path="/purchase/:id" element={<PurchaseTicket />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
