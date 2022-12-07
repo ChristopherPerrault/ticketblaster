@@ -66,7 +66,7 @@ export default function PurchaseTicket(props) {
                           <Typography variant="h4" component="h4">
                             {event.name}
                           </Typography>
-                          <Typography variant="body2" component="h4">
+                          <Typography variant="body1" component="h4">
                             {formattedDate}
                             <br />
                             <br />
@@ -96,7 +96,7 @@ export default function PurchaseTicket(props) {
                         {/* add time, doors, show */}
                         {/* add price range */}
                         {/* add capacity */}
-                        {/* add age restrictions */}
+                        {/* add age restrictions/notices */}
                         {/* add purchase button */}
                       </Card>
                     </Box>
