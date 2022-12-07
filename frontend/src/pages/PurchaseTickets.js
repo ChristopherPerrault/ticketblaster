@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../index.css";
+import ProductCard from "../components/ProductCard";
 import {
   Card,
   Box,
@@ -63,6 +64,7 @@ export default function PurchaseTicket(props) {
                         </CardActions>
                         <CardMedia />
                         <CardContent>
+                          <ProductCard product={id} />
                           <Typography variant="h4" component="h4">
                             {event.name}
                           </Typography>
@@ -92,6 +94,7 @@ export default function PurchaseTicket(props) {
                             alt={event._embedded.venues[0].name + " seatmap"}
                           />
                         </CardActions>
+
                         <CardMedia />
                         {/* add time, doors, show */}
                         {/* add price range */}
