@@ -3,8 +3,9 @@ import { useParams, useNavigate } from "react-router";
 
 import "./RecordList.css";
 export default function EditUser(props) {
-  const emailRef = useRef(); 
+  const emailRef = useRef();
   const firstNameRef = useRef();
+  const passwordRef = useRef();
   const lastNameRef = useRef();
   const addressRef = useRef();
   const phoneNumberRef = useRef();
@@ -12,10 +13,12 @@ export default function EditUser(props) {
   const securityCodeRef = useRef();
   const expDateRef = useRef();
 
-const params = useParams();
-const navigate = useNavigate();
-//
-loadCurrentUser(params.id);
+  const params = useParams();
+  const navigate = useNavigate();
+  /*id is passed from the previous page, where all users are listed
+     then id is used to query that users info and display in the form*/
+  loadCurrentUser(params.id);
+
   useEffect(() => {
     async function fetchData() {
       const id = params._id.toString();
@@ -34,19 +37,18 @@ loadCurrentUser(params.id);
         return;
       }
       console.log(record);
-    
     }
 
     fetchData();
 
     return;
-  }, [params.id, navigate]);
-
+  }, [params._id, navigate]);
 
   async function onSubmit(e) {
     e.preventDefault();
     const editedPerson = {
       id: params.id,
+      password: passwordRef.current.value,
       email: emailRef.current.value,
       firstName: firstNameRef.current.value,
       lastName: lastNameRef.current.value,
@@ -82,7 +84,15 @@ loadCurrentUser(params.id);
             className="form-control"
             id="email"
             ref={emailRef}
-                   
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password: </label>
+          <input
+            type="text"
+            className="form-control"
+            id="password"
+            ref={passwordRef}
           />
         </div>
         <div className="form-group">
@@ -90,8 +100,8 @@ loadCurrentUser(params.id);
           <input
             type="text"
             className="form-control"
-            id="firstName"       
-            ref={firstNameRef}            
+            id="firstName"
+            ref={firstNameRef}
           />
         </div>
         <div className="form-group">
@@ -99,8 +109,8 @@ loadCurrentUser(params.id);
           <input
             type="text"
             className="form-control"
-            id="lastName"            
-            ref={lastNameRef}           
+            id="lastName"
+            ref={lastNameRef}
           />
         </div>
         <div className="form-group">
@@ -108,8 +118,8 @@ loadCurrentUser(params.id);
           <input
             type="text"
             className="form-control"
-            id="address"           
-            ref={addressRef}            
+            id="address"
+            ref={addressRef}
           />
         </div>
         <div className="form-group">
@@ -117,8 +127,8 @@ loadCurrentUser(params.id);
           <input
             type="text"
             className="form-control"
-            id="phoneNumber"          
-            ref={phoneNumberRef}          
+            id="phoneNumber"
+            ref={phoneNumberRef}
           />
         </div>
         <div className="form-group">
@@ -127,9 +137,7 @@ loadCurrentUser(params.id);
             type="text"
             className="form-control"
             id="creditCard"
-         
             ref={creditCardRef}
-          
           />
         </div>
         <div className="form-group">
@@ -138,9 +146,7 @@ loadCurrentUser(params.id);
             type="text"
             className="form-control"
             id="securityCode"
-            
             ref={securityCodeRef}
-            
           />
         </div>
         <div className="form-group">
@@ -149,9 +155,7 @@ loadCurrentUser(params.id);
             type="date"
             className="form-control"
             id="expDate"
-            
             ref={expDateRef}
-         
           />
         </div>
         <br />
@@ -167,25 +171,21 @@ loadCurrentUser(params.id);
   );
 }
 
-async function loadCurrentUser(id){
-fetch(`http://localhost:3001/users/${id}`, {
-  method: "GET",
-  headers: {
-    "Content-type": "application/json; charset=UTF-8",
-  },
-})
-  .then((data) => data.json())
-  .then((json) => {
-    
-    document.getElementById("email").value = json.email;
-     document.getElementById("firstName").value = json.firstName;
+async function loadCurrentUser(id) {
+  fetch(`http://localhost:3001/users/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((data) => data.json())
+    .then((json) => {
+      document.getElementById("email").value = json.email;
+      document.getElementById("firstName").value = json.firstName;
       document.getElementById("lastName").value = json.lastName;
-       document.getElementById("address").value = json.address;
-        document.getElementById("phoneNumber").value = json.phoneNumber;
-         document.getElementById("creditCard").value = json.creditCard;
-         document.getElementById("securityCode").value = json.securityCode;
-         
-           
-
-  });
+      document.getElementById("address").value = json.address;
+      document.getElementById("phoneNumber").value = json.phoneNumber;
+      document.getElementById("creditCard").value = json.creditCard;
+      document.getElementById("securityCode").value = json.securityCode;
+    });
 }
