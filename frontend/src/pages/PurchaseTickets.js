@@ -69,10 +69,6 @@ export default function PurchaseTicket(props) {
                         </CardActions>
                         <CardMedia />
                         <CardContent>
-<<<<<<< Updated upstream
-                          
-=======
->>>>>>> Stashed changes
                           <Typography variant="h4" component="h4">
                             {event.name}
                           </Typography>
