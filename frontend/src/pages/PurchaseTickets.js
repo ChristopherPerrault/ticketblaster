@@ -57,7 +57,7 @@ export default function PurchaseTicket(props) {
                             height="400"
                             width="400"
                             component="img"
-                            srcSet={event.images[6].url}
+                            srcSet={event.images[5].url}
                             title={event.name + " banner image"}
                             alt={event.name + " banner image"}
                           />

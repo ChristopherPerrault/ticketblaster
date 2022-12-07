@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { LoggedInContext } from "../App";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -73,6 +73,7 @@ function LoginForm() {
         />
         <p style={{ color: "red" }} id="customErrorMessage"></p>
         <br />
+        <p>Don't have an account? Register <Link to="/register">Here</Link></p>
         <Button type="submit" variant="contained">
           Login
         </Button>
