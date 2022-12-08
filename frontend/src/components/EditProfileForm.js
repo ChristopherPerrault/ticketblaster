@@ -5,7 +5,6 @@ import "./Profile.css";
 import { Button, Typography, TextField, ButtonBase } from "@mui/material";
 
 function EditProfilehtmlForm() {
- 
   const TextStyle = {
     width: "200px",
     margin: "5px",
@@ -25,17 +24,14 @@ function EditProfilehtmlForm() {
 
   //storage is set when user logs in
   const userId = sessionStorage.getItem("userId");
-  
+
   /* this method is used to generate all data about the user and display it*/
   loadUserDetails(userId);
-
 
   async function handleSubmit(event) {
     console.log("Received update for user: " + userId);
     event.preventDefault();
-    
-    
-    
+
     const editedPerson = {
       id: userId,
       email: email,
@@ -60,17 +56,25 @@ function EditProfilehtmlForm() {
         headers: {
           "Content-Type": "application/json",
         },
-      }).then((response) =>
-        console.log("Response: " + response)
-      );
+      }).then((response) => console.log("Response: " + response));
     } catch (err) {
       console.error(err);
     }
-    var updateMsg = "Profile updated successfully!\nYou entered the following information: " + JSON.stringify(editedPerson);
+    var updateMsg =
+      "Profile updated successfully!\nYou entered the following information:\n Email: " +
+      editedPerson.email +
+      "\n First Name: " +
+      editedPerson.firstName +
+      "\n Last Name: " +
+      editedPerson.lastName +
+      "\n Phone: " +
+      editedPerson.phoneNumber +
+      "\n Address: " +
+      editedPerson.address + ".";
     alert(updateMsg);
     navigate("/");
   }
-  function adminClick(){
+  function adminClick() {
     navigate("/admin");
   }
 
@@ -199,7 +203,7 @@ function EditProfilehtmlForm() {
         variant="contained"
         id="adminCheck"
         onClick={adminClick}
-        style={{ marginLeft: "-17%", marginTop:"-20%" }}
+        style={{ marginLeft: "-17%", marginTop: "-20%" }}
       >
         ACCESS ADMIN DASHBOARD
       </Button>
@@ -212,7 +216,7 @@ export default EditProfilehtmlForm;
 async function loadUserDetails(id) {
   const currentId = id;
   console.log("Loading user details..." + currentId);
-  fetch(`http://localhost:3001/users/id/${currentId}`, {    
+  fetch(`http://localhost:3001/users/id/${currentId}`, {
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
@@ -220,20 +224,19 @@ async function loadUserDetails(id) {
   })
     .then((data) => data.json())
     .then((json) => {
-      console.log(json.isAdmin)
-     { json.isAdmin
-       ? document.getElementById("adminCheck").style.display = "inline"
-       : console.log(json.isAdmin + " false");}
-       document.getElementById("email-input").placeholder = json.email;
+      console.log(json.isAdmin);
+      {
+        json.isAdmin
+          ? (document.getElementById("adminCheck").style.display = "inline")
+          : console.log(json.isAdmin + " false");
+      }
+      document.getElementById("email-input").placeholder = json.email;
       document.getElementById("fn-input").placeholder = json.firstName;
       document.getElementById("ln-input").placeholder = json.lastName;
       document.getElementById("phone-input").placeholder = json.phoneNumber;
       document.getElementById("adr-input").placeholder = json.address;
       document.getElementById("cc-input").placeholder = json.creditCard;
       document.getElementById("sec-input").placeholder = json.securityCode;
-      document.getElementById("exp-input").placeholder = json.expDate; 
+      document.getElementById("exp-input").placeholder = json.expDate;
     });
-  }
-
-    
-
+}
