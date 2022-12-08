@@ -17,6 +17,7 @@ function RegistrationForm() {
   const [securityCode, setSecurityCode] = React.useState("");
   const [expDate, setExpDate] = React.useState(null);
 
+  // boolean values for the error attribute in the form inputs
   const [emailErr, setEmailErr] = React.useState(null);
   const [passwordErr, setPasswordErr] = React.useState(null);
   const [firstNameErr, setFirstNameErr] = React.useState(null);
@@ -31,6 +32,8 @@ function RegistrationForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // set all the errors to false
     setEmailErr(false);
     setPasswordErr(false);
     setFirstNameErr(false);
@@ -41,6 +44,7 @@ function RegistrationForm() {
     setSecurityCodeErr(false);
     setExpDateErr(false);
 
+    // check each error one by one and change the value to true if error
     if (!validEmail.test(email)) {
       setEmailErr(true);
     }
@@ -64,9 +68,9 @@ function RegistrationForm() {
       setPhoneNumberErr(true);
     }
 
-     if (!validCreditCard.test(creditCard)) {
+    if (!validCreditCard.test(creditCard)) {
       setCreditCardErr(true);
-    } 
+    }
 
     if (!validSecurityCode.test(securityCode)) {
       setSecurityCodeErr(true);
@@ -76,6 +80,7 @@ function RegistrationForm() {
       setExpDateErr(true);
     }
 
+    // only send fetch request (i.e. registration attempt) if all errors are false
     if (
       emailErr === false &&
       passwordErr === false &&

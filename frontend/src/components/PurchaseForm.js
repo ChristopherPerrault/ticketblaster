@@ -47,7 +47,10 @@ export default function PurchaseForm() {
   // --------- HANDLE SUBMIT --------------
   const handleSubmit = (event) => {
     event.preventDefault();
+    // create an object with the form values
     const purchaseInfo = { level, totalPrice, tickets };
+
+    // stringify the object and set in session storage in order to retrieve on FinalizePurchase page
     sessionStorage.setItem("purchaseInfo", JSON.stringify(purchaseInfo));
     navigate("/finalizePurchase");
   };
