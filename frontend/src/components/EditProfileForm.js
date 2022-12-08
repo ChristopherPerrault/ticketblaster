@@ -70,12 +70,21 @@ function EditProfilehtmlForm() {
       "\n Phone: " +
       editedPerson.phoneNumber +
       "\n Address: " +
-      editedPerson.address + ".";
+      editedPerson.address +
+      ".";
     alert(updateMsg);
-    navigate("/");
+    try {
+      navigate("/");
+    } catch (error) {
+      console.log("Error: " + error);
+    }
   }
   function adminClick() {
-    navigate("/admin");
+    try {
+      navigate("/admin");
+    } catch (error) {
+      console.log("Error: " + error);
+    }
   }
 
   return (
@@ -203,7 +212,8 @@ function EditProfilehtmlForm() {
         variant="contained"
         id="adminCheck"
         onClick={adminClick}
-        style={{ marginLeft: "-17%", marginTop: "-20%" }}
+        style={{ marginLeft: "-17%", marginTop: "-20%",display:"none" }}
+        
       >
         ACCESS ADMIN DASHBOARD
       </Button>
@@ -216,6 +226,7 @@ export default EditProfilehtmlForm;
 async function loadUserDetails(id) {
   const currentId = id;
   console.log("Loading user details..." + currentId);
+  try{
   fetch(`http://localhost:3001/users/id/${currentId}`, {
     method: "GET",
     headers: {
@@ -239,4 +250,7 @@ async function loadUserDetails(id) {
       document.getElementById("sec-input").placeholder = json.securityCode;
       document.getElementById("exp-input").placeholder = json.expDate;
     });
+  }catch(e){
+    console.log("Error: " + e);
+  }
 }

@@ -22,6 +22,7 @@ const pw = sessionStorage.getItem("pw");
   useEffect(() => {
     async function fetchData() {
       const id = params._id.toString();
+      try{
       const response = await fetch(`http://localhost:3001/users/${id}`);
 
       if (!response.ok) {
@@ -36,7 +37,11 @@ const pw = sessionStorage.getItem("pw");
         navigate("/");
         return;
       }
-      console.log(record);
+      console.log("Retrieved user: " + record);
+    }catch (e) {
+      console.log(e);
+    }
+      
     }
 
     fetchData();
@@ -172,6 +177,7 @@ const pw = sessionStorage.getItem("pw");
 }
 
 async function loadCurrentUser(id) {
+  try{
   fetch(`http://localhost:3001/users/id/${id}`, {
     method: "GET",
     headers: {
@@ -188,4 +194,8 @@ async function loadCurrentUser(id) {
       document.getElementById("creditCard").value = json.creditCard;
       document.getElementById("securityCode").value = json.securityCode;
     });
+  }catch(e){
+    console.log("Error: " + e.message);
+    
+  }
 }
