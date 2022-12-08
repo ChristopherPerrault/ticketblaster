@@ -14,12 +14,14 @@
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",
+    "react-back-to-top-button": "^0.0.14",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
     "stripe": "^11.2.0",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

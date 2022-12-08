@@ -8,7 +8,9 @@ const saltRounds = 10;
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const stripe = require("stripe")("sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0");
+const stripe = require("stripe")(
+  "sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0"
+);
 const app = express();
 const port = 3001;
 const axios = require("axios");
@@ -49,7 +51,9 @@ app.post("/users/register", async (request, response) => {
       // Check to see if the user already exists. If not, then create it.
       const user = await userModel.findOne({ email: email });
       if (user) {
-        console.log("Invalid registration - email " + email + " already exists.");
+        console.log(
+          "Invalid registration - email " + email + " already exists."
+        );
         response.send({ success: false });
         return;
       } else {
@@ -314,14 +318,16 @@ app.get("/allTickets", async (req, res) => {
 
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
-app.listen(port, () => console.log(`TicketBlaster app listening on port ${port}`));
+app.listen(port, () =>
+  console.log(`TicketBlaster app listening on port ${port}`)
+);
 
 // change these keys based on contents of .env file
 // this sets the api data to be fetched from 3001/api, therefore they are outside of the frontend and hidden
 app.get("/api", (req, res) => {
   const options = {
     method: "GET",
-    url: `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=${process.env.API_KEY_KEVIN}`,
+    url: `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=${process.env.API_KEY_CHRIS}`,
   };
 
   axios.request(options).then((response) => {
