@@ -29,8 +29,7 @@ function Home() {
       },
     })
       .then((data) => data.json())
-      .then((json) => {
-        //  { json.isAdmin ? sessionStorage.setItem("admin", true) : console.log(json.isAdmin + " false")}
+      .then((json) => {        
         setFirstName(json.firstName);
         setLastName(json.lastName);
       });
