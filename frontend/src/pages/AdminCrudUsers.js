@@ -16,7 +16,7 @@ export default function AdminCrudUsers() {
     <>
       <Box
         style={{
-          backgroundColor: "#DDEEDD",
+          backgroundColor: "#ff9966",
           width: "80vw",
           marginLeft: "10%",
           height: "33vh",
