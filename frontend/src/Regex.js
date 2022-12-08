@@ -9,7 +9,7 @@ export const validCreditCard = new RegExp(
 
 export const validSecurityCode = new RegExp(/^[0-9]{3,4}$/);
 
-/* ------------ To continue working on tomorrow morning ----------------- */
+/* ------------ Fast User Load  ----------------- */
 // const loggedInUser = localStorage.getItem("user");
 // const [userData, setUserData] = useState([]);
 // useEffect(() => {
@@ -24,5 +24,3 @@ export const validSecurityCode = new RegExp(/^[0-9]{3,4}$/);
 //       setUserData(data);
 //     });
 // }, []);
-
-// {isLoggedIn ? <NavButton to="/myTickets" label="My Tickets" /> : null}
