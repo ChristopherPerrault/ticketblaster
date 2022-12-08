@@ -13,6 +13,8 @@ const stripe = require("stripe")(
 );
 const app = express();
 const port = 3001;
+const axios = require("axios");
+
 app.use(cors());
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
@@ -48,7 +50,9 @@ app.post("/users/register", async (request, response) => {
       // Check to see if the user already exists. If not, then create it.
       const user = await userModel.findOne({ email: email });
       if (user) {
-        console.log("Invalid registration - email " + email + " already exists.");
+        console.log(
+          "Invalid registration - email " + email + " already exists."
+        );
         response.send({ success: false });
         return;
       } else {
@@ -94,7 +98,6 @@ app.post("/users/login", async (request, response) => {
           response.send({ success: true });
           return;
         }
-        
       }
     }
   } catch (error) {
@@ -103,33 +106,33 @@ app.post("/users/login", async (request, response) => {
   response.send({ success: false });
 });
 /* Update Account NO PASSWORD by id*/
- app.post("/users/:id", async (request, response) => {
+app.post("/users/:id", async (request, response) => {
   console.log("post with id ");
- const id = request.params.id;
- const email = request.body.email;
- const password = request.body.password;
- const firstName = request.body.firstName;
- const lastName = request.body.lastName;
- const address = request.body.address;
- const phoneNumber = request.body.phoneNumber;
- const creditCard = request.body.creditCard;
- const securityCode = request.body.securityCode;
- const expDate = request.body.expDate;
- hashedPassword = await bcrypt.hash(password, saltRounds);
- const user = {
-   id: id,
-   email: email,   
-   password: hashedPassword,
-   firstName: firstName,
-   lastName: lastName,
-   address: address,
-   phoneNumber: phoneNumber,
-   creditCard: creditCard,
-   securityCode: securityCode,
-   expDate: expDate,
- };
+  const id = request.params.id;
+  const email = request.body.email;
+  const password = request.body.password;
+  const firstName = request.body.firstName;
+  const lastName = request.body.lastName;
+  const address = request.body.address;
+  const phoneNumber = request.body.phoneNumber;
+  const creditCard = request.body.creditCard;
+  const securityCode = request.body.securityCode;
+  const expDate = request.body.expDate;
+  hashedPassword = await bcrypt.hash(password, saltRounds);
+  const user = {
+    id: id,
+    email: email,
+    password: hashedPassword,
+    firstName: firstName,
+    lastName: lastName,
+    address: address,
+    phoneNumber: phoneNumber,
+    creditCard: creditCard,
+    securityCode: securityCode,
+    expDate: expDate,
+  };
   try {
-     console.log("Trying to update record with credentials: " + id);
+    console.log("Trying to update record with credentials: " + id);
     const results = await userModel.replaceOne(
       {
         id: id,
@@ -142,31 +145,31 @@ app.post("/users/login", async (request, response) => {
   } catch (err) {
     console.log(err);
   }
-}); 
- /*Update Account NO PASSWORD by email */
- app.post("/users/:email", async (request, response) => {
+});
+/*Update Account NO PASSWORD by email */
+app.post("/users/:email", async (request, response) => {
   console.log("post with email ");
 
- const email = request.body.email;
+  const email = request.body.email;
   const password = request.body.password;
- const firstName = request.body.firstName;
- const lastName = request.body.lastName;
- const address = request.body.address;
- const phoneNumber = request.body.phoneNumber;
- const creditCard = request.body.creditCard;
- const securityCode = request.body.securityCode;
- const expDate = request.body.expDate;
- hashedPassword = await bcrypt.hash(password, saltRounds);
- const user = {   
-   email: email,   
-   firstName: firstName,
-   lastName: lastName,
-   address: address,
-   phoneNumber: phoneNumber,
-   creditCard: creditCard,
-   securityCode: securityCode,
-   expDate: expDate,
- };
+  const firstName = request.body.firstName;
+  const lastName = request.body.lastName;
+  const address = request.body.address;
+  const phoneNumber = request.body.phoneNumber;
+  const creditCard = request.body.creditCard;
+  const securityCode = request.body.securityCode;
+  const expDate = request.body.expDate;
+  hashedPassword = await bcrypt.hash(password, saltRounds);
+  const user = {
+    email: email,
+    firstName: firstName,
+    lastName: lastName,
+    address: address,
+    phoneNumber: phoneNumber,
+    creditCard: creditCard,
+    securityCode: securityCode,
+    expDate: expDate,
+  };
   try {
     console.log("Trying to update record with credentials: " + email);
     const results = await userModel.replaceOne(
@@ -177,13 +180,12 @@ app.post("/users/login", async (request, response) => {
     );
     console.log("matched: " + results.matchedCount);
     console.log("modified: " + results.modifiedCount);
-    console.log(results)
+    console.log(results);
     response.send(results);
   } catch (err) {
     console.log(err);
   }
-}); 
-
+});
 
 /* get request to /users to get ALL users */
 app.get("/users", async (req, res) => {
@@ -197,7 +199,7 @@ app.get("/users", async (req, res) => {
 /* GET request using query parameters to /users/:id --- gets ONE user */
 app.get("/users/:id", async (req, res) => {
   const id = req.query.id;
- // const email = req.query.email;
+  // const email = req.query.email;
   try {
     const user = await userModel.findOne({
       id: id,
@@ -210,9 +212,9 @@ app.get("/users/:id", async (req, res) => {
 
 /* POST request using query parameters to /users/:email --- gets ONE user */
 app.get("/users/:email", async (req, res) => {
-  console.log("Post request w/ email")
- // const id = req.query.id;
- const email = req.params.email;
+  console.log("Post request w/ email");
+  // const id = req.query.id;
+  const email = req.params.email;
   try {
     const user = await userModel.findOne({
       email: email,
@@ -235,29 +237,27 @@ app.delete("/users/:id", async (req, res) => {
 
 /* -----------------------Stripe----------------------------  */
 
-
-
 app.post("/checkout", async (req, res) => {
-  const items= req.body.items;
+  const items = req.body.items;
   let lineItems = [];
   console.log(req.body);
-  items.forEach(item => {
-    lineItems.push(
-      {
-        price: item.id,
-        quantity: item.quantity,
-      }
-    )
+  items.forEach((item) => {
+    lineItems.push({
+      price: item.id,
+      quantity: item.quantity,
+    });
   });
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
-    mode: 'payment',
-    success_url: 'http://localhost:3000/',
-    cancel_url: 'http://localhost:3000/'
-  })
-  res.send(JSON.stringify({
-    url: session.url
-  }));
+    mode: "payment",
+    success_url: "http://localhost:3000/",
+    cancel_url: "http://localhost:3000/",
+  });
+  res.send(
+    JSON.stringify({
+      url: session.url,
+    })
+  );
 });
 //key:pk_test_51MC2zeDM4nrUdWXdbSKMObsml3ocUOgJ50DRWRrWpA4sNonyuaGkMxVPoNbqNDoHyYwZGj1Gw1tXwmeJ40ZGofTT00KOtjE9iG
 //secret: sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0
@@ -272,4 +272,19 @@ app.post("/checkout", async (req, res) => {
 
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
-app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
+app.listen(port, () =>
+  console.log(`TicketBlaster app listening on port ${port}`)
+);
+
+// change these keys based on contents of .env file
+// this sets the api data to be fetched from 3001/api, therefore they are outside of the frontend and hidden
+app.get("/api", (req, res) => {
+  const options = {
+    method: "GET",
+    url: `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=${process.env.API_KEY_KEVIN}`,
+  };
+
+  axios.request(options).then((response) => {
+    res.json(response.data);
+  });
+});
