@@ -1,6 +1,6 @@
 import React from "react";
 import "./EventCards.css";
-import { Card, Box, CardContent, Typography, CardMedia, Button, CardActions } from "@mui/material";
+import { Card, Box, CardContent, Typography, CardMedia } from "@mui/material";
 
 export default function MyTicketCard(props) {
   return (
@@ -10,11 +10,17 @@ export default function MyTicketCard(props) {
           <CardMedia />
           <CardContent>
             <Typography variant="h5" component="div">
-              {props.email}
+              User: {props.email}
             </Typography>
-            <Typography variant="body2">{props.seats}</Typography>
-            <Typography variant="body2">{props.ticketsBought}</Typography>
-            <Typography variant="body2">{props.totalPrice}</Typography>
+            <Typography variant="body2">
+              You bought seat for this concert on floor: <b>{props.seats}</b>
+            </Typography>
+            <Typography variant="body2">
+              Number of tickets purchased: <b>{props.ticketsBought}</b>
+            </Typography>
+            <Typography variant="body2">
+              Price payed: <b>{props.totalPrice}</b>
+            </Typography>
           </CardContent>
         </Card>
       </Box>

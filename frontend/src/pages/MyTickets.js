@@ -25,13 +25,8 @@ function MyTickets() {
 
   return (
     <div>
-      <h1>Currently Display All purchased Tickets</h1>
+      <h1>Currently Display All purchased Tickets --- NEED TO FIX</h1>
       <h4>{ticketElements}</h4>
-      {/* <h4>User Email: {ticketsData[0].email}</h4> */}
-      {/* <h4>User Email: {ticketsData[0].email}</h4>
-      <h4>Your seats: {ticketsData[0].ticketLevel}</h4>
-      <h4>Total tickets bought: {ticketsData[0].totalTickets}</h4>
-      <h4>Total price payed: {ticketsData[0].totalPrice}</h4> */}
     </div>
   );
 }
