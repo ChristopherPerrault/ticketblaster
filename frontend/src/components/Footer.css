@@ -5,7 +5,7 @@
   color: rgb(242, 242, 242);
   text-shadow: black 2px 1px;
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   height: fit-content;
