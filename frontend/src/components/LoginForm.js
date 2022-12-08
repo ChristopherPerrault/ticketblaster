@@ -97,6 +97,7 @@ export default LoginForm;
 
 
 function getUserId(email) {
+  
   console.log("Received email: " + email);
   
   fetch(`http://localhost:3001/users/email/${email}`, {
@@ -108,8 +109,11 @@ function getUserId(email) {
     .then((data) => data.json())
     .then((json) => {      
       console.log("Received user: " + JSON.stringify(json));
+      console.log(json.isAdmin)
       sessionStorage.setItem("userId", json._id);
-     // json.isAdmin ? sessionStorage.setItem("admin", true) : sessionStorage.setItem("admin", false);
+      json.isAdmin === true
+        ? sessionStorage.setItem("admin", true)
+        : sessionStorage.setItem("admin", false);
       
     });
 }

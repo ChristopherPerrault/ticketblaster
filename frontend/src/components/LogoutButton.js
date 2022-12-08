@@ -6,8 +6,10 @@ import "./Button.css"
 export default function LogoutButton() {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
+     const [isAdmin, setIsAdmin] = useContext(LoggedInContext);
     const handleLogOut = () => {
         setIsLoggedIn(false);
+        setIsAdmin(false);
         sessionStorage.setItem("admin", false);
         sessionStorage.setItem("userId", null);
         sessionStorage.setItem("pw", null);

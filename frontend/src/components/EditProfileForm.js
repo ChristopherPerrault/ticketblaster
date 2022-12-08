@@ -208,7 +208,7 @@ async function loadUserDetails(id) {
   })
     .then((data) => data.json())
     .then((json) => {
-      console.log(json);
+    //  { json.isAdmin ? sessionStorage.setItem("admin", true) : console.log(json.isAdmin + " false")}
        document.getElementById("email-input").placeholder = json.email;
       document.getElementById("fn-input").placeholder = json.firstName;
       document.getElementById("ln-input").placeholder = json.lastName;

@@ -6,11 +6,11 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import AboutMenu from "./AboutMenu";
 
 function Navbar() {
-  //const [isAdmin, setIsAdmin] = useContext(LoggedInContext);
+  const [isAdmin, setIsAdmin] = useContext(LoggedInContext);
   const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
   const storageAdminBoolean = sessionStorage.getItem("admin");  
-  //if (storageAdminBoolean === true) {
-  //  isAdmin = true;}
+  console.log(sessionStorage.getItem("admin"));
+ 
   return (
     <Breadcrumbs
       aria-label="breadcrumb"
@@ -20,7 +20,9 @@ function Navbar() {
       <NavButton to="/" label="Home" />
       <AboutMenu />
       {isLoggedIn ? <NavButton to="/account" label="My Account" /> : null}
-     {/* {isAdmin ? <NavButton to="/admin" label="Admin" /> : null} */}
+      {sessionStorage.getItem("admin") === "true" ? (
+        <NavButton to="/admin" label="Admin" />
+      ) : null}
       <NavButton to="/contact" label="Contact" />
     </Breadcrumbs>
   );
