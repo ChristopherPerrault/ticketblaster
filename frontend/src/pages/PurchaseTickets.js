@@ -22,20 +22,10 @@ export default function PurchaseTicket(props) {
 
   const handlePurchaseClick = () => {
     setPurchaseForm(true);
-  }
+  };
   useEffect(() => {
-    const url =
-      // Chris:
-      // "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=zhJDIqfMsloXKpRjywIbmnUSBGw9AxNq";
-
-      // Matt #1:
-      //"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=qiJ5AkBhkvr6IFdd9UamBev1hYovx46M";
-
-      // Matt #2:
-      // https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=hu5LlW3eJkDoVLKyUGnAZmbpZS8k6eCE111
-
-      // Kevin:
-      "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=LVpUpS7gaeXxvoQMKgDF1zSNbXbASUgS";
+    // ticketmaster api is set to run from the backend (index.js of /backend), effectively hiding our api keys
+    const url = "http://localhost:3001/api";
 
     const loadData = async () => {
       const id = params.id.toString();
@@ -104,7 +94,10 @@ export default function PurchaseTicket(props) {
                         {/* add price range */}
                         {/* add capacity */}
                         {/* add age restrictions/notices */}
-                        <Button onClick={handlePurchaseClick} variant="contained">
+                        <Button
+                          onClick={handlePurchaseClick}
+                          variant="contained"
+                        >
                           Purchase
                         </Button>
                       </Card>
@@ -124,7 +117,11 @@ export default function PurchaseTicket(props) {
   return (
     <div>
       <div>{events}</div>
-      {purchaseForm ? <div className="purchase-form"><PurchaseForm /></div> : null}
+      {purchaseForm ? (
+        <div className="purchase-form">
+          <PurchaseForm />
+        </div>
+      ) : null}
     </div>
   );
 }
