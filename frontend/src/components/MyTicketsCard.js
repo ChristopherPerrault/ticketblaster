@@ -10,7 +10,7 @@ export default function MyTicketCard(props) {
    };
   return (
     <div>
-      <Button onClick={handleClick} />
+      
       <Box>
         <Card className="indv-card">
           
