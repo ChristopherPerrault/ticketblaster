@@ -115,6 +115,10 @@
 }
 
 /* Styling for About Page */
+figcaption{
+  margin-top:1.5rem;
+  font-size: 1.5rem;
+}
 .about--title {
   text-align: center;
   padding: 10vh;
