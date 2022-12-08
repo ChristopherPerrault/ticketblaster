@@ -123,33 +123,34 @@ app.post("/users/admin/:id", async (request, response) => {
   const creditCard = request.body.creditCard;
   const securityCode = request.body.securityCode;
   const expDate = request.body.expDate;
-  hashedPassword = await bcrypt.hash(password, saltRounds);
-  const user = {
-    id: id,
-    email: email,
-    password: hashedPassword,
-    firstName: firstName,
-    lastName: lastName,
-    address: address,
-    phoneNumber: phoneNumber,
-    creditCard: creditCard,
-    securityCode: securityCode,
-    expDate: expDate,
-  };
-  try {
-    console.log("ADMIN ---Trying to update record with credentials: " + id);
-    const results = await userModel.replaceOne(
-      {
+    try {
+      hashedPassword = await bcrypt.hash(password, saltRounds);
+      const user = {
         id: id,
-      },
-      user
-    );
-    console.log("matched: " + results.matchedCount);
-    console.log("modified: " + results.modifiedCount);
-    response.send(results);
-  } catch (err) {
-    console.log(err);
-  }
+        email: email,
+        password: hashedPassword,
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        phoneNumber: phoneNumber,
+        creditCard: creditCard,
+        securityCode: securityCode,
+        expDate: expDate,
+      };
+
+      console.log("ADMIN ---Trying to update record with credentials: " + id);
+      const results = await userModel.replaceOne(
+        {
+          id: id,
+        },
+        user
+      );
+      console.log("matched: " + results.matchedCount);
+      console.log("modified: " + results.modifiedCount);
+      response.send(results);
+    } catch (err) {
+      console.log(err);
+    }
 });
 /*Update Account WITH PASSWORD by id
   Consumed at /account                 */
@@ -165,20 +166,21 @@ app.post("/users/:id", async (request, response) => {
   const securityCode = request.body.securityCode;
   const expDate = request.body.expDate;
   console.log("post with id: " + id);
-  hashedPassword = await bcrypt.hash(password, saltRounds);
-  const user = {
-    id: id,
-    email: email,
-    password: hashedPassword,
-    firstName: firstName,
-    lastName: lastName,
-    address: address,
-    phoneNumber: phoneNumber,
-    creditCard: creditCard,
-    securityCode: securityCode,
-    expDate: expDate,
-  };
   try {
+    hashedPassword = await bcrypt.hash(password, saltRounds);
+    const user = {
+      id: id,
+      email: email,
+      password: hashedPassword,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      phoneNumber: phoneNumber,
+      creditCard: creditCard,
+      securityCode: securityCode,
+      expDate: expDate,
+    };
+
     console.log("Trying to update record with credentials: " + id);
     const results = await userModel.replaceOne(
       {
@@ -244,41 +246,6 @@ app.delete("/users/:id", async (req, res) => {
     console.log(err);
   }
 });
-
-/* -----------------------Stripe----------------------------  */
-
-app.post("/checkout", async (req, res) => {
-  const items = req.body.items;
-  let lineItems = [];
-  console.log(req.body);
-  items.forEach((item) => {
-    lineItems.push({
-      price: item.id,
-      quantity: item.quantity,
-    });
-  });
-  const session = await stripe.checkout.sessions.create({
-    line_items: lineItems,
-    mode: "payment",
-    success_url: "http://localhost:3000/",
-    cancel_url: "http://localhost:3000/",
-  });
-  res.send(
-    JSON.stringify({
-      url: session.url,
-    })
-  );
-});
-//key:pk_test_51MC2zeDM4nrUdWXdbSKMObsml3ocUOgJ50DRWRrWpA4sNonyuaGkMxVPoNbqNDoHyYwZGj1Gw1tXwmeJ40ZGofTT00KOtjE9iG
-//secret: sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0
-//TicketsAPI: price_1MC3E3DM4nrUdWXdpVAePbuO
-
-/* const paymentIntent = await stripe.paymentIntents.create({
-  amount: 500,
-  currency: "gbp",
-  payment_method: "pm_card_visa",
-  statement_descriptor: "Thanks for using TicketBlaster!",
-}); */
 
 /* ---------------------------------------------------- TicketRecord Model  ---------------------------------------------------- */
 /* ----------- Create a record of purchase ----------- */
