@@ -210,9 +210,7 @@ app.get("/users/id/:id", async (req, res) => {
   const id = req.params.id;
   try {
     console.log("Looking for ID: " + id);
-    const user = await userModel.findOne({
-      id: id,
-    });
+    const user = await userModel.findById(id).exec();
     console.log("Found user with ID: " + user.id);
     res.send(user);
   } catch (err) {
