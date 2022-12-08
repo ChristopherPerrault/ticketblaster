@@ -17,7 +17,7 @@ function Navbar() {
       <AboutMenu />
       {isLoggedIn ? <NavButton to="/account" label="My Account" /> : null}
       {isLoggedIn ? <NavButton to="/myTickets" label="My Tickets" /> : null}
-      {sessionStorage.getItem("admin") === "true" ? <NavButton to="/admin" label="Admin" /> : null}
+      {/*{sessionStorage.getItem("admin") === "true" ? <NavButton to="/admin" label="Admin" /> : null} */}
       <NavButton to="/contact" label="Contact" />
     </Breadcrumbs>
   );

@@ -46,7 +46,7 @@ function Home() {
   return (
     <div>
       {isLoggedIn ? <h1>Hello Logged in</h1> : <h1>Hello Logged Out</h1>}
-      {/* {isAdmin ? <h1>Hello Admin</h1> : <h1></h1>}*/}
+        {/*{isAdmin ? <h1>Hello Admin</h1> : <h1></h1>}*/}
       <h1>Homepage</h1>
       {!loading && <div>{eventElements}</div>}
       {loading && (
