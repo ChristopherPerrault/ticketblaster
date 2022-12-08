@@ -97,6 +97,7 @@ export default function PurchaseTicket(props) {
                         <Button
                           onClick={handlePurchaseClick}
                           variant="contained"
+                          style={{marginLeft:"50%", marginTop:"-5%"}}
                         >
                           Purchase
                         </Button>
