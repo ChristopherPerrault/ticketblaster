@@ -15,6 +15,27 @@ function Home() {
 
   const [loading, setLoading] = useState(false);
 
+  const [firstName, setFirstName] = useState("");
+
+  const [lastName, setLastName] = useState("");
+
+  const userId = sessionStorage.getItem("userId");
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/users/id/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((data) => data.json())
+      .then((json) => {
+        //  { json.isAdmin ? sessionStorage.setItem("admin", true) : console.log(json.isAdmin + " false")}
+        setFirstName(json.firstName);
+        setLastName(json.lastName);
+      });
+  }, [userId]);
+
   useEffect(() => {
     // ticketmaster api is set to run from the backend (index.js of /backend), effectively hiding our api keys
     const url = "http://localhost:3001/api";
@@ -45,7 +66,7 @@ function Home() {
 
   return (
     <div>
-      {isLoggedIn ? <h1>Welcome back</h1> : <h1>Welcome, Guest</h1>}
+      {isLoggedIn ? <h1 className="home-title">Welcome back {firstName} {lastName}</h1> : <h1 className="home-title">Welcome, Guest</h1>}
       {/*{isAdmin ? <h1>Hello Admin</h1> : <h1></h1>}*/}
       {!loading && <div>{eventElements}</div>}
       {loading && (
