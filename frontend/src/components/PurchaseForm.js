@@ -64,7 +64,7 @@ export default function PurchaseForm() {
         </Select>
         <br />
         <br />
-        <TextField id="tickets" type="number" min={"0"} max={8} label="Number of Tickets" variant="outlined" onChange={calculatePrice} value={tickets} />
+        <TextField id="tickets" type="number" InputProps={{ inputProps: { min: "0", max: "8", step: "1" } }} label="Number of Tickets" variant="outlined" onChange={calculatePrice} value={tickets} />
         <br />
         <br />
         <TextField id="price" type="text" label="Price" variant="outlined" value={totalPrice} />
