@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./RecordList.css"
+
 const Record = (props) => (
-  <tr>
-    <td>{props.record._id}</td>
-    <td>{props.record.email}</td>
-    <td>{props.record.firstName}</td>
-    <td>{props.record.lastName}</td>
-    <td>{props.record.address}</td>
-    <td>{props.record.phoneNumber}</td>
-    <td>{props.record.creditCard}</td>
-    <td>{props.record.securityCode}</td>
-    <td>{props.record.expDate}</td>
-    <td>
-      <Link  to={`/edit/${props.record._id}`}>
-        Edit
-      </Link>{" "}
-      |
-      <button
-        
-        onClick={() => {
-          props.deleteRecord(props.record.id);
-        }}
-      >
-        Delete
-      </button>
-    </td>
-  </tr>
+  
+    <tr>
+      <td>{props.record._id}</td>
+      <td>{props.record.email}</td>
+      <td>{props.record.firstName}</td>
+      <td>{props.record.lastName}</td>
+      <td>{props.record.address}</td>
+      <td>{props.record.phoneNumber}</td>
+      <td>{props.record.creditCard}</td>
+      <td>{props.record.securityCode}</td>
+      <td>{props.record.expDate}</td>
+      <td>
+        <Link to={`/edit/${props.record._id}`}>Edit</Link> |
+        <button
+          onClick={() => {
+            props.deleteRecord(props.record.id);
+          }}
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  
 );
 
 export default function RecordList() {

@@ -9,7 +9,7 @@ td{
     margin-top: 2rem;
     text-align: center;
 }
-/*will fix later */
+
 .edit-container{
     margin-top:3rem;
     margin-left:50%;
@@ -17,4 +17,4 @@ td{
 }
 th{
     text-decoration: underline;
-}
+} 
