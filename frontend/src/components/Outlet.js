@@ -9,6 +9,7 @@ import Account from "../pages/Account";
 import { Navigate } from "react-router-dom";
 import Registration from "../pages/Registration";
 import Login from "../pages/Login";
+import DisplayTicket from "../pages/DisplayTicket";
 import FAQ from "../pages/FAQ";
 import PurchaseTicket from "../pages/PurchaseTickets";
 import MyTickets from "../pages/MyTickets";
@@ -25,7 +26,7 @@ export default function Outlet() {
           <Route path="account" element={<Account />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="admin" element={<AdminCrudUsers />} />
-
+          <Route path="/ticket/:id" element={<DisplayTicket />} />
           <Route path="/edit/:id" element={<EditUser />} />
           <Route path="register" element={<Registration />} />
           <Route path="login" element={<Login />} />

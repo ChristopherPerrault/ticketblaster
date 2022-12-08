@@ -31,7 +31,7 @@ function MyTickets() {
       },
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then((data) => {       
         setTicketsData(data);
       });
   }, []);
