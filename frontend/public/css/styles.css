@@ -3,8 +3,10 @@ body {
   display: block;
   min-width: 100%;
   background-color: rgb(72, 72, 72);
-  scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none; /* Firefox */
   /* bg-color temporary, just easier to look at but also shows overlapping white things we couldn't see before */
+  position: relative;
+  min-height: 100vh;
 }
 
 body::-webkit-scrollbar {

@@ -5,8 +5,9 @@
   color: rgb(242, 242, 242);
   text-shadow: black 2px 1px;
   width: 100%;
-  position: relative;
+  position: absolute;
   bottom: 0;
+  left: 0;
   height: fit-content;
   text-align: center;
 }
