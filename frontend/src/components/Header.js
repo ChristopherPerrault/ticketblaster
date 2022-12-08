@@ -9,6 +9,7 @@ import LogInButton from "./LogInButton";
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
+  const [isAdmin, setIsAdmin] = useContext(LoggedInContext);
   return (
     <div className="header">
       <div className="logo">

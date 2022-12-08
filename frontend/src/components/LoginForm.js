@@ -16,6 +16,9 @@ function LoginForm() {
   const [passwordErr, setPasswordErr] = React.useState(null);
 
   const [isLoggedIn, setIsLoggedIn] = React.useContext(LoggedInContext);
+  const [isAdmin, setIsAdmin] = React.useContext(LoggedInContext);
+
+  
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -44,6 +47,7 @@ function LoginForm() {
         .then((data) => data.json())
         .then((json) => {
           getUserId(email);
+          console.log(sessionStorage.getItem("admin"))
           alert("Successfully Logged in!");
           json.success ? setIsLoggedIn(true) : setIsLoggedIn(false);
           json.success ? sessionStorage.setItem("pw", password) : console.log("fail"); //setting password in storage to help with admin update, will change
@@ -87,19 +91,22 @@ function LoginForm() {
 
 export default LoginForm;
 
-function getUserId(email){  
-    fetch(`http://localhost:3001/users/${email}`, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((data) => data.json())
-      .then((json) => {
-        console.log(JSON.stringify(json));
-        sessionStorage.setItem("userId", json._id);        
-      });
-  }
 
 
+function getUserId(email) {
+  
+  fetch(`http://localhost:3001/users/${email}`, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((data) => data.json())
+    .then((json) => {
+      console.log(JSON.stringify(json));
+      sessionStorage.setItem("userId", json._id);
+      json.isAdmin ? sessionStorage.setItem("admin", true) : sessionStorage.setItem("admin", false);
+      
+    });
+}
 
