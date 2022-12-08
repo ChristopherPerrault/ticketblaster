@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
-import { Button, Typography, TextField } from "@mui/material";
+import { Button, Typography, TextField, ButtonBase } from "@mui/material";
 
 function EditProfilehtmlForm() {
  
@@ -177,8 +177,8 @@ function EditProfilehtmlForm() {
           onChange={(e) => setSecurityCode(e.target.value)}
         />
 
-        <Button type="submit" variant="contained" style={{ marginLeft: "12%" }}>
-          Update
+        <Button type="submit" variant="contained" style={{ marginLeft: "6%" }}>
+          Update Info
         </Button>
         <br />
 
@@ -194,9 +194,15 @@ function EditProfilehtmlForm() {
 
         <br />
       </form>
-      <button id="adminCheck" onClick={adminClick} style={{display:"none"}}>
-        Admin
-      </button>
+
+      <Button
+        variant="contained"
+        id="adminCheck"
+        onClick={adminClick}
+        style={{ marginLeft: "-17%", marginTop:"-20%" }}
+      >
+        ACCESS ADMIN DASHBOARD
+      </Button>
     </div>
   );
 }
