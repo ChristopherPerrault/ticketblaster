@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { LoggedInContext } from "../App";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -44,56 +44,17 @@ export default function PurchaseForm() {
     }
   };
 
-  // -------------- LOAD IN USER DATA --------------
-  const loggedInUser = sessionStorage.getItem("userId");
-  const [userData, setUserData] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:3001/users/id/${loggedInUser}`, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setUserData(data);
-      });
-  }, []);
-
   // --------- HANDLE SUBMIT --------------
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3001/tickets/purchase", {
-      method: "POST",
-      body: JSON.stringify({
-        email: userData.email,
-        ticketLevel: level,
-        totalTickets: tickets,
-        totalPrice: totalPrice,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((data) => data.json())
-      .then((json) => {
-        if (json.success === true) {
-          try {
-            alert("Successful purchase!");
-            navigate("/myTickets", { replace: true });
-          } catch (error) {
-            console.log(error);
-          }
-        } else {
-          alert("Sorry something went wrong with the purchase");
-        }
-      });
+    const purchaseInfo = { level, totalPrice, tickets };
+    sessionStorage.setItem("purchaseInfo", JSON.stringify(purchaseInfo));
+    navigate("/finalizePurchase");
   };
 
   return (
     <div>
       <form className="form-tickets" onSubmit={handleSubmit}>
-        <h1>Hey {userData.firstName}</h1>
         <InputLabel id="demo-simple-select-label">Ticket Level</InputLabel>
         <Select labelId="demo-simple-select-label" id="ticket-level" value={level} label="Ticket Level" onChange={handleOnChange}>
           <MenuItem value={"Floor"}>Floor</MenuItem>

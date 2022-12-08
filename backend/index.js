@@ -288,6 +288,7 @@ app.post("/tickets/purchase", async (request, response) => {
   const ticketLevel = request.body.ticketLevel;
   const totalTickets = request.body.totalTickets;
   const totalPrice = request.body.totalPrice;
+  const purchaseDate = request.body.purchaseDate;
 
   try {
     const ticketRecordToCreate = {
@@ -295,6 +296,7 @@ app.post("/tickets/purchase", async (request, response) => {
       ticketLevel: ticketLevel,
       totalTickets: totalTickets,
       totalPrice: totalPrice,
+      purchaseDate: purchaseDate,
     };
     await ticketRecordModel.create(ticketRecordToCreate);
     response.send({ success: true });

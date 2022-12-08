@@ -12,6 +12,7 @@ import Login from "../pages/Login";
 import FAQ from "../pages/FAQ";
 import PurchaseTicket from "../pages/PurchaseTickets";
 import MyTickets from "../pages/MyTickets";
+import FinalizePurchase from "../pages/FinalizePurchase";
 
 export default function Outlet() {
   return (
@@ -30,6 +31,7 @@ export default function Outlet() {
           <Route path="login" element={<Login />} />
           <Route path="/purchase/:id" element={<PurchaseTicket />} />
           <Route path="myTickets" element={<MyTickets />} />
+          <Route path="finalizePurchase" element={<FinalizePurchase />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

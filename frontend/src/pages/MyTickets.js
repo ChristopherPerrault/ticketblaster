@@ -40,8 +40,14 @@ function MyTickets() {
   const ticketElements = ticketsData.map((ticket) => {
     if (ticket.email === currentEmail) {
       return (
-        <MyTicketCard email={ticket.email} seats={ticket.ticketLevel} ticketsBought={ticket.totalTickets} totalPrice={ticket.totalPrice} />
-      )
+        <MyTicketCard
+          email={ticket.email}
+          seats={ticket.ticketLevel}
+          ticketsBought={ticket.totalTickets}
+          totalPrice={ticket.totalPrice}
+          purchaseDate={ticket.purchaseDate}
+        />
+      );
     } else {
       return null;
     }
@@ -53,7 +59,6 @@ function MyTickets() {
       <h4>{ticketElements}</h4>
     </div>
   );
-
 }
 
 export default MyTickets;

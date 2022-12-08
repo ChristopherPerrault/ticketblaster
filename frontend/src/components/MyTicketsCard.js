@@ -21,6 +21,9 @@ export default function MyTicketCard(props) {
             <Typography variant="body2">
               Price payed: <b>{props.totalPrice}</b>
             </Typography>
+            <Typography variant="body2">
+              Date Purchased: <b>{props.purchaseDate}</b>
+            </Typography>
           </CardContent>
         </Card>
       </Box>
