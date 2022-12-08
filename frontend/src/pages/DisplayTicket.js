@@ -17,7 +17,8 @@ export default function DisplayTicket(props) {
     navigate(-1);
   };
   return (
-    <div className="display-ticket">
+    
+     <div className="display-ticket">
     <Box>      
       <Typography variant="h2">Enjoy the show!</Typography>
       <Typography variant="h3">{props.seats}</Typography>
@@ -32,6 +33,6 @@ export default function DisplayTicket(props) {
         Go back
       </Button>
     </Box>
-    </div>
+    </div> 
   );
 }

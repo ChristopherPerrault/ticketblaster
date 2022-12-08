@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function MyTicketCard(props) {
    const navigate = useNavigate();
+   var ticketNum = Math.floor(Math.random() * 100);
    const handleClick = () => {
-     navigate(`/ticket`);
+     navigate(`/ticket/${ticketNum}`);
    };
   return (
     <div>
