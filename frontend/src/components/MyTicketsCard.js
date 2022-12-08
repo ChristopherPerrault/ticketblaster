@@ -5,16 +5,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function MyTicketCard(props) {
    const navigate = useNavigate();
-   var ticketNum = Math.floor(Math.random() * 100);
-   const handleClick = () => {
+   var ticketNum = Math.floor(Math.random() * 100);//using a random number since it's not an important feature
+   const handleClick = () => {                      
      navigate(`/ticket/${ticketNum}`);
    };
   return (
-    <div>
-      
+    <div>      
       <Box>
-        <Card className="indv-card">
-          
+        <Card className="indv-card">          
           <CardMedia />
           <CardContent>
             <Typography variant="h5" component="div">
@@ -38,9 +36,6 @@ export default function MyTicketCard(props) {
           </CardContent>
           </Card>
           </Box>
-         
-                
-      
     </div>
   );
 }

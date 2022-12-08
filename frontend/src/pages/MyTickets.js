@@ -17,8 +17,7 @@ function MyTickets() {
       },
     })
       .then((data) => data.json())
-      .then((json) => {
-        //  { json.isAdmin ? sessionStorage.setItem("admin", true) : console.log(json.isAdmin + " false")}
+      .then((json) => {        
         setCurrentEmail(json.email);
       });
   }, [userId]);
