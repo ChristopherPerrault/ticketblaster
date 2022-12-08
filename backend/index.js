@@ -105,7 +105,8 @@ app.post("/users/login", async (request, response) => {
   }
   response.send({ success: false });
 });
-/* Update Account NO PASSWORD by id*/
+/* Update Account WITH password, by id
+  Consumed at /account                     */
 app.post("/users/:id", async (request, response) => {
   console.log("post with id ");
   const id = request.params.id;
@@ -146,12 +147,11 @@ app.post("/users/:id", async (request, response) => {
     console.log(err);
   }
 });
-/*Update Account NO PASSWORD by email */
+/*Update Account NO PASSWORD by email
+  Consumed at  /admin                 */
 app.post("/users/:email", async (request, response) => {
   console.log("post with email ");
-
-  const email = request.body.email;
-  const password = request.body.password;
+  const email = request.body.email;  
   const firstName = request.body.firstName;
   const lastName = request.body.lastName;
   const address = request.body.address;
@@ -159,7 +159,7 @@ app.post("/users/:email", async (request, response) => {
   const creditCard = request.body.creditCard;
   const securityCode = request.body.securityCode;
   const expDate = request.body.expDate;
-  hashedPassword = await bcrypt.hash(password, saltRounds);
+
   const user = {
     email: email,
     firstName: firstName,
@@ -171,7 +171,7 @@ app.post("/users/:email", async (request, response) => {
     expDate: expDate,
   };
   try {
-    console.log("Trying to update record with credentials: " + email);
+    console.log("ADMIN----- Trying to update record with credentials: " + email);
     const results = await userModel.replaceOne(
       {
         email: email,
@@ -210,7 +210,7 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
-/* POST request using query parameters to /users/:email --- gets ONE user */
+/* GET request using query parameters to /users/:email --- gets ONE user */
 app.get("/users/:email", async (req, res) => {
   console.log("Post request w/ email");
   // const id = req.query.id;
