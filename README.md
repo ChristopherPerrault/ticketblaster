@@ -30,3 +30,4 @@ npm start
 cd frontend
 npm start
 ```
+-- Need to include part about .env and provide sample API key
