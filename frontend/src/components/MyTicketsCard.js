@@ -13,7 +13,7 @@ export default function MyTicketCard(props) {
               User: {props.email}
             </Typography>
             <Typography variant="body2">
-              You bought seat for this concert on floor: <b>{props.seats}</b>
+              You bought seat for this concert on level: <b>{props.seats}</b>
             </Typography>
             <Typography variant="body2">
               Number of tickets purchased: <b>{props.ticketsBought}</b>

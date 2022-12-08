@@ -70,6 +70,9 @@ function EditProfilehtmlForm() {
     alert(updateMsg);
     navigate("/");
   }
+  function adminClick(){
+    navigate("/admin");
+  }
 
   return (
     <div>
@@ -188,9 +191,12 @@ function EditProfilehtmlForm() {
           variant="outlined"
           onChange={(e) => setExpDate(e.target.value)}
         />
-      
+
         <br />
       </form>
+      <button id="adminCheck" onClick={adminClick} style={{display:"none"}}>
+        Admin
+      </button>
     </div>
   );
 }
@@ -208,7 +214,10 @@ async function loadUserDetails(id) {
   })
     .then((data) => data.json())
     .then((json) => {
-    //  { json.isAdmin ? sessionStorage.setItem("admin", true) : console.log(json.isAdmin + " false")}
+      console.log(json.isAdmin)
+     { json.isAdmin
+       ? document.getElementById("adminCheck").style.display = "inline"
+       : console.log(json.isAdmin + " false");}
        document.getElementById("email-input").placeholder = json.email;
       document.getElementById("fn-input").placeholder = json.firstName;
       document.getElementById("ln-input").placeholder = json.lastName;
