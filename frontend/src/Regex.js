@@ -8,3 +8,21 @@ export const validCreditCard = new RegExp(
 );
 
 export const validSecurityCode = new RegExp(/^[0-9]{3,4}$/);
+
+/* ------------ To continue working on tomorrow morning ----------------- */
+// const loggedInUser = localStorage.getItem("user");
+// const [userData, setUserData] = useState([]);
+// useEffect(() => {
+//   fetch(`http://localhost:3001/users/${loggedInUser}`, {
+//     method: "GET",
+//     headers: {
+//       "Content-type": "application/json; charset=UTF-8",
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       setUserData(data);
+//     });
+// }, []);
+
+// {isLoggedIn ? <NavButton to="/myTickets" label="My Tickets" /> : null}

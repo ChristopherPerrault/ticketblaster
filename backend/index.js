@@ -8,12 +8,11 @@ const saltRounds = 10;
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const stripe = require("stripe")(
-  "sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0"
-);
+const stripe = require("stripe")("sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0");
 const app = express();
 const port = 3001;
 const axios = require("axios");
+const ticketRecordModel = require("./TicketRecordModels");
 
 app.use(cors());
 
@@ -50,9 +49,7 @@ app.post("/users/register", async (request, response) => {
       // Check to see if the user already exists. If not, then create it.
       const user = await userModel.findOne({ email: email });
       if (user) {
-        console.log(
-          "Invalid registration - email " + email + " already exists."
-        );
+        console.log("Invalid registration - email " + email + " already exists.");
         response.send({ success: false });
         return;
       } else {
@@ -95,10 +92,10 @@ app.post("/users/login", async (request, response) => {
       } else {
         const isSame = await bcrypt.compare(password, user.password);
         if (isSame) {
-          console.log("User exists " + email)
+          console.log("User exists " + email);
           console.log("Successful login");
-          response.send({ success: true, email:email });
-          
+          response.send({ success: true, email: email });
+
           return;
         }
       }
@@ -113,7 +110,7 @@ app.post("/users/login", async (request, response) => {
 app.post("/users/admin/:id", async (request, response) => {
   console.log("ADMIN --- post with id ");
   const id = request.params.id;
-  const email = request.body.email;  
+  const email = request.body.email;
   const password = request.body.password;
   const firstName = request.body.firstName;
   const lastName = request.body.lastName;
@@ -153,7 +150,6 @@ app.post("/users/admin/:id", async (request, response) => {
 /*Update Account WITH PASSWORD by id
   Consumed at /account                 */
 app.post("/users/:id", async (request, response) => {
-  
   const id = request.body.id;
   const email = request.body.email;
   const password = request.body.password;
@@ -218,7 +214,7 @@ app.get("/users/id/:id", async (req, res) => {
   }
 });
 
- /*GET request using query parameters to /users/:email --- gets ONE user --- Changed to be longer needed */
+/*GET request using query parameters to /users/:email --- gets ONE user --- Changed to be longer needed */
 app.get("/users/email/:email", async (req, res) => {
   console.log("get request w/ email: " + req.params.email);
   // const id = req.query.id;
@@ -232,10 +228,9 @@ app.get("/users/email/:email", async (req, res) => {
     console.log(err);
   }
 });
- 
+
 /* An API delete request using URL path parameters to /users/:id */
 app.delete("/users/:id", async (req, res) => {
-  
   const id = req.params.id;
   console.log("Deleting user: " + id);
   try {
@@ -281,11 +276,45 @@ app.post("/checkout", async (req, res) => {
   statement_descriptor: "Thanks for using TicketBlaster!",
 }); */
 
+/* ---------------------------------------------------- TicketRecord Model  ---------------------------------------------------- */
+/* ----------- Create a record of purchase ----------- */
+app.post("/tickets/purchase", async (request, response) => {
+  const id = request.body.id;
+  const email = request.body.email;
+  const ticketLevel = request.body.ticketLevel;
+  const totalTickets = request.body.totalTickets;
+  const totalPrice = request.body.totalPrice;
+
+  try {
+    const ticketRecordToCreate = {
+      email: email,
+      ticketLevel: ticketLevel,
+      totalTickets: totalTickets,
+      totalPrice: totalPrice,
+    };
+    await ticketRecordModel.create(ticketRecordToCreate);
+    response.send({ success: true });
+    return;
+  } catch (error) {
+    console.log(error.message);
+  }
+  response.send({ success: false });
+});
+
+/* --------- Get all tickets ------------ */
+/* get request to /users to get ALL users */
+app.get("/allTickets", async (req, res) => {
+  try {
+    const allTickets = await ticketRecordModel.find();
+    res.send(allTickets);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
-app.listen(port, () =>
-  console.log(`TicketBlaster app listening on port ${port}`)
-);
+app.listen(port, () => console.log(`TicketBlaster app listening on port ${port}`));
 
 // change these keys based on contents of .env file
 // this sets the api data to be fetched from 3001/api, therefore they are outside of the frontend and hidden

@@ -11,6 +11,7 @@ import Registration from "../pages/Registration";
 import Login from "../pages/Login";
 import FAQ from "../pages/FAQ";
 import PurchaseTicket from "../pages/PurchaseTickets";
+import MyTickets from "../pages/MyTickets";
 
 export default function Outlet() {
   return (
@@ -28,6 +29,7 @@ export default function Outlet() {
           <Route path="register" element={<Registration />} />
           <Route path="login" element={<Login />} />
           <Route path="/purchase/:id" element={<PurchaseTicket />} />
+          <Route path="myTickets" element={<MyTickets />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
