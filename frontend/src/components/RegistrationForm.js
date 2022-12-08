@@ -198,6 +198,7 @@ function RegistrationForm() {
         <TextField
           type="date"
           label="Expiry Date"
+          InputProps={{ inputProps: { min: "2022-12-12" } }}
           InputLabelProps={{ shrink: true }}
           variant="outlined"
           onChange={(e) => setExpDate(e.target.value)}
