@@ -3,6 +3,7 @@ import EventCards from "../components/EventCards";
 import { LoggedInContext } from "../App";
 import LoadBar from "../components/LoadBar";
 import "../index.css";
+import Welcome from "../components/Welcome";
 
 function Home() {
   document.title = "TicketBlaster | Home";
@@ -64,18 +65,24 @@ function Home() {
   });
 
   return (
-    <div>
-      {isLoggedIn ? <h1 className="home-title">Welcome back {firstName} {lastName}</h1> : <h1 className="home-title">Welcome, Guest</h1>}
-      {/*{isAdmin ? <h1>Hello Admin</h1> : <h1></h1>}*/}
-      {!loading && <div>{eventElements}</div>}
-      {loading && (
-        // eslint-disable-next-line react/style-prop-object
-        <h3>
-          Loading events...
-          <LoadBar />
-        </h3>
-      )}
-    </div>
+    <>
+      <div className="home-container">
+        <div className="home-left">
+        {isLoggedIn ? <h1 className="home-title">Welcome back {firstName} {lastName}</h1> : <h1 className="home-title">Welcome, Guest</h1>}
+          {/*{isAdmin ? <h1>Hello Admin</h1> : <h1></h1>}*/}
+          {!loading && <div>{eventElements}</div>}
+          {loading && (
+            <h3>
+              Loading events...
+              <LoadBar />
+            </h3>
+          )}
+        </div>
+        <div className="home-right">
+          <Welcome />
+        </div>
+      </div>
+    </>
   );
 }
 export default Home;

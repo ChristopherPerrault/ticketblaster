@@ -115,8 +115,8 @@
 }
 
 /* Styling for About Page */
-figcaption{
-  margin-top:1.5rem;
+figcaption {
+  margin-top: 1.5rem;
   font-size: 1.5rem;
 }
 .about--title {
@@ -184,6 +184,31 @@ figcaption{
   background-color: white;
   padding: 10px;
   width: 30%;
+}
+
+.home-title {
+  padding: 10px;
+  margin-left: 20px;
+}
+/* homepage */
+.home-container {
+  font-family: "Recursive", sans-serif;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 100%;
+  min-width: 80%;
+  margin: 10px 20px 20px 20px;
+}
+
+.home-right {
+  margin: 110px 5% 0 10%;
+  width: 30%;
+}
+
+.home-left {
+  width: 55%;
 }
 
 .home-title {

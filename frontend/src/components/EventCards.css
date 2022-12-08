@@ -1,19 +1,7 @@
-/* Styling Cards */
-/* .events {
-  display: grid;
-  grid-template-columns: repeat(5, 20vw);
-  grid-template-rows: repeat(4, 30vh);
-  align-items: center;
-  text-align: center;
-} */
-
 .indv-card {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-evenly;
   align-items: center;
-  max-width: 50%;
-  min-width: 30%;
   margin-bottom: 20px;
-  margin-left: 40px;
 }
