@@ -5,7 +5,6 @@ import "./RecordList.css";
 export default function EditUser(props) {
   const emailRef = useRef();
   const firstNameRef = useRef();
-  const passwordRef = useRef();
   const lastNameRef = useRef();
   const addressRef = useRef();
   const phoneNumberRef = useRef();
@@ -19,7 +18,7 @@ export default function EditUser(props) {
      then id is used to query that users info and display in the form*/
   loadCurrentUser(params.id);
 const pw = sessionStorage.getItem("pw");
-console.log("pw:" + pw);
+
   useEffect(() => {
     async function fetchData() {
       const id = params._id.toString();

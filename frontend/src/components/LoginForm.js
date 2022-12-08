@@ -46,7 +46,8 @@ function LoginForm() {
           getUserId(email);
           alert("Successfully Logged in!");
           json.success ? setIsLoggedIn(true) : setIsLoggedIn(false);
-          json.success ? sessionStorage.setItem("pw", password) : console.log("fail"); 
+          json.success ? sessionStorage.setItem("pw", password) : console.log("fail"); //setting password in storage to help with admin update, will change
+                                                                                       //as soon as i figure out a better solution
         });
     }
   };

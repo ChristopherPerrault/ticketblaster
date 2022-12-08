@@ -25,7 +25,7 @@ function EditProfilehtmlForm() {
 
   //storage is set when user logs in
   const userId = sessionStorage.getItem("userId");
-  console.log("userId: " + userId);
+  
   /* this method is used to generate all data about the user and display it*/
   loadUserDetails(userId);
 
@@ -61,12 +61,14 @@ function EditProfilehtmlForm() {
           "Content-Type": "application/json",
         },
       }).then((response) =>
-        console.log("Response: " + JSON.stringify(response))
+        console.log("Response: " + response)
       );
     } catch (err) {
       console.error(err);
     }
-    //navigate("/admin");
+    var updateMsg = "Profile updated successfully!\nYou entered the following information: " + JSON.stringify(editedPerson);
+    alert(updateMsg);
+    navigate("/");
   }
 
   return (
