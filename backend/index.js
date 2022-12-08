@@ -8,9 +8,7 @@ const saltRounds = 10;
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const stripe = require("stripe")(
-  "sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0"
-);
+const stripe = require("stripe")("sk_test_51MC2zeDM4nrUdWXdbni6c5xPitttdngpgIbTmCoDmjrOFdzeS4oFcwQaWyqm4ZgclZQ5lKVA76uKMPhiry5Ydm8X00Xp9AfGM0");
 const app = express();
 const port = 3001;
 const axios = require("axios");
@@ -51,9 +49,7 @@ app.post("/users/register", async (request, response) => {
       // Check to see if the user already exists. If not, then create it.
       const user = await userModel.findOne({ email: email });
       if (user) {
-        console.log(
-          "Invalid registration - email " + email + " already exists."
-        );
+        console.log("Invalid registration - email " + email + " already exists.");
         response.send({ success: false });
         return;
       } else {
@@ -123,34 +119,34 @@ app.post("/users/admin/:id", async (request, response) => {
   const creditCard = request.body.creditCard;
   const securityCode = request.body.securityCode;
   const expDate = request.body.expDate;
-    try {
-      hashedPassword = await bcrypt.hash(password, saltRounds);
-      const user = {
-        id: id,
-        email: email,
-        password: hashedPassword,
-        firstName: firstName,
-        lastName: lastName,
-        address: address,
-        phoneNumber: phoneNumber,
-        creditCard: creditCard,
-        securityCode: securityCode,
-        expDate: expDate,
-      };
+  try {
+    hashedPassword = await bcrypt.hash(password, saltRounds);
+    const user = {
+      id: id,
+      email: email,
+      password: hashedPassword,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      phoneNumber: phoneNumber,
+      creditCard: creditCard,
+      securityCode: securityCode,
+      expDate: expDate,
+    };
 
-      console.log("ADMIN ---Trying to update record with credentials: " + id);
-      const results = await userModel.replaceOne(
-        {
-          id: id,
-        },
-        user
-      );
-      console.log("matched: " + results.matchedCount);
-      console.log("modified: " + results.modifiedCount);
-      response.send(results);
-    } catch (err) {
-      console.log(err);
-    }
+    console.log("ADMIN ---Trying to update record with credentials: " + id);
+    const results = await userModel.replaceOne(
+      {
+        id: id,
+      },
+      user
+    );
+    console.log("matched: " + results.matchedCount);
+    console.log("modified: " + results.modifiedCount);
+    response.send(results);
+  } catch (err) {
+    console.log(err);
+  }
 });
 /*Update Account WITH PASSWORD by id
   Consumed at /account                 */
@@ -256,6 +252,7 @@ app.post("/tickets/purchase", async (request, response) => {
   const totalTickets = request.body.totalTickets;
   const totalPrice = request.body.totalPrice;
   const purchaseDate = request.body.purchaseDate;
+  const eventName = request.body.eventName;
 
   try {
     const ticketRecordToCreate = {
@@ -264,6 +261,7 @@ app.post("/tickets/purchase", async (request, response) => {
       totalTickets: totalTickets,
       totalPrice: totalPrice,
       purchaseDate: purchaseDate,
+      eventName: eventName,
     };
     await ticketRecordModel.create(ticketRecordToCreate);
     response.send({ success: true });
@@ -287,9 +285,7 @@ app.get("/allTickets", async (req, res) => {
 
 /* ---------------------------------------------------- APP LISTEN ---------------------------------------------------- */
 
-app.listen(port, () =>
-  console.log(`TicketBlaster app listening on port ${port}`)
-);
+app.listen(port, () => console.log(`TicketBlaster app listening on port ${port}`));
 
 // change these keys based on contents of .env file
 // this sets the api data to be fetched from 3001/api, therefore they are outside of the frontend and hidden

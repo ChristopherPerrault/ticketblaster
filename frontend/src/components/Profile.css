@@ -2,7 +2,7 @@
 .profile-container{
     display:grid;
     grid-template-columns: 1fr 1fr;
-     background-color: rgb(130, 134, 132);
+     background-color: #cca377;
     margin-top:3%;
     margin-left: 10%;
      border-radius: 15%;

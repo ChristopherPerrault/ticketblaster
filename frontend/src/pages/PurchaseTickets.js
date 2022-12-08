@@ -2,15 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../index.css";
 import ProductCard from "../components/ProductCard";
-import {
-  Card,
-  Box,
-  CardContent,
-  Typography,
-  CardMedia,
-  Button,
-  CardActions,
-} from "@mui/material";
+import { Card, Box, CardContent, Typography, CardMedia, Button, CardActions } from "@mui/material";
 import PurchaseForm from "../components/PurchaseForm";
 
 export default function PurchaseTicket(props) {
@@ -35,6 +27,10 @@ export default function PurchaseTicket(props) {
           setEvents(
             data._embedded.events.map((event, index) => {
               if (event.id === id) {
+                // creating and storing the event info as an object in session storage
+                const eventName = event.name;
+                sessionStorage.setItem("eventName", eventName);
+
                 const date = new Date(event.dates.start.localDate);
                 const formattedDate = date.toLocaleDateString("en-CA", {
                   weekday: "long",
@@ -94,11 +90,7 @@ export default function PurchaseTicket(props) {
                         {/* add price range */}
                         {/* add capacity */}
                         {/* add age restrictions/notices */}
-                        <Button
-                          onClick={handlePurchaseClick}
-                          variant="contained"
-                          style={{marginLeft:"50%", marginTop:"-5%"}}
-                        >
+                        <Button onClick={handlePurchaseClick} variant="contained" style={{ marginLeft: "50%", marginTop: "-5%" }}>
                           Purchase
                         </Button>
                       </Card>

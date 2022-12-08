@@ -4,19 +4,19 @@ import { Card, Box, CardContent, Typography, CardMedia, Button } from "@mui/mate
 import { useNavigate } from "react-router-dom";
 
 export default function MyTicketCard(props) {
-   const navigate = useNavigate();
-   var ticketNum = Math.floor(Math.random() * 100);//using a random number since it's not an important feature
-   const handleClick = () => {                      
-     navigate(`/ticket/${ticketNum}`);
-   };
+  const navigate = useNavigate();
+  var ticketNum = Math.floor(Math.random() * 100); //using a random number since it's not an important feature
+  const handleClick = () => {
+    navigate(`/ticket/${ticketNum}`);
+  };
   return (
-    <div>      
+    <div>
       <Box>
-        <Card className="indv-card">          
+        <Card className="indv-card">
           <CardMedia />
           <CardContent>
             <Typography variant="h5" component="div">
-              User: {props.email}
+              {props.eventName}
             </Typography>
             <Typography variant="body2">
               You bought seat for this concert on level: <b>{props.seats}</b>
@@ -32,10 +32,10 @@ export default function MyTicketCard(props) {
             </Typography>
             <Button onClick={handleClick} variant="contained">
               View Tickets
-             </Button>
+            </Button>
           </CardContent>
-          </Card>
-          </Box>
+        </Card>
+      </Box>
     </div>
   );
 }

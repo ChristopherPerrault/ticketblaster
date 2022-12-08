@@ -25,16 +25,3 @@ export default function Account() {
     </>
   );
 }
-/*
- <Box>
-                      <Card className="indv-event-details-container">
-                        <CardActions>
-                          <CardMedia
-                            height="400"
-                            width="400"
-                            component="img"
-                            srcSet={event.images[5].url}
-                            title={event.name + " banner image"}
-                            alt={event.name + " banner image"}
-                          />
-*/
