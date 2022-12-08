@@ -198,24 +198,25 @@ function EditProfilehtmlForm() {
 export default EditProfilehtmlForm;
 
 async function loadUserDetails(id) {
-  console.log("Loading user details..." + id);
-  fetch(`http://localhost:3001/users/${id}`, {
+  const currentId = id;
+  console.log("Loading user details..." + currentId);
+  fetch(`http://localhost:3001/users/id/${currentId}`, {    
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
   })
     .then((data) => data.json())
-    .then((json) => {      
-      
-      document.getElementById("email-input").placeholder = json.email;
+    .then((json) => {
+      console.log(json);
+       document.getElementById("email-input").placeholder = json.email;
       document.getElementById("fn-input").placeholder = json.firstName;
       document.getElementById("ln-input").placeholder = json.lastName;
       document.getElementById("phone-input").placeholder = json.phoneNumber;
       document.getElementById("adr-input").placeholder = json.address;
       document.getElementById("cc-input").placeholder = json.creditCard;
       document.getElementById("sec-input").placeholder = json.securityCode;
-      document.getElementById("exp-input").placeholder = json.expDate;
+      document.getElementById("exp-input").placeholder = json.expDate; 
     });
   }
 

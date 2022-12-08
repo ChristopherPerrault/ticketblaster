@@ -83,6 +83,7 @@ app.post("/users/register", async (request, response) => {
 app.post("/users/login", async (request, response) => {
   const email = request.body.email;
   const password = request.body.password;
+  console.log("Received email: " + email + " and password: " + password);
   try {
     if (email && password) {
       // Check to see if the user already exists.
@@ -94,8 +95,10 @@ app.post("/users/login", async (request, response) => {
       } else {
         const isSame = await bcrypt.compare(password, user.password);
         if (isSame) {
+          console.log("User exists " + email)
           console.log("Successful login");
-          response.send({ success: true });
+          response.send({ success: true, email:email });
+          
           return;
         }
       }
@@ -201,23 +204,25 @@ app.get("/users", async (req, res) => {
     console.log(err);
   }
 });
-/* GET request using query parameters to /users/:id --- gets ONE user */
-app.get("/users/:id", async (req, res) => {
-  const id = req.query.id;
-  // const email = req.query.email;
+/* GET request using query parameters to /users/:id --- gets ONE user  */
+app.get("/users/id/:id", async (req, res) => {
+  console.log("GET request w/ ID: " + req.params.id);
+  const id = req.params.id;
   try {
+    console.log("Looking for ID: " + id);
     const user = await userModel.findOne({
       id: id,
     });
+    console.log("Found user with ID: " + user.id);
     res.send(user);
   } catch (err) {
     console.log(err);
   }
 });
 
-/* GET request using query parameters to /users/:email --- gets ONE user --- Changed to be longer needed
-app.get("/users/:email", async (req, res) => {
-  console.log("Post request w/ email");
+ /*GET request using query parameters to /users/:email --- gets ONE user --- Changed to be longer needed */
+app.get("/users/email/:email", async (req, res) => {
+  console.log("get request w/ email: " + req.params.email);
   // const id = req.query.id;
   const email = req.params.email;
   try {
@@ -229,7 +234,7 @@ app.get("/users/:email", async (req, res) => {
     console.log(err);
   }
 });
- */
+ 
 /* An API delete request using URL path parameters to /users/:id */
 app.delete("/users/:id", async (req, res) => {
   

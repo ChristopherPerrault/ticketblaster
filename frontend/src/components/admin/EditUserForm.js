@@ -172,7 +172,7 @@ const pw = sessionStorage.getItem("pw");
 }
 
 async function loadCurrentUser(id) {
-  fetch(`http://localhost:3001/users/${id}`, {
+  fetch(`http://localhost:3001/users/id/${id}`, {
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",

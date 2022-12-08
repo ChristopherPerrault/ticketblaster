@@ -20,6 +20,8 @@ function LoginForm() {
 
   
   const handleSubmit = (event) => {
+    console.log(email);
+    console.log(password);
     event.preventDefault();
 
     setEmailErr(false);
@@ -46,8 +48,9 @@ function LoginForm() {
       })
         .then((data) => data.json())
         .then((json) => {
+          console.log("login call " + email);
+         
           getUserId(email);
-          console.log(sessionStorage.getItem("admin"))
           alert("Successfully Logged in!");
           json.success ? setIsLoggedIn(true) : setIsLoggedIn(false);
           json.success ? sessionStorage.setItem("pw", password) : console.log("fail"); //setting password in storage to help with admin update, will change
@@ -94,19 +97,20 @@ export default LoginForm;
 
 
 function getUserId(email) {
+  console.log("Received email: " + email);
   
-  fetch(`http://localhost:3001/users/${email}`, {
+  fetch(`http://localhost:3001/users/email/${email}`, {
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
   })
     .then((data) => data.json())
-    .then((json) => {
-      console.log(JSON.stringify(json));
+    .then((json) => {      
+      console.log("Received user: " + JSON.stringify(json));
       sessionStorage.setItem("userId", json._id);
-      json.isAdmin ? sessionStorage.setItem("admin", true) : sessionStorage.setItem("admin", false);
+     // json.isAdmin ? sessionStorage.setItem("admin", true) : sessionStorage.setItem("admin", false);
       
     });
 }
-
+ 
