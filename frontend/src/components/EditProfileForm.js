@@ -24,21 +24,20 @@ function EditProfilehtmlForm() {
   const navigate = useNavigate();
 
   //storage is set when user logs in
-  const loggedInUser = sessionStorage.getItem("user");
-
+  const userId = sessionStorage.getItem("userId");
+  console.log("userId: " + userId);
   /* this method is used to generate all data about the user and display it*/
-  loadUserDetails(loggedInUser);
-  function adminClick() {
-navigate("/admin");
-  }
+  loadUserDetails(userId);
+
 
   async function handleSubmit(event) {
+    console.log("Received update for user: " + userId);
     event.preventDefault();
-    const id = document.querySelector(".hiddenId");
-    console.log(id.value);
-    console.log("Received update");
+    
+    
+    
     const editedPerson = {
-      // id: id,
+      id: userId,
       email: email,
       password: password,
       firstName: firstName,
@@ -55,7 +54,7 @@ navigate("/admin");
 
     // This will send a post request to update the data in the database.
     try {
-      await fetch(`http://localhost:3001/users/${email}`, {
+      await fetch(`http://localhost:3001/users/${userId}`, {
         method: "POST",
         body: JSON.stringify(editedPerson),
         headers: {
@@ -67,7 +66,7 @@ navigate("/admin");
     } catch (err) {
       console.error(err);
     }
-    navigate("/admin");
+    //navigate("/admin");
   }
 
   return (
@@ -173,12 +172,7 @@ navigate("/admin");
           onChange={(e) => setSecurityCode(e.target.value)}
         />
 
-        <Button
-          type="submit"
-          onClick={adminClick}
-          variant="contained"
-          style={{ marginLeft: "12%" }}
-        >
+        <Button type="submit" variant="contained" style={{ marginLeft: "12%" }}>
           Update
         </Button>
         <br />
@@ -192,9 +186,7 @@ navigate("/admin");
           variant="outlined"
           onChange={(e) => setExpDate(e.target.value)}
         />
-        <Button type="submit" className="admin-button" variant="contained" style={{ marginLeft:"8%", display:"none"}}>
-          Access Admin Portal
-        </Button>
+      
         <br />
       </form>
     </div>
@@ -203,17 +195,17 @@ navigate("/admin");
 
 export default EditProfilehtmlForm;
 
-async function loadUserDetails(email) {
-  fetch(`http://localhost:3001/users/${email}`, {
+async function loadUserDetails(id) {
+  console.log("Loading user details..." + id);
+  fetch(`http://localhost:3001/users/${id}`, {
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
   })
     .then((data) => data.json())
-    .then((json) => {
-      console.log(json.isAdmin);
-      document.querySelector(".hiddenId").innerHTML = json._id;
+    .then((json) => {      
+      
       document.getElementById("email-input").placeholder = json.email;
       document.getElementById("fn-input").placeholder = json.firstName;
       document.getElementById("ln-input").placeholder = json.lastName;
@@ -222,17 +214,7 @@ async function loadUserDetails(email) {
       document.getElementById("cc-input").placeholder = json.creditCard;
       document.getElementById("sec-input").placeholder = json.securityCode;
       document.getElementById("exp-input").placeholder = json.expDate;
-      
-      const bool = json.isAdmin;
-     console.log(json.isAdmin);
-       
-       {
-         bool
-           ? alert("Admin status detected. Travel to `http://localhost:3000/admin`")
-           : console.log("Not Admin");
-       }
-      //document.getElementById("adminBoolean").innerHTML = { (json.admin) == true ? "Admin" : "Not Admin" };
-    })
+    });
   }
 
     

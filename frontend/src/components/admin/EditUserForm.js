@@ -18,7 +18,8 @@ export default function EditUser(props) {
   /*id is passed from the previous page, where all users are listed
      then id is used to query that users info and display in the form*/
   loadCurrentUser(params.id);
-
+const pw = sessionStorage.getItem("pw");
+console.log("pw:" + pw);
   useEffect(() => {
     async function fetchData() {
       const id = params._id.toString();
@@ -47,8 +48,8 @@ export default function EditUser(props) {
   async function onSubmit(e) {
     e.preventDefault();
     const editedPerson = {
-      id: params.id,
-      password: passwordRef.current.value,
+      id: params.id,   
+      password: pw,   
       email: emailRef.current.value,
       firstName: firstNameRef.current.value,
       lastName: lastNameRef.current.value,
@@ -61,7 +62,7 @@ export default function EditUser(props) {
     console.log(JSON.stringify(editedPerson));
 
     // This will send a post request to update the data in the database.
-    await fetch(`http://localhost:3001/users/${params.id}`, {
+    await fetch(`http://localhost:3001/users/admin/${params.id}`, {
       method: "POST",
       body: JSON.stringify(editedPerson),
       headers: {
@@ -86,7 +87,7 @@ export default function EditUser(props) {
             ref={emailRef}
           />
         </div>
-        <div className="form-group">
+      {/*   <div className="form-group">
           <label htmlFor="password">Password: </label>
           <input
             type="text"
@@ -94,7 +95,7 @@ export default function EditUser(props) {
             id="password"
             ref={passwordRef}
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="firstName">First Name: </label>
           <input

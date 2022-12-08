@@ -43,15 +43,16 @@ function LoginForm() {
       })
         .then((data) => data.json())
         .then((json) => {
+          getUserId(email);
           alert("Successfully Logged in!");
           json.success ? setIsLoggedIn(true) : setIsLoggedIn(false);
-          sessionStorage.setItem("user", email);// session?
+          json.success ? sessionStorage.setItem("pw", password) : console.log("fail"); 
         });
     }
   };
 
   return isLoggedIn ? (
-    navigate("/")
+   navigate("/")
   ) : (
     <div>
       <form className="login--form" onSubmit={handleSubmit}>
@@ -84,3 +85,20 @@ function LoginForm() {
 }
 
 export default LoginForm;
+
+function getUserId(email){  
+    fetch(`http://localhost:3001/users/${email}`, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((data) => data.json())
+      .then((json) => {
+        console.log(JSON.stringify(json));
+        sessionStorage.setItem("userId", json._id);        
+      });
+  }
+
+
+
