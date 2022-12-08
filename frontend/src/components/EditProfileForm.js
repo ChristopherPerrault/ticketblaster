@@ -24,7 +24,7 @@ function EditProfilehtmlForm() {
   const navigate = useNavigate();
 
   //storage is set when user logs in
-  const loggedInUser = localStorage.getItem("user");
+  const loggedInUser = sessionStorage.getItem("user");
 
   /* this method is used to generate all data about the user and display it*/
   loadUserDetails(loggedInUser);
