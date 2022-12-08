@@ -2,7 +2,7 @@ body {
   margin: 0 auto;
   display: block;
   min-width: 100%;
-  background-color: rgb(228, 228, 228);
+  /* background-color: rgb(228, 228, 228); */
   scrollbar-width: none; /* Firefox */
   position: relative;
   min-height: 100vh;

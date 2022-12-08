@@ -212,6 +212,31 @@ figcaption {
   margin-left: 20px;
 }
 /* Display Ticket page */
-.display-ticket{
-margin-left:33%;
+.display-ticket {
+  margin-left: 33%;
+}
+
+/* theme switching */
+
+:root {
+  --light: rgb(242, 242, 242);
+  --dark: rgb(51, 51, 51);
+  --orangeText: rgb(255, 166, 0);
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: background 0.3s ease-in-out, color 0.6s ease-in-out;
+}
+
+body.light {
+  --background-color: var(--light);
+  --text-color: var(--dark);
+}
+
+body.dark {
+  --background-color: var(--dark);
+  --text-color: var(--light);
+  --text-color: var(--orangeText);
 }

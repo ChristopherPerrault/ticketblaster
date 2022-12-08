@@ -6,10 +6,11 @@ import logo from "../assets/images/logo.jpg";
 import LogoutButton from "./LogoutButton";
 import RegisterButton from "./RegisterButton";
 import LogInButton from "./LogInButton";
+import DarkMode from "./DarkMode";
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
-  
+
   return (
     <div className="header">
       <div className="logo">
@@ -20,7 +21,6 @@ function Header() {
       <div className="navbar">
         <Navbar />
       </div>
-
       <div className="button">
         {isLoggedIn ? (
           <LogoutButton />
@@ -29,9 +29,12 @@ function Header() {
             {" "}
             <RegisterButton to="/register" />
             &emsp;
-            <LogInButton to="/login" />{" "}
+            <LogInButton to="/login" />
           </div>
         )}
+        <div className="theme-button">
+          <DarkMode />
+        </div>
       </div>
     </div>
   );

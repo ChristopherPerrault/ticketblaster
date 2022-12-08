@@ -1,0 +1,24 @@
+#darkMode {
+  background: transparent url("../assets/images/darkIcon.png") no-repeat center;
+  background-size: 40px 40px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+}
+
+#darkMode:hover,
+#darkMode:focus {
+  filter: none;
+  cursor: pointer;
+}
+
+#darkMode.clicked {
+  filter: none !important;
+  background: url("../assets/images/lightIcon.png") no-repeat center;
+  background-size: 40px 40px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+}
