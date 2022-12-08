@@ -226,7 +226,9 @@ app.get("/users/:email", async (req, res) => {
 });
 /* An API delete request using URL path parameters to /users/:id */
 app.delete("/users/:id", async (req, res) => {
+  
   const id = req.params.id;
+  console.log("Deleting user: " + id);
   try {
     const results = await userModel.deleteOne({ id: id });
     res.send(results);

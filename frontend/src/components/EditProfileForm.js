@@ -28,6 +28,9 @@ function EditProfilehtmlForm() {
 
   /* this method is used to generate all data about the user and display it*/
   loadUserDetails(loggedInUser);
+  function adminClick() {
+navigate("/admin");
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -147,7 +150,9 @@ function EditProfilehtmlForm() {
           variant="outlined"
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
+
         <br />
+
         <TextField
           style={TextStyle}
           type="text"
@@ -168,9 +173,15 @@ function EditProfilehtmlForm() {
           onChange={(e) => setSecurityCode(e.target.value)}
         />
 
-        <Button type="submit" variant="contained" style={{ marginLeft: "15%" }}>
+        <Button
+          type="submit"
+          onClick={adminClick}
+          variant="contained"
+          style={{ marginLeft: "12%" }}
+        >
           Update
         </Button>
+        <br />
 
         <TextField
           style={TextStyle}
@@ -181,6 +192,9 @@ function EditProfilehtmlForm() {
           variant="outlined"
           onChange={(e) => setExpDate(e.target.value)}
         />
+        <Button type="submit" className="admin-button" variant="contained" style={{ marginLeft:"8%", display:"none"}}>
+          Access Admin Portal
+        </Button>
         <br />
       </form>
     </div>
@@ -208,11 +222,14 @@ async function loadUserDetails(email) {
       document.getElementById("cc-input").placeholder = json.creditCard;
       document.getElementById("sec-input").placeholder = json.securityCode;
       document.getElementById("exp-input").placeholder = json.expDate;
+      
       const bool = json.isAdmin;
-     
+     console.log(json.isAdmin);
        
        {
-         bool ? console.log("Admin") : console.log("Not Admin");
+         bool
+           ? alert("Admin status detected. Travel to `http://localhost:3000/admin`")
+           : console.log("Not Admin");
        }
       //document.getElementById("adminBoolean").innerHTML = { (json.admin) == true ? "Admin" : "Not Admin" };
     })
