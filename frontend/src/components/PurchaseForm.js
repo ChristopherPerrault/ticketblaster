@@ -3,7 +3,7 @@ import { LoggedInContext } from "../App";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { InputLabel, MenuItem, Select } from "@mui/material";
+import { Input, InputLabel, MenuItem, Select } from "@mui/material";
 import "../index.css";
 
 export default function PurchaseForm() {
@@ -30,16 +30,16 @@ export default function PurchaseForm() {
   // ! What happens is, it uses the previous number to calculate and not the current number. so when you move from 0 to 1 ticket, it still says price is 0.
   const calculatePrice = (event) => {
     setTickets(event.target.value);
-
+    var numOfTickets = document.getElementById("tickets").value;
     if (level === "Floor") {
-      setTotalPrice(tickets * 300);
+      setTotalPrice(numOfTickets * 300);
     } else if (level === 1) {
-      setTotalPrice(tickets * 250);
+      setTotalPrice(numOfTickets * 250);
     } else if (level === 2) {
-      setTotalPrice(tickets * 150);
+      setTotalPrice(numOfTickets * 150);
     } else if (level === 3) {
-      setTotalPrice(tickets * 70);
-    } else {
+      setTotalPrice(numOfTickets * 70);
+    } else if (totalPrice < 0) {
       setTotalPrice(0);
     }
   };
@@ -64,7 +64,7 @@ export default function PurchaseForm() {
         </Select>
         <br />
         <br />
-        <TextField id="tickets" type="number" label="Number of Tickets" variant="outlined" onChange={calculatePrice} value={tickets} />
+        <TextField id="tickets" type="number" min={"0"} max={8} label="Number of Tickets" variant="outlined" onChange={calculatePrice} value={tickets} />
         <br />
         <br />
         <TextField id="price" type="text" label="Price" variant="outlined" value={totalPrice} />
