@@ -7,8 +7,8 @@ function MyTickets() {
   const [currentEmail, setCurrentEmail] = useState("");
   const [ticketsData, setTicketsData] = useState([]);
 
+  // retrieve logged in user information from session storage in order to retrieve email
   const userId = sessionStorage.getItem("userId");
-
   useEffect(() => {
     fetch(`http://localhost:3001/users/id/${userId}`, {
       method: "GET",
@@ -17,11 +17,12 @@ function MyTickets() {
       },
     })
       .then((data) => data.json())
-      .then((json) => {        
+      .then((json) => {
         setCurrentEmail(json.email);
       });
   }, [userId]);
 
+  // fetch all tickets
   useEffect(() => {
     fetch("http://localhost:3001/allTickets", {
       method: "GET",
@@ -30,13 +31,15 @@ function MyTickets() {
       },
     })
       .then((response) => response.json())
-      .then((data) => {       
+      .then((data) => {
         setTicketsData(data);
       });
   }, []);
   console.log(ticketsData);
 
+  // map through all tickets,
   const ticketElements = ticketsData.map((ticket) => {
+    // but only return those of current logged in user
     if (ticket.email === currentEmail) {
       return (
         <MyTicketCard

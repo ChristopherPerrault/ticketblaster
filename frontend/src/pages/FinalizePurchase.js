@@ -23,7 +23,7 @@ export default function FinalizePurchase() {
       .then((data) => {
         setUserData(data);
       });
-  }, []);
+  }, [loggedInUser]);
 
   // --------- HANDLE SUBMIT --------------
   const handleSubmit = (event) => {

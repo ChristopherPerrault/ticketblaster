@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import ChrisImg from "../assets/images/chris.png";
 import SeenaImg from "../assets/images/seena.jpg";
 import KevinImg from "../assets/images/kevin.jpg";
 import MattImg from "../assets/images/matt.jpg";
-import RegexLogo from "../assets/images/regex_logo.png";
-import Button from "@mui/material/Button";
-import AboutExtraInfo from "../components/AboutExtraInfo";
+
 function AboutPhotos() {
-
-
   return (
     <>
       <div className="about--title">
