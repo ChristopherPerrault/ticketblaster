@@ -48,6 +48,10 @@ function MyTickets() {
           ticketsBought={ticket.totalTickets}
           totalPrice={ticket.totalPrice}
           purchaseDate={ticket.purchaseDate}
+          eventName={ticket.eventName}
+          eventDate={ticket.eventDate}
+          eventTime={ticket.eventTime}
+          eventVenue={ticket.eventVenue}
         />
       );
     } else {

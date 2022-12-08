@@ -9,6 +9,10 @@ export default function FinalizePurchase() {
 
   // -------------- LOAD IN SESSION PURCHASEINFO --------------
   const purchaseInfo = JSON.parse(sessionStorage.purchaseInfo);
+  // -------------- LOAD IN SESSION EVENTINFO --------------
+  console.log(sessionStorage.eventInfo);
+  const eventName = sessionStorage.eventName;
+
   // -------------- LOAD IN USER DATA --------------
   const loggedInUser = sessionStorage.getItem("userId");
   const [userData, setUserData] = useState([]);
@@ -36,6 +40,7 @@ export default function FinalizePurchase() {
         totalTickets: purchaseInfo.tickets,
         totalPrice: purchaseInfo.totalPrice,
         purchaseDate: new Date(),
+        eventName: eventName,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",

@@ -20,6 +20,10 @@ const TicketRecordSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  eventName: {
+    type: String,
+    required: true,
+  },
 });
 
 // Mongoose will assume there is a collection called the plural of this name (i.e., 'users' in this case).
