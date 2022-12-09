@@ -7,6 +7,7 @@ import "../index.css";
 
 export default function About() {
   document.title = "TicketBlaster | About Us";
+
   const [showMoreInfo, setShowMoreInfo] = React.useState(true);
   function handleClick() {
     setShowMoreInfo((prevState) => !prevState);

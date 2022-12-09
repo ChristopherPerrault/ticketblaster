@@ -1,15 +1,7 @@
 import React from "react";
 import ProfilePicture from "../components/ProfilePicture";
 import EditProfileForm from "../components/EditProfileForm";
-import {
-  // Card,
-  Box,
-  // CardContent,
-  // Typography,
-  // CardMedia,
-  // Button,
-  // CardActions,
-} from "@mui/material";
+import { Box } from "@mui/material";
 
 export default function Account() {
   document.title = "TicketBlaster | Account";
