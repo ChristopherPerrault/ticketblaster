@@ -37,9 +37,10 @@ const DarkMode = () => {
     <button
       className={theme === "dark" ? clickedClass : ""}
       id="darkMode"
-      title="Switch Theme"
       onClick={(e) => switchTheme(e)}
-    ></button>
+    >
+      <span class="tooltiptext">Switch Theme</span>
+    </button>
   );
 };
 

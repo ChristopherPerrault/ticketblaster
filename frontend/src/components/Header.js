@@ -26,15 +26,12 @@ function Header() {
           <LogoutButton />
         ) : (
           <div>
-            {" "}
-            <RegisterButton to="/register" />
+            <DarkMode /> <RegisterButton to="/register" />
             &emsp;
             <LogInButton to="/login" />
           </div>
         )}
-        <div className="theme-button">
-          <DarkMode />
-        </div>
+        <div className="theme-button"></div>
       </div>
     </div>
   );

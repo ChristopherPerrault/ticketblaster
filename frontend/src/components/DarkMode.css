@@ -5,6 +5,7 @@
   height: 50px;
   border: none;
   border-radius: 50%;
+  margin-right: 5px;
 }
 
 #darkMode:hover,
@@ -21,4 +22,21 @@
   height: 50px;
   border: none;
   border-radius: 50%;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  margin-top: 20px;
+}
+
+button:hover .tooltiptext {
+  visibility: visible;
 }
