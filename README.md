@@ -21,7 +21,17 @@ npm install
 cd backend
 npm install
 ```
-#### Once dependencies are installed, you can use the below commands to start the servers:
+#### In the main project directory, change .env.example to .env and insert your mongoDB connection string where instructed.
+#### Afterwards, navigate to 'index.js' in the backend subfolder...
+#### Change the following line:
+```
+url: `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=${process.env.API_KEY_CHRIS}`,
+```
+#### Replace the end with:
+```
+`...apikey=${process.env.DEMO_API_KEY}`
+```
+#### Once dependencies are installed and your .env is configured, you can use the below commands to start the servers:
 ```
 cd backend
 npm start
@@ -30,4 +40,4 @@ npm start
 cd frontend
 npm start
 ```
--- Need to include part about .env and provide sample API key
+
