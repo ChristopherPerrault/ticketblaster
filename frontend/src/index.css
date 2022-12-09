@@ -51,9 +51,10 @@
 
 /* Styling Registration Page */
 .registration--form,
-.login--form {
+.login--form,
+.form-tickets {
   width: 300px;
-  margin: 2rem auto 2rem auto;
+  margin: 2rem auto 5rem auto;
 }
 
 .registration--form div div {
@@ -122,7 +123,7 @@ figcaption {
 .about--title {
   text-align: center;
   padding: 10vh;
-  font-size:"6rem";
+  font-size: "6rem";
 }
 
 .about--images {
