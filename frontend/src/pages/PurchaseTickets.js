@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../index.css";
-import ProductCard from "../components/ProductCard";
 import { Card, Box, CardContent, Typography, CardMedia, Button, CardActions } from "@mui/material";
 import PurchaseForm from "../components/PurchaseForm";
 

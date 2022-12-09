@@ -16,6 +16,7 @@ function LoginForm() {
   const [passwordErr, setPasswordErr] = React.useState(null);
 
   const [isLoggedIn, setIsLoggedIn] = React.useContext(LoggedInContext);
+  // eslint-disable-next-line
   const [isAdmin, setIsAdmin] = React.useContext(LoggedInContext);
 
   
@@ -53,8 +54,8 @@ function LoginForm() {
           getUserId(email);
           alert("Successfully Logged in!");
           json.success ? setIsLoggedIn(true) : setIsLoggedIn(false);
-          json.success ? sessionStorage.setItem("pw", password) : console.log("fail"); //setting password in storage to help with admin update, will change
-                                                                                       //as soon as i figure out a better solution
+          json.success ? sessionStorage.setItem("pw", password) : console.log("loginform.js password fail"); 
+          //setting password in storage to help with admin update, will change when solution is found
         });
     }
   };

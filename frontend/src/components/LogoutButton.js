@@ -5,7 +5,9 @@ import "./Button.css"
 
 export default function LogoutButton() {
     const navigate = useNavigate();
+    // eslint-disable-next-line
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
+    // eslint-disable-next-line
      const [isAdmin, setIsAdmin] = useContext(LoggedInContext);
     const handleLogOut = () => {
         setIsLoggedIn(false);

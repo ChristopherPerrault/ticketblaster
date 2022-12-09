@@ -14,7 +14,12 @@ export default function DisplayTicket(props) {
       <Box>
         <Typography variant="h2">Enjoy the show!</Typography>
         <Typography variant="h3">{props.seats}</Typography>
-        <img src={QR} alt="Use this to get in at the venue!" className="qr-img" style={{ width: "300px", height: "300px" }} />
+        <img
+          src={QR}
+          alt="Use this to get in at the venue!"
+          className="qr-img"
+          style={{ width: "300px", height: "300px" }}
+        />
         <br />
         <Button variant="contained" onClick={handleClick}>
           Go back

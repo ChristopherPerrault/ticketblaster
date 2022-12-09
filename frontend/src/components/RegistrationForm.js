@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -7,26 +7,26 @@ import { validEmail, validPassword, validPhoneNumber, validCreditCard, validSecu
 function RegistrationForm() {
   document.title = "TicketBlaster | Event Details";
 
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [address, setAddress] = React.useState("");
-  const [phoneNumber, setPhoneNumber] = React.useState("");
-  const [creditCard, setCreditCard] = React.useState("");
-  const [securityCode, setSecurityCode] = React.useState("");
-  const [expDate, setExpDate] = React.useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [creditCard, setCreditCard] = useState("");
+  const [securityCode, setSecurityCode] = useState("");
+  const [expDate, setExpDate] = useState(null);
 
   // boolean values for the error attribute in the form inputs
-  const [emailErr, setEmailErr] = React.useState(null);
-  const [passwordErr, setPasswordErr] = React.useState(null);
-  const [firstNameErr, setFirstNameErr] = React.useState(null);
-  const [lastNameErr, setLastNameErr] = React.useState(null);
-  const [addressErr, setAddressErr] = React.useState(null);
-  const [phoneNumberErr, setPhoneNumberErr] = React.useState(null);
-  const [creditCardErr, setCreditCardErr] = React.useState(null);
-  const [securityCodeErr, setSecurityCodeErr] = React.useState(null);
-  const [expDateErr, setExpDateErr] = React.useState(null);
+  const [emailErr, setEmailErr] = useState(null);
+  const [passwordErr, setPasswordErr] = useState(null);
+  const [firstNameErr, setFirstNameErr] = useState(null);
+  const [lastNameErr, setLastNameErr] = useState(null);
+  const [addressErr, setAddressErr] = useState(null);
+  const [phoneNumberErr, setPhoneNumberErr] = useState(null);
+  const [creditCardErr, setCreditCardErr] = useState(null);
+  const [securityCodeErr, setSecurityCodeErr] = useState(null);
+  const [expDateErr, setExpDateErr] = useState(null);
 
   const navigate = useNavigate();
 

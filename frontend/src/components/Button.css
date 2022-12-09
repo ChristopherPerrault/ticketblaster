@@ -1,3 +1,5 @@
+/* Styles for both LoginButton.js and RegisterButton.js */
+
 .Button {
     border-radius: 5px;
     border-color: white;
@@ -10,3 +12,4 @@
     padding: 0px;
     font-weight: bold;
 }
+

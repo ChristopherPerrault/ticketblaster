@@ -5,6 +5,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const loggedInValueAndSetterToProvide = [isLoggedIn, setIsLoggedIn];
   //const adminValueAndSetterToProvide = [isAdmin, setIsAdmin];
+  // eslint-disable-next-line
   const [isAdmin, setIsAdmin] = useState(false);
   return (
     <LoggedInContext.Provider value={loggedInValueAndSetterToProvide}>

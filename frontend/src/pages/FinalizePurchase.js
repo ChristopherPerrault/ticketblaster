@@ -9,6 +9,7 @@ export default function FinalizePurchase() {
 
   // -------------- LOAD IN SESSION PURCHASEINFO --------------
   const purchaseInfo = JSON.parse(sessionStorage.purchaseInfo);
+
   // -------------- LOAD IN SESSION EVENTINFO --------------
   console.log(sessionStorage.eventInfo);
   const eventName = sessionStorage.eventName;
@@ -56,7 +57,7 @@ export default function FinalizePurchase() {
             console.log(error);
           }
         } else {
-          alert("Sorry something went wrong with the purchase");
+          alert("Sorry, something went wrong with the purchase");
         }
       });
   };

@@ -6,6 +6,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import AboutMenu from "./AboutMenu";
 
 function Navbar() {
+  // eslint-disable-next-line
   const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
 
   return (

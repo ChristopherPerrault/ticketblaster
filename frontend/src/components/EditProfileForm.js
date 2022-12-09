@@ -242,6 +242,7 @@ async function loadUserDetails(id) {
       .then((data) => data.json())
       .then((json) => {
         console.log(json.isAdmin);
+        // eslint-disable-next-line
         {
           json.isAdmin
             ? (document.getElementById("adminCheck").style.display = "inline")

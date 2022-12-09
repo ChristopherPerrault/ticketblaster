@@ -9,7 +9,7 @@ export default function Welcome() {
         <Card className="home-welcome">
           <CardContent>
             <Typography variant="h3">
-              Your source for the hottest shows in the Montreal Area
+              Your source for the hottest shows in the Montréal Area
             </Typography>
             <Typography variant="body2">
               TicketBlaster blasts away the competetion, bringing you the events

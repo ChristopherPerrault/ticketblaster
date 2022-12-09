@@ -25,7 +25,7 @@ export default function MyTicketCard(props) {
               Number of tickets purchased: <b>{props.ticketsBought}</b>
             </Typography>
             <Typography variant="body2">
-              Price payed: <b>{props.totalPrice}</b>
+              Price paid: <b>{props.totalPrice}</b>
             </Typography>
             <Typography variant="body2">
               Date Purchased: <b>{props.purchaseDate}</b>

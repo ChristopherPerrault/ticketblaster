@@ -9,6 +9,7 @@ import LogInButton from "./LogInButton";
 import DarkMode from "./DarkMode";
 
 function Header() {
+  // eslint-disable-next-line
   const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
 
   return (

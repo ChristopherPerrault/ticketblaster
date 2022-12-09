@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+// eslint-disable-next-line
 import { productsArray, getProductData } from "./productsStore";
 
 export const CartContext = createContext({
@@ -56,7 +57,7 @@ export function CartProvider({ children }) {
   function removeOneFromCart(id) {
     const quantity = getProductQuantity(id);
 
-    if (quantity == 1) {
+    if (quantity === 1) {
       deleteFromCart(id);
     } else {
       setCartProducts(
@@ -76,13 +77,14 @@ export function CartProvider({ children }) {
     // [product1, product3]
     setCartProducts((cartProducts) =>
       cartProducts.filter((currentProduct) => {
-        return currentProduct.id != id;
+        return currentProduct.id !== id;
       })
     );
   }
 
   function getTotalCost() {
     let totalCost = 0;
+    // eslint-disable-next-line
     cartProducts.map((cartItem) => {
       const productData = getProductData(cartItem.id);
       totalCost += productData.price * cartItem.quantity;
