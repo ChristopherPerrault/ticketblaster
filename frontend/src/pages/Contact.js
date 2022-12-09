@@ -8,7 +8,7 @@ import "../index.css";
 
 export default function Contact() {
   document.title = "TicketBlaster | Contact";
-  
+
   return (
     <div className="container">
       <div className="title">
@@ -16,7 +16,7 @@ export default function Contact() {
       </div>
       <div className="description">
         <p>
-          Click on any of the icons bellow to contact us with any needs,
+          Click on any of the icons below to contact us with any needs,
           questions or suggestions! <br />
           We are looking forward to hearing from you!
         </p>

@@ -73,6 +73,11 @@
 }
 
 /* Styling for Contact Page */
+
+.container {
+  font-family: "Recursive", sans-serif;
+}
+
 .title {
   text-align: center;
   padding: 10vh;
