@@ -219,9 +219,9 @@ figcaption {
 /* theme switching */
 
 :root {
-  --light: rgb(242, 242, 242);
-  --dark: rgb(51, 51, 51);
-  --orangeText: rgb(255, 166, 0);
+  --light: rgb(219, 219, 219);
+  --dark: rgb(36, 36, 36);
+  --orangeText: #ffa685;
 }
 
 body {
