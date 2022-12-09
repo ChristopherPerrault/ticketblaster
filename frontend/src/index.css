@@ -122,6 +122,7 @@ figcaption {
 .about--title {
   text-align: center;
   padding: 10vh;
+  font-size:"6rem";
 }
 
 .about--images {

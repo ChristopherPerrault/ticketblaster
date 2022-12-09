@@ -8,7 +8,7 @@ function AboutPhotos() {
   return (
     <>
       <div className="about--title">
-        <h1>The TicketBlaster Team!</h1>
+        <h1 style={{fontSize:"2.5rem"}}>The TicketBlaster Team!</h1>
       </div>
       <div className="about--images">
         <div>
