@@ -23,7 +23,7 @@ npm install
 ```
 #### In the main project directory, change .env.example to .env and insert your mongoDB connection string where instructed.
 #### Afterwards, navigate to 'index.js' in the backend subfolder...
-#### Change the following line:
+#### Change the following line (line 295):
 ```
 url: `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=${process.env.API_KEY_CHRIS}`,
 ```
