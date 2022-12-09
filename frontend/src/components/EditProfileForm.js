@@ -1,24 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
-
-import { Button, Typography, TextField, ButtonBase } from "@mui/material";
+import { Button, Typography, TextField } from "@mui/material";
 
 function EditProfilehtmlForm() {
   const TextStyle = {
     width: "200px",
     margin: "5px",
   };
+
   const idRef = useRef();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [address, setAddress] = React.useState("");
-  const [phoneNumber, setPhoneNumber] = React.useState("");
-  const [creditCard, setCreditCard] = React.useState("");
-  const [securityCode, setSecurityCode] = React.useState("");
-  const [expDate, setExpDate] = React.useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [creditCard, setCreditCard] = useState("");
+  const [securityCode, setSecurityCode] = useState("");
+  const [expDate, setExpDate] = useState(null);
 
   const navigate = useNavigate();
 
@@ -60,7 +60,7 @@ function EditProfilehtmlForm() {
     } catch (err) {
       console.error(err);
     }
-    var updateMsg =
+    let updateMsg =
       "Profile updated successfully!\nYou entered the following information:\n Email: " +
       editedPerson.email +
       "\n First Name: " +
@@ -72,13 +72,16 @@ function EditProfilehtmlForm() {
       "\n Address: " +
       editedPerson.address +
       ".";
+
     alert(updateMsg);
+
     try {
       navigate("/");
     } catch (error) {
       console.log("Error: " + error);
     }
   }
+
   function adminClick() {
     try {
       navigate("/admin");
@@ -116,7 +119,6 @@ function EditProfilehtmlForm() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        {/*   <input type="text" ref={xRef} id="x" />*/}
         <br />
         <TextField
           style={TextStyle}
@@ -127,6 +129,7 @@ function EditProfilehtmlForm() {
           variant="outlined"
           onChange={(e) => setPassword(e.target.value)}
         />
+
         <br />
         <TextField
           style={TextStyle}
@@ -137,6 +140,7 @@ function EditProfilehtmlForm() {
           variant="outlined"
           onChange={(e) => setFirstName(e.target.value)}
         />
+
         <br />
         <TextField
           style={TextStyle}
@@ -147,6 +151,7 @@ function EditProfilehtmlForm() {
           variant="outlined"
           onChange={(e) => setLastName(e.target.value)}
         />
+
         <br />
         <TextField
           style={TextStyle}
@@ -157,6 +162,7 @@ function EditProfilehtmlForm() {
           variant="outlined"
           onChange={(e) => setAddress(e.target.value)}
         />
+
         <br />
         <TextField
           style={TextStyle}
@@ -169,7 +175,6 @@ function EditProfilehtmlForm() {
         />
 
         <br />
-
         <TextField
           style={TextStyle}
           type="text"
@@ -179,6 +184,7 @@ function EditProfilehtmlForm() {
           variant="outlined"
           onChange={(e) => setCreditCard(e.target.value)}
         />
+
         <br />
         <TextField
           style={TextStyle}
@@ -193,8 +199,8 @@ function EditProfilehtmlForm() {
         <Button type="submit" variant="contained" style={{ marginLeft: "6%" }}>
           Update Info
         </Button>
-        <br />
 
+        <br />
         <TextField
           style={TextStyle}
           type="date"
@@ -212,8 +218,7 @@ function EditProfilehtmlForm() {
         variant="contained"
         id="adminCheck"
         onClick={adminClick}
-        style={{ marginLeft: "-17%", marginTop: "-20%",display:"none" }}
-        
+        style={{ marginLeft: "-17%", marginTop: "-20%", display: "none" }}
       >
         ACCESS ADMIN DASHBOARD
       </Button>
@@ -226,31 +231,32 @@ export default EditProfilehtmlForm;
 async function loadUserDetails(id) {
   const currentId = id;
   console.log("Loading user details..." + currentId);
-  try{
-  fetch(`http://localhost:3001/users/id/${currentId}`, {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((data) => data.json())
-    .then((json) => {
-      console.log(json.isAdmin);
-      {
-        json.isAdmin
-          ? (document.getElementById("adminCheck").style.display = "inline")
-          : console.log(json.isAdmin + " false");
-      }
-      document.getElementById("email-input").placeholder = json.email;
-      document.getElementById("fn-input").placeholder = json.firstName;
-      document.getElementById("ln-input").placeholder = json.lastName;
-      document.getElementById("phone-input").placeholder = json.phoneNumber;
-      document.getElementById("adr-input").placeholder = json.address;
-      document.getElementById("cc-input").placeholder = json.creditCard;
-      document.getElementById("sec-input").placeholder = json.securityCode;
-      document.getElementById("exp-input").placeholder = json.expDate;
-    });
-  }catch(e){
+
+  try {
+    fetch(`http://localhost:3001/users/id/${currentId}`, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((data) => data.json())
+      .then((json) => {
+        console.log(json.isAdmin);
+        {
+          json.isAdmin
+            ? (document.getElementById("adminCheck").style.display = "inline")
+            : console.log(json.isAdmin + " false");
+        }
+        document.getElementById("email-input").placeholder = json.email;
+        document.getElementById("fn-input").placeholder = json.firstName;
+        document.getElementById("ln-input").placeholder = json.lastName;
+        document.getElementById("phone-input").placeholder = json.phoneNumber;
+        document.getElementById("adr-input").placeholder = json.address;
+        document.getElementById("cc-input").placeholder = json.creditCard;
+        document.getElementById("sec-input").placeholder = json.securityCode;
+        document.getElementById("exp-input").placeholder = json.expDate;
+      });
+  } catch (e) {
     console.log("Error: " + e);
   }
 }
