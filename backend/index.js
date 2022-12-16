@@ -292,7 +292,7 @@ app.listen(port, () => console.log(`TicketBlaster app listening on port ${port}`
 app.get("/api", (req, res) => {
   const options = {
     method: "GET",
-    url: `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=${process.env.API_KEY_CHRIS}`,
+    url: `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=522&apikey=${process.env.API_KEY_MATT1}`,
   };
 
   axios.request(options).then((response) => {
